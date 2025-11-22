@@ -1,3 +1,7 @@
+namespace Demo.Library;
+
+using Microsoft.Foundation.NoSeries;
+
 table 70300 "LIB Library Setup"
 {
     Caption = 'Library Setup';

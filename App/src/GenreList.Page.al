@@ -1,3 +1,5 @@
+namespace Demo.Library;
+
 page 70323 "LIB Genre List"
 {
     Caption = 'Genres';
@@ -15,11 +17,9 @@ page 70323 "LIB Genre List"
             {
                 field(Code; Rec.Code)
                 {
-                    ToolTip = 'Specifies the unique code for the genre.';
                 }
                 field(Description; Rec.Description)
                 {
-                    ToolTip = 'Specifies the description of the genre.';
                 }
             }
         }

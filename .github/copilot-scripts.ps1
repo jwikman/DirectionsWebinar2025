@@ -12,7 +12,7 @@
 # 3. LINTERCOP NAMING: LinterCop releases follow naming convention: BusinessCentral.LinterCop.AL-{ALToolVersion}.dll
 #    - GitHub releases at https://github.com/StefanMaron/BusinessCentral.LinterCop/releases/latest/download/
 #
-# 4. CODE COPS: LinterCop is used for app, if available for the AL Tools version.
+# 4. CODE COPS: PerTenantExtensionCop is used for app. LinterCop is used for app, if available for the AL Tools version.
 
 $ErrorActionPreference = "Stop"
 
@@ -153,6 +153,7 @@ $appFolders | ForEach-Object {
 
     $Analyzers = @("Microsoft.Dynamics.Nav.Analyzers.Common.dll", "Microsoft.Dynamics.Nav.CodeCop.dll", "Microsoft.Dynamics.Nav.UICop.dll")
     if ($_ -eq "App") {
+        $Analyzers += @("Microsoft.Dynamics.Nav.PerTenantExtensionCop.dll")
         if ($LinterCopAvailable) {
             $Analyzers += @("BusinessCentral.LinterCop.dll")
         }

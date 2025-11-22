@@ -1,3 +1,7 @@
+namespace Demo.Library;
+
+using Microsoft.Foundation.NoSeries;
+
 table 70301 "LIB Author"
 {
     Caption = 'Author';

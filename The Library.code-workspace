@@ -16,7 +16,7 @@
 	"settings": {
 		// Sets the list of paths to code analyzers to use for performing code analysis.
 		"al.codeAnalyzers": [
-			"${AppSourceCop}",
+			"${PerTenantExtensionCop}",
 			"${CodeCop}",
 			"${UICop}",
 			"${analyzerFolder}BusinessCentral.LinterCop.dll"

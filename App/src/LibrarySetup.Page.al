@@ -1,3 +1,5 @@
+namespace Demo.Library;
+
 page 70320 "LIB Library Setup"
 {
     Caption = 'Library Setup';
@@ -19,8 +21,6 @@ page 70320 "LIB Library Setup"
 
                 field("Author Nos."; Rec."Author Nos.")
                 {
-                    ToolTip = 'Specifies the number series code used for assigning numbers to authors.';
-
                     trigger OnValidate()
                     begin
                         CurrPage.Update();
@@ -28,8 +28,6 @@ page 70320 "LIB Library Setup"
                 }
                 field("Book Nos."; Rec."Book Nos.")
                 {
-                    ToolTip = 'Specifies the number series code used for assigning numbers to books.';
-
                     trigger OnValidate()
                     begin
                         CurrPage.Update();
@@ -37,8 +35,6 @@ page 70320 "LIB Library Setup"
                 }
                 field("Member Nos."; Rec."Member Nos.")
                 {
-                    ToolTip = 'Specifies the number series code used for assigning numbers to library members.';
-
                     trigger OnValidate()
                     begin
                         CurrPage.Update();
@@ -46,8 +42,6 @@ page 70320 "LIB Library Setup"
                 }
                 field("Book Loan Nos."; Rec."Book Loan Nos.")
                 {
-                    ToolTip = 'Specifies the number series code used for assigning numbers to book loans.';
-
                     trigger OnValidate()
                     begin
                         CurrPage.Update();
@@ -55,8 +49,6 @@ page 70320 "LIB Library Setup"
                 }
                 field("Posted Book Loan Nos."; Rec."Posted Book Loan Nos.")
                 {
-                    ToolTip = 'Specifies the number series code used for assigning numbers to posted book loans.';
-
                     trigger OnValidate()
                     begin
                         CurrPage.Update();
@@ -72,7 +64,7 @@ page 70320 "LIB Library Setup"
         if not Rec.Get() then begin
             Rec.Init();
             Rec."Primary Key" := '';
-            Rec.Insert();
+            Rec.Insert(true);
         end;
     end;
 }

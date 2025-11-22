@@ -1,3 +1,5 @@
+namespace Demo.Library;
+
 table 70302 "LIB Genre"
 {
     Caption = 'Genre';
