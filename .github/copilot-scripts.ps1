@@ -49,7 +49,7 @@ Import-Module -Name NVRAppDevOps -DisableNameChecking
 # Install Paket as a .NET tool (works on both Windows and Linux)
 Write-Host "Installing Paket as .NET tool..."
 # dotnet tool install paket --global --version 8.1.3 2>&1 | Out-Null
-dotnet tool install paket --global --version 8.1.3
+dotnet tool install paket --global
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Paket already installed, updating..."
     dotnet tool update paket --global 2>&1 | Out-Null
@@ -72,7 +72,8 @@ exec paket `$@
 "@
     Set-Content -Path $paketExe -Value $wrapperContent -NoNewline
     chmod +x $paketExe
-} else {
+}
+else {
     # On Windows, create a cmd wrapper
     $wrapperContent = @"
 @echo off
@@ -145,67 +146,53 @@ $appFolders | ForEach-Object {
     }
 
     # For TestApp, copy the main app first and create a modified app.json without it in dependencies
-    $skipPaket = $false
     if ($_ -eq "TestApp") {
-        # Copy the main app to TestApp's .alpackages
-        $mainAppFile = Get-ChildItem -Path $appFolder -Filter "*.app" | Select-Object -First 1
-        if ($mainAppFile) {
-            Write-Host "Copying main app $($mainAppFile.Name) to TestApp .alpackages"
-            Copy-Item -Path $mainAppFile.FullName -Destination $packagecachepath -Force
+        # Create a temporary app.json without the main app dependency
+        $tempAppJson = Join-Path $currentAppFolder "app.json.paket"
+        $modifiedManifest = $ManifestObject | ConvertTo-Json -Depth 10
+        $modifiedManifestObj = $modifiedManifest | ConvertFrom-Json
+        $modifiedManifestObj.dependencies = @($ManifestObject.dependencies | Where-Object { $_.name -ne $AppManifestObject.name })
+        $modifiedManifestObj | ConvertTo-Json -Depth 10 | Set-Content -Path $tempAppJson -Encoding UTF8
 
-            # Create a temporary app.json without the main app dependency
-            $tempAppJson = Join-Path $currentAppFolder "app.json.paket"
-            $modifiedManifest = $ManifestObject | ConvertTo-Json -Depth 10
-            $modifiedManifestObj = $modifiedManifest | ConvertFrom-Json
-            $modifiedManifestObj.dependencies = @($ManifestObject.dependencies | Where-Object { $_.name -ne $AppManifestObject.name })
-            $modifiedManifestObj | ConvertTo-Json -Depth 10 | Set-Content -Path $tempAppJson -Encoding UTF8
-
-            # Temporarily rename app.json
-            $originalAppJson = Join-Path $currentAppFolder "app.json"
-            $backupAppJson = Join-Path $currentAppFolder "app.json.backup"
-            Move-Item -Path $originalAppJson -Destination $backupAppJson -Force
-            Move-Item -Path $tempAppJson -Destination $originalAppJson -Force
-        }
-        else {
-            Write-Host "Warning: Main app not found, skipping Paket for TestApp"
-            $skipPaket = $true
-        }
+        # Temporarily rename app.json
+        $originalAppJson = Join-Path $currentAppFolder "app.json"
+        $backupAppJson = Join-Path $currentAppFolder "app.json.backup"
+        Move-Item -Path $originalAppJson -Destination $backupAppJson -Force
+        Move-Item -Path $tempAppJson -Destination $originalAppJson -Force
     }
 
     # Use Paket CLI via NVRAppDevOps to download dependencies
-    if (-not $skipPaket) {
-        Write-Host "Downloading dependencies for $_ using Paket CLI..."
-        Push-Location $currentAppFolder
-        try {
-            # Invoke-PaketForAL will:
-            # 1. Read app.json and create paket.dependencies file
-            # 2. Resolve dependency tree
-            # 3. Download all dependencies (including transitive) to 'Packages' folder
-            # 4. Create paket.lock for reproducible builds
-            Invoke-PaketForAL -Sources $nugetSources -PaketExePath $paketFolder -Verbose
+    Write-Host "Downloading dependencies for $_ using Paket CLI..."
+    Push-Location $currentAppFolder
+    try {
+        # Invoke-PaketForAL will:
+        # 1. Read app.json and create paket.dependencies file
+        # 2. Resolve dependency tree
+        # 3. Download all dependencies (including transitive) to 'Packages' folder
+        # 4. Create paket.lock for reproducible builds
+        Invoke-PaketForAL -Sources $nugetSources -PaketExePath $paketFolder -Verbose
 
-            # Copy .app files from Packages folder to .alpackages folder for AL compiler
-            $packagesFolder = Join-Path $currentAppFolder "Packages"
-            if (Test-Path -Path $packagesFolder) {
-                Get-ChildItem -Path $packagesFolder -Filter *.app -Recurse | ForEach-Object {
-                    $targetPath = Join-Path $packagecachepath $_.Name
-                    if (!(Test-Path -Path $targetPath)) {
-                        Write-Host "Copy $($_.Name) to .alpackages"
-                        Copy-Item -Path $_.FullName -Destination $packagecachepath -Force
-                    }
+        # Copy .app files from Packages folder to .alpackages folder for AL compiler
+        $packagesFolder = Join-Path $currentAppFolder "Packages"
+        if (Test-Path -Path $packagesFolder) {
+            Get-ChildItem -Path $packagesFolder -Filter *.app -Recurse | ForEach-Object {
+                $targetPath = Join-Path $packagecachepath $_.Name
+                if (!(Test-Path -Path $targetPath)) {
+                    Write-Host "Copy $($_.Name) to .alpackages"
+                    Copy-Item -Path $_.FullName -Destination $packagecachepath -Force
                 }
             }
         }
-        finally {
-            Pop-Location
+    }
+    finally {
+        Pop-Location
 
-            # Restore original app.json for TestApp
-            if ($_ -eq "TestApp") {
-                $originalAppJson = Join-Path $currentAppFolder "app.json"
-                $backupAppJson = Join-Path $currentAppFolder "app.json.backup"
-                if (Test-Path -Path $backupAppJson) {
-                    Move-Item -Path $backupAppJson -Destination $originalAppJson -Force
-                }
+        # Restore original app.json for TestApp
+        if ($_ -eq "TestApp") {
+            $originalAppJson = Join-Path $currentAppFolder "app.json"
+            $backupAppJson = Join-Path $currentAppFolder "app.json.backup"
+            if (Test-Path -Path $backupAppJson) {
+                Move-Item -Path $backupAppJson -Destination $originalAppJson -Force
             }
         }
     }
