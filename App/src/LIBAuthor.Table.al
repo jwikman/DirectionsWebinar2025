@@ -136,8 +136,8 @@ table 70301 "LIB Author"
         if "No." = '' then begin
             LibrarySetup.Get();
             LibrarySetup.TestField("Author Nos.");
-            "No. Series" := NoSeries.GetNextNo(LibrarySetup."Author Nos.");
-            "No." := "No. Series";
+            "No. Series" := LibrarySetup."Author Nos.";
+            "No." := NoSeries.GetNextNo(LibrarySetup."Author Nos.");
         end;
     end;
 

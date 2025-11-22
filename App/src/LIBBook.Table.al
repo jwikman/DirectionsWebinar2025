@@ -104,6 +104,7 @@ table 70303 "LIB Book"
             Caption = 'Available Quantity';
             ToolTip = 'Specifies the number of copies currently available for loan.';
             Editable = false;
+            DataClassification = CustomerContent;
         }
         field(9; Description; Text[250])
         {
@@ -144,8 +145,8 @@ table 70303 "LIB Book"
         if "No." = '' then begin
             LibrarySetup.Get();
             LibrarySetup.TestField("Book Nos.");
-            "No. Series" := NoSeries.GetNextNo(LibrarySetup."Book Nos.");
-            "No." := "No. Series";
+            "No. Series" := LibrarySetup."Book Nos.";
+            "No." := NoSeries.GetNextNo(LibrarySetup."Book Nos.");
         end;
     end;
 
