@@ -46,7 +46,15 @@ if (-not (Get-Alias -Name Sort -ErrorAction SilentlyContinue)) {
 Install-Module -Name NVRAppDevOps -Scope CurrentUser -Force -AllowClobber
 Import-Module -Name NVRAppDevOps -DisableNameChecking
 
-# Download and setup Paket CLI
+# Install Paket as a .NET tool (works on both Windows and Linux)
+Write-Host "Installing Paket as .NET tool..."
+dotnet tool install paket --global --version 8.1.3 2>&1 | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Paket already installed, updating..."
+    dotnet tool update paket --global 2>&1 | Out-Null
+}
+
+# Create a wrapper script for paket.exe that NVRAppDevOps expects
 $paketFolder = Join-Path $tempFolder "paket"
 if (!(Test-Path -Path $paketFolder)) {
     New-Item -Path $paketFolder -ItemType Directory -Force | Out-Null
@@ -54,18 +62,27 @@ if (!(Test-Path -Path $paketFolder)) {
 
 $paketExe = Join-Path $paketFolder "paket.exe"
 
-if (!(Test-Path -Path $paketExe)) {
-    Write-Host "Downloading Paket CLI..."
-    $paketUrl = "https://github.com/fsprojects/Paket/releases/latest/download/paket.exe"
-    Invoke-WebRequest -Uri $paketUrl -OutFile $paketExe
-
-    if ($IsLinux) {
-        # Make it executable on Linux (even though it has .exe extension)
-        chmod +x $paketExe
-    }
+# Create a wrapper script that calls the .NET tool
+if ($IsLinux) {
+    # On Linux, create a bash wrapper
+    $wrapperContent = @"
+#!/bin/bash
+exec paket `$@
+"@
+    Set-Content -Path $paketExe -Value $wrapperContent -NoNewline
+    chmod +x $paketExe
+} else {
+    # On Windows, create a cmd wrapper
+    $wrapperContent = @"
+@echo off
+paket %*
+"@
+    Set-Content -Path $paketExe -Value $wrapperContent -NoNewline
 }
 
-Write-Host "Paket CLI path: $paketFolder"# Define NuGet sources for Paket
+Write-Host "Paket CLI path: $paketFolder"
+
+# Define NuGet sources for Paket
 $nugetSources = @(
     "https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSApps/nuget/v3/index.json",
     "https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json",
