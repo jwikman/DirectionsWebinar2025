@@ -35,6 +35,14 @@ dotnet tool install $toolName --global --prerelease
 $ALToolVersion = (dotnet tool list $toolName --global | Select-String -Pattern "$toolName" | ForEach-Object { $_ -split '\s+' })[1]
 Write-Host "Installed version $ALToolVersion of $toolName"
 
+Install-Module -Name BcContainerHelper -Scope CurrentUser -Force -AllowClobber
+Import-Module -Name BcContainerHelper -DisableNameChecking
+
+# Ensure 'Sort' alias exists for NVRAppDevOps compatibility (especially on Linux)
+if (-not (Get-Alias -Name Sort -ErrorAction SilentlyContinue)) {
+    Set-Alias -Name Sort -Value Sort-Object -Scope Global
+}
+
 Install-Module -Name NVRAppDevOps -Scope CurrentUser -Force -AllowClobber
 Import-Module -Name NVRAppDevOps -DisableNameChecking
 
