@@ -52,26 +52,20 @@ if (!(Test-Path -Path $paketFolder)) {
     New-Item -Path $paketFolder -ItemType Directory -Force | Out-Null
 }
 
-$paketExeName = if ($IsLinux) { "paket" } else { "paket.exe" }
-$paketExe = Join-Path $paketFolder $paketExeName
+$paketExe = Join-Path $paketFolder "paket.exe"
 
 if (!(Test-Path -Path $paketExe)) {
     Write-Host "Downloading Paket CLI..."
-    # Download the bootstrapper which works on both Windows and Linux
     $paketUrl = "https://github.com/fsprojects/Paket/releases/latest/download/paket.exe"
-    $downloadPath = Join-Path $paketFolder "paket.exe"
-    Invoke-WebRequest -Uri $paketUrl -OutFile $downloadPath
+    Invoke-WebRequest -Uri $paketUrl -OutFile $paketExe
 
     if ($IsLinux) {
-        # On Linux, rename to remove .exe and make executable
-        Move-Item -Path $downloadPath -Destination $paketExe -Force
+        # Make it executable on Linux (even though it has .exe extension)
         chmod +x $paketExe
     }
 }
 
-Write-Host "Paket CLI path: $paketFolder"
-
-# Define NuGet sources for Paket
+Write-Host "Paket CLI path: $paketFolder"# Define NuGet sources for Paket
 $nugetSources = @(
     "https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSApps/nuget/v3/index.json",
     "https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json",
