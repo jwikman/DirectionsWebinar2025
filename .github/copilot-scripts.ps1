@@ -46,13 +46,13 @@ if (-not (Get-Alias -Name Sort -ErrorAction SilentlyContinue)) {
 Install-Module -Name NVRAppDevOps -Scope CurrentUser -Force -AllowClobber
 Import-Module -Name NVRAppDevOps -DisableNameChecking
 
-# Install Paket as a .NET tool (works on both Windows and Linux)
-Write-Host "Installing Paket as .NET tool..."
-dotnet tool install paket --global --version 8.1.3 2>&1 | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "Paket already installed, updating..."
-    dotnet tool update paket --global 2>&1 | Out-Null
-}
+# # Install Paket as a .NET tool (works on both Windows and Linux)
+# Write-Host "Installing Paket as .NET tool..."
+# dotnet tool install paket --global --version 8.1.3 2>&1 | Out-Null
+# if ($LASTEXITCODE -ne 0) {
+#     Write-Host "Paket already installed, updating..."
+#     dotnet tool update paket --global 2>&1 | Out-Null
+# }
 
 # Create a wrapper script for paket.exe that NVRAppDevOps expects
 $paketFolder = Join-Path $tempFolder "paket"
