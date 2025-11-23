@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - .github/workflows/copilot-setup-steps.yml
-      - .github/copilot-scripts.ps1
+      - .github/initialize-coding-agent.ps1
   pull_request:
     paths:
       - .github/workflows/copilot-setup-steps.yml
@@ -37,4 +37,4 @@ jobs:
         continue-on-error: false
         shell: pwsh
         run: |
-          . (Join-Path ($pwd.path) '.github\copilot-scripts.ps1' -resolve)
+          . (Join-Path ($pwd.path) '.github\initialize-coding-agent.ps1' -resolve)
