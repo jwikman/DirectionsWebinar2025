@@ -29,6 +29,7 @@ permissionset 70300 "LIB Admin"
         codeunit "LIB Book Loan-Post (Yes/No)" = X,
         codeunit "LIB Book Return-Post" = X,
         codeunit "LIB Book Return-Post (Yes/No)" = X,
+        codeunit "LIB Translation Test Labels" = X,
         page "LIB Author Card" = X,
         page "LIB Author List" = X,
         page "LIB Book Card" = X,
