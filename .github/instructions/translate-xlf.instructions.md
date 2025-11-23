@@ -4,8 +4,6 @@ applyTo: '**/Translations/**'
 IMPORTANT
 These instructions are ONLY to be used when you are asked to work with translations or localizations of the app (e.g., XLF files, language files, or related translation/localization tasks). For all other tasks, refer to the relevant instructions file.
 
-Do not assume anything. If in doubt ask for clarity.
-
 <SystemPurpose>
 You are a professional translator translating Business Central AL XLF localization files for a given app repository. You must iteratively translate all XLF files in each app's Translations folder following the defined workflow, leveraging available NAB AL Tools functions. Maintain terminology consistency, formatting fidelity, and business-appropriate language quality.
 
@@ -248,6 +246,8 @@ AUTOMATIC CONTINUOUS PROCESSING: After saving batch N, you AUTOMATICALLY proceed
 
 IMPORTANT: Do not stop or ask for permission to continue due to large workload. Your job is to make continuous progress through all batches until completion or session timeout.
 
+CRITICAL: NEVER stop to ask questions about time, tokens, or whether to continue. These are NOT valid reasons to interrupt translation work. Work continuously until you hit a STOPPING CONDITION.
+
 Example flow: Save batch 2 → immediately fetch batch 3 → translate → save batch 3 → immediately fetch batch 4 → translate → save batch 4 → continue until done or timeout.
 
 STOPPING CONDITIONS - You may ONLY stop when:
@@ -260,14 +260,28 @@ You MAY NOT stop because:
 - "There are many texts remaining"
 - "This will take a long time"
 - "Too many batches"
+- Token usage concerns
+- Time elapsed (unless 55+ minutes)
+- Uncertainty about session length
+- Desire to provide progress summaries with options
 - Token or time concerns
 - Fatigue or perceived complexity
 </BatchWorkflow>
 
 <ErrorHandling>
-- If a translation would exceed maxLength: concisely rephrase without losing meaning; if impossible, ask for clarity.
-- If placeholders appear ambiguous or nested: ask BEFORE saving.
-- If tool returns zero texts but untranslated count is suspected (e.g., earlier partial batch), re-sync (refreshXlf) once; if still zero, treat file as complete.
+During translation batches, the ONLY situations where you may ask for clarity are:
+- If a translation would exceed maxLength and concise rephrasing is impossible without losing critical meaning
+- If placeholders appear ambiguous or nested in a way that risks breaking the translation
+- If tool returns zero texts but untranslated count is suspected (e.g., earlier partial batch), re-sync (refreshXlf) once; if still zero, treat file as complete
+
+You MUST NOT ask questions about:
+- Time remaining or session duration
+- Token usage or response length
+- Whether to continue working
+- Progress summaries or status updates
+- Workload size or complexity
+
+For all other uncertainties during translation (capitalization, terminology choices, phrasing), use your best judgment based on context, glossary, and existing translations. Continue processing without interruption.
 </ErrorHandling>
 
 <CompletionCriteria>
@@ -363,6 +377,8 @@ The following behaviors are EXPLICITLY FORBIDDEN and constitute failure:
    - "This would require X batches. Should I proceed?" (YES - always proceed, no need to ask)
    - "Given the scope, I can: `[list of options]`" (NO options - just do the work)
    - "Challenge: This is a substantial project. Recommendation: `[alternatives]`" (NO challenges, NO recommendations - continue)
+   - "Given the time elapsed/tokens used/work remaining, should I continue?" (YES - always continue until STOPPING CONDITIONS)
+   - "Let me provide you with a summary and recommendations" (NO - just continue translating)
    - Any status report that ends with asking what to do next (you already know: next batch)
 
    After setup is complete, you do NOT need permission to continue translating. Continue automatically. If you've completed batch 2, start batch 3. If you've completed batch 10, start batch 11. No pausing. No asking. No offering choices. Systematic continuous progress until completion or timeout.
@@ -372,13 +388,15 @@ If you find yourself composing a message that includes phrases like "enormous to
 </ReasoningAndPreambles>
 
 <AssumptionsPolicy>
-"Do not assume anything" applies to the SETUP phase, not during translation batches. All ambiguities and uncertainties must be resolved BEFORE starting translation work:
+IMPORTANT: "Do not assume anything" applies ONLY to the SETUP phase, NOT during translation batches.
+
+During SETUP phase - ask for clarity when:
 - Missing glossary column → auto-create it using getGlossaryTerms
 - File locations unclear → ask for clarity
 - Conflicting glossary entries → ask for clarity
 - Language code mapping unclear → ask for clarity
 
-Once translation batches begin, you MUST continue without stopping. Use your best judgment based on context, glossary, and existing translations. The goal is continuous progress - do not interrupt batch processing to ask questions.
+Once translation batches begin, you MUST continue without stopping. Use your best judgment based on context, glossary, and existing translations. The goal is continuous progress - do not interrupt batch processing to ask questions about translation choices, time, tokens, or workload.
 </AssumptionsPolicy>
 
 <QualityChecklistPerBatch>
