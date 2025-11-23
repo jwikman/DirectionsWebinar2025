@@ -7,6 +7,7 @@ page 70324 "LIB Book Card"
     SourceTable = "LIB Book";
     UsageCategory = None;
     Extensible = true;
+    ApplicationArea = All;
 
     layout
     {
@@ -18,7 +19,6 @@ page 70324 "LIB Book Card"
 
                 field("No."; Rec."No.")
                 {
-                    ApplicationArea = All;
                     trigger OnAssistEdit()
                     begin
                         if Rec.AssistEdit(xRec) then
@@ -27,27 +27,21 @@ page 70324 "LIB Book Card"
                 }
                 field(Title; Rec.Title)
                 {
-                    ApplicationArea = All;
                 }
                 field("Author No."; Rec."Author No.")
                 {
-                    ApplicationArea = All;
                 }
                 field(ISBN; Rec.ISBN)
                 {
-                    ApplicationArea = All;
                 }
                 field("Genre Code"; Rec."Genre Code")
                 {
-                    ApplicationArea = All;
                 }
                 field("Publication Year"; Rec."Publication Year")
                 {
-                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
-                    ApplicationArea = All;
                     MultiLine = true;
                 }
             }
@@ -57,11 +51,9 @@ page 70324 "LIB Book Card"
 
                 field(Quantity; Rec.Quantity)
                 {
-                    ApplicationArea = All;
                 }
                 field("Available Quantity"; Rec."Available Quantity")
                 {
-                    ApplicationArea = All;
                 }
             }
         }

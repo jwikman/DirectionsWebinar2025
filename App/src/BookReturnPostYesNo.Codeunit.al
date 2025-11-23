@@ -1,6 +1,10 @@
+namespace Demo.Library;
+
+using System.Utilities;
+
 codeunit 70353 "LIB Book Return-Post (Yes/No)"
 {
-    TableNo = "Posted LIB Book Loan Header";
+    TableNo = "LIB Posted Book Loan Header";
     Access = Public;
 
     trigger OnRun()
@@ -11,13 +15,14 @@ codeunit 70353 "LIB Book Return-Post (Yes/No)"
     end;
 
     var
-        PostedBookLoanHeader: Record "Posted LIB Book Loan Header";
+        PostedBookLoanHeader: Record "LIB Posted Book Loan Header";
         BookReturnPost: Codeunit "LIB Book Return-Post";
+        ConfirmMgmt: Codeunit "Confirm Management";
         ConfirmReturnQst: Label 'Do you want to process the return of the loaned books?';
 
     local procedure Code()
     begin
-        if not Confirm(ConfirmReturnQst, false) then
+        if not ConfirmMgmt.GetResponseOrDefault(ConfirmReturnQst, false) then
             exit;
 
         BookReturnPost.Run(PostedBookLoanHeader);

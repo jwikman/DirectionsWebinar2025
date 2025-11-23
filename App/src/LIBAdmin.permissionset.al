@@ -13,8 +13,8 @@ permissionset 70300 "LIB Admin"
         tabledata "LIB Genre" = RIMD,
         tabledata "LIB Library Member" = RIMD,
         tabledata "LIB Library Setup" = RIMD,
-        tabledata "Posted LIB Book Loan Header" = RIMD,
-        tabledata "Posted LIB Book Loan Line" = RIMD,
+        tabledata "LIB Posted Book Loan Header" = RIMD,
+        tabledata "LIB Posted Book Loan Line" = RIMD,
         table "LIB Author" = X,
         table "LIB Book" = X,
         table "LIB Book Loan Header" = X,
@@ -23,8 +23,8 @@ permissionset 70300 "LIB Admin"
         table "LIB Genre" = X,
         table "LIB Library Member" = X,
         table "LIB Library Setup" = X,
-        table "Posted LIB Book Loan Header" = X,
-        table "Posted LIB Book Loan Line" = X,
+        table "LIB Posted Book Loan Header" = X,
+        table "LIB Posted Book Loan Line" = X,
         codeunit "LIB Book Loan-Post" = X,
         codeunit "LIB Book Loan-Post (Yes/No)" = X,
         codeunit "LIB Book Return-Post" = X,
@@ -41,7 +41,7 @@ permissionset 70300 "LIB Admin"
         page "LIB Library Member Card" = X,
         page "LIB Library Member List" = X,
         page "LIB Library Setup" = X,
-        page "Posted LIB Book Loan Card" = X,
-        page "Posted LIB Book Loan List" = X,
-        page "Posted LIB Book Loan Subp." = X;
+        page "LIB Posted Book Loan Card" = X,
+        page "LIB Posted Book Loan List" = X,
+        page "LIB Posted Book Loan Subp." = X;
 }

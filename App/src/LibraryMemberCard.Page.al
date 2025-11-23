@@ -1,3 +1,5 @@
+namespace Demo.Library;
+
 page 70326 "LIB Library Member Card"
 {
     Caption = 'Library Member Card';
@@ -5,6 +7,7 @@ page 70326 "LIB Library Member Card"
     SourceTable = "LIB Library Member";
     UsageCategory = None;
     Extensible = true;
+    ApplicationArea = All;
 
     layout
     {
@@ -16,9 +19,6 @@ page 70326 "LIB Library Member Card"
 
                 field("No."; Rec."No.")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the unique identifier for the library member.';
-
                     trigger OnAssistEdit()
                     begin
                         if Rec.AssistEdit(xRec) then
@@ -27,23 +27,15 @@ page 70326 "LIB Library Member Card"
                 }
                 field(Name; Rec.Name)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the name of the library member.';
                 }
                 field("Membership Type"; Rec."Membership Type")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the type of membership (Regular, Student, or Senior).';
                 }
                 field("Member Since"; Rec."Member Since")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the date when the member joined the library.';
                 }
                 field(Active; Rec.Active)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies whether the library member is active.';
                 }
             }
             group(Contact)
@@ -52,28 +44,18 @@ page 70326 "LIB Library Member Card"
 
                 field(Email; Rec.Email)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the email address of the library member.';
                 }
                 field("Phone No."; Rec."Phone No.")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the phone number of the library member.';
                 }
                 field(Address; Rec.Address)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the address of the library member.';
                 }
                 field(City; Rec.City)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the city of the library member.';
                 }
                 field("Post Code"; Rec."Post Code")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the postal code of the library member.';
                 }
             }
         }

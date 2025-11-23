@@ -1,3 +1,5 @@
+namespace Demo.Library;
+
 table 70306 "LIB Book Loan Line"
 {
     Caption = 'Book Loan Line';
@@ -74,6 +76,9 @@ table 70306 "LIB Book Loan Line"
     fieldgroups
     {
         fieldgroup(DropDown; "Document No.", "Line No.", "Book No.")
+        {
+        }
+        fieldgroup(Brick; "Document No.", "Line No.", "Book No.")
         {
         }
     }

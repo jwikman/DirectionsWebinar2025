@@ -1,3 +1,7 @@
+namespace Demo.Library;
+
+using Microsoft.Foundation.NoSeries;
+
 table 70305 "LIB Book Loan Header"
 {
     Caption = 'Book Loan Header';
@@ -102,6 +106,9 @@ table 70305 "LIB Book Loan Header"
         fieldgroup(DropDown; "No.", "Member No.", "Loan Date")
         {
         }
+        fieldgroup(Brick; "No.", "Member No.", "Loan Date")
+        {
+        }
     }
 
     trigger OnInsert()
@@ -118,7 +125,7 @@ table 70305 "LIB Book Loan Header"
 
         if "Loan Date" = 0D then
             "Loan Date" := Today();
-            
+
         Status := Status::Open;
     end;
 

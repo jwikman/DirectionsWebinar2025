@@ -1,10 +1,13 @@
-page 70334 "Posted LIB Book Loan Subp."
+namespace Demo.Library;
+
+page 70334 "LIB Posted Book Loan Subp."
 {
     Caption = 'Lines';
     PageType = ListPart;
-    SourceTable = "Posted LIB Book Loan Line";
+    SourceTable = "LIB Posted Book Loan Line";
     Extensible = true;
     Editable = false;
+    ApplicationArea = All;
 
     layout
     {
@@ -14,23 +17,15 @@ page 70334 "Posted LIB Book Loan Subp."
             {
                 field("Book No."; Rec."Book No.")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the book that was loaned.';
                 }
                 field("Book Title"; Rec."Book Title")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the title of the book.';
                 }
                 field(Quantity; Rec.Quantity)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the quantity.';
                 }
                 field("Due Date"; Rec."Due Date")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies when the book should be returned.';
                 }
             }
         }

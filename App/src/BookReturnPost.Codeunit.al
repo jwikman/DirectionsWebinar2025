@@ -1,6 +1,8 @@
+namespace Demo.Library;
+
 codeunit 70352 "LIB Book Return-Post"
 {
-    TableNo = "Posted LIB Book Loan Header";
+    TableNo = "LIB Posted Book Loan Header";
     Access = Public;
 
     trigger OnRun()
@@ -11,8 +13,8 @@ codeunit 70352 "LIB Book Return-Post"
     end;
 
     var
-        PostedBookLoanHeader: Record "Posted LIB Book Loan Header";
-        PostedBookLoanLine: Record "Posted LIB Book Loan Line";
+        PostedBookLoanHeader: Record "LIB Posted Book Loan Header";
+        PostedBookLoanLine: Record "LIB Posted Book Loan Line";
         BookLoanLedgerEntry: Record "LIB Book Loan Ledger Entry";
 
     local procedure Code()
@@ -29,7 +31,7 @@ codeunit 70352 "LIB Book Return-Post"
             until PostedBookLoanLine.Next() = 0;
     end;
 
-    local procedure CreateReturnLedgerEntry(var SourceLine: Record "Posted LIB Book Loan Line")
+    local procedure CreateReturnLedgerEntry(var SourceLine: Record "LIB Posted Book Loan Line")
     begin
         BookLoanLedgerEntry.Init();
         BookLoanLedgerEntry."Book No." := SourceLine."Book No.";

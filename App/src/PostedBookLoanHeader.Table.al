@@ -1,12 +1,14 @@
-table 70307 "Posted LIB Book Loan Header"
+namespace Demo.Library;
+
+table 70307 "LIB Posted Book Loan Header"
 {
     Caption = 'Posted Book Loan Header';
     DataClassification = CustomerContent;
     DataPerCompany = true;
     Extensible = true;
     Access = Public;
-    LookupPageId = "Posted LIB Book Loan List";
-    DrillDownPageId = "Posted LIB Book Loan List";
+    LookupPageId = "LIB Posted Book Loan List";
+    DrillDownPageId = "LIB Posted Book Loan List";
 
     fields
     {
@@ -45,7 +47,7 @@ table 70307 "Posted LIB Book Loan Header"
             Caption = 'No. of Lines';
             ToolTip = 'Specifies the number of lines in the posted book loan.';
             FieldClass = FlowField;
-            CalcFormula = count("Posted LIB Book Loan Line" where("Document No." = field("No.")));
+            CalcFormula = count("LIB Posted Book Loan Line" where("Document No." = field("No.")));
             Editable = false;
         }
         field(11; "Posting Date"; Date)
@@ -66,6 +68,9 @@ table 70307 "Posted LIB Book Loan Header"
     fieldgroups
     {
         fieldgroup(DropDown; "No.", "Member No.", "Posting Date")
+        {
+        }
+        fieldgroup(Brick; "No.", "Member No.", "Posting Date")
         {
         }
     }

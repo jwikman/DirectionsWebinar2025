@@ -1,3 +1,7 @@
+namespace Demo.Library;
+
+using Microsoft.Foundation.NoSeries;
+
 codeunit 70350 "LIB Book Loan-Post"
 {
     TableNo = "LIB Book Loan Header";
@@ -13,8 +17,8 @@ codeunit 70350 "LIB Book Loan-Post"
     var
         BookLoanHeader: Record "LIB Book Loan Header";
         BookLoanLine: Record "LIB Book Loan Line";
-        PostedBookLoanHeader: Record "Posted LIB Book Loan Header";
-        PostedBookLoanLine: Record "Posted LIB Book Loan Line";
+        PostedBookLoanHeader: Record "LIB Posted Book Loan Header";
+        PostedBookLoanLine: Record "LIB Posted Book Loan Line";
         BookLoanLedgerEntry: Record "LIB Book Loan Ledger Entry";
         LibrarySetup: Record "LIB Library Setup";
         NoSeries: Codeunit "No. Series";
@@ -26,12 +30,12 @@ codeunit 70350 "LIB Book Loan-Post"
     local procedure Code()
     begin
         CheckBookLoan();
-        
+
         PostedDocNo := GetPostedDocNo();
-        
+
         InsertPostedHeader();
         PostLines();
-        
+
         BookLoanHeader.Delete(true);
     end;
 

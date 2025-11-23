@@ -1,4 +1,6 @@
-table 70308 "Posted LIB Book Loan Line"
+namespace Demo.Library;
+
+table 70308 "LIB Posted Book Loan Line"
 {
     Caption = 'Posted Book Loan Line';
     DataClassification = CustomerContent;
@@ -12,7 +14,7 @@ table 70308 "Posted LIB Book Loan Line"
         {
             Caption = 'Document No.';
             ToolTip = 'Specifies the document number of the posted book loan.';
-            TableRelation = "Posted LIB Book Loan Header";
+            TableRelation = "LIB Posted Book Loan Header";
             AllowInCustomizations = Never;
         }
         field(2; "Line No."; Integer)
@@ -58,6 +60,9 @@ table 70308 "Posted LIB Book Loan Line"
     fieldgroups
     {
         fieldgroup(DropDown; "Document No.", "Line No.", "Book No.")
+        {
+        }
+        fieldgroup(Brick; "Document No.", "Line No.", "Book No.")
         {
         }
     }

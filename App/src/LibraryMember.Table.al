@@ -1,3 +1,7 @@
+namespace Demo.Library;
+
+using Microsoft.Foundation.NoSeries;
+
 table 70304 "LIB Library Member"
 {
     Caption = 'Library Member';

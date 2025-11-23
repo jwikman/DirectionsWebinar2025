@@ -1,3 +1,5 @@
+namespace Demo.Library;
+
 table 70309 "LIB Book Loan Ledger Entry"
 {
     Caption = 'Book Loan Ledger Entry';
@@ -80,6 +82,9 @@ table 70309 "LIB Book Loan Ledger Entry"
     fieldgroups
     {
         fieldgroup(DropDown; "Entry No.", "Book No.", "Member No.", "Entry Type")
+        {
+        }
+        fieldgroup(Brick; "Entry No.", "Book No.", "Member No.", "Entry Type")
         {
         }
     }
