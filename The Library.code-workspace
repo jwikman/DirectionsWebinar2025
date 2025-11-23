@@ -39,7 +39,6 @@
 		"CRS.RemovePrefixFromFilename": true,
 		// Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.
 		"CRS.OnSaveAlFileAction": "DoNothing",
-		"NAB.RemoveObjectNamePrefixFromDocs": "LIB",
 		"NAB.UseExternalTranslationTool": true,
 		"NAB.ClearTargetWhenSourceHasChanged": true,
 		"NAB.ReplaceSelfClosingXlfTags": false,
