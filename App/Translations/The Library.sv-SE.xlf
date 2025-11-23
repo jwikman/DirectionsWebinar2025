@@ -2369,1002 +2369,1002 @@
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2884675423" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returned page</source>
-          <target state="needs-translation" />
+          <target state="translated">Returnerad sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0302Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1295670080" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returned index</source>
-          <target state="needs-translation" />
+          <target state="translated">Returnerat index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0303Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 697762213" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returned reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Returnerad referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0304Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 566265798" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returned archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Returnerat arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0305Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3976095907" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returned database</source>
-          <target state="needs-translation" />
+          <target state="translated">Returnerad databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0306Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1707510020" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue book</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0307Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1109602153" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue library</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenat bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0308Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 594242378" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue author</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0309Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3597759338" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0310Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 539309065" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue member</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0311Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 470803560" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0312Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 964989959" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenat lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0313Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 435789230" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue return</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0314Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2351886797" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0315Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 882643500" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0316Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1376829899" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0317Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3157942818" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0318Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3289439233" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0319Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1154579471" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0320Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 301925808" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenat kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0321Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3587145297" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue page</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0322Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1318559410" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue index</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenat index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0323Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2287576659" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0324Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2156080244" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenat arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0325Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3998985237" size-unit="char" translate="yes" xml:space="preserve">
           <source>Overdue database</source>
-          <target state="needs-translation" />
+          <target state="translated">Försenad databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0326Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2451556598" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular book</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0327Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2699416599" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular library</source>
-          <target state="needs-translation" />
+          <target state="translated">Populärt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0328Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2926387448" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular author</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0329Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2965608600" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0330Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4202125623" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular member</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0331Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1824364378" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0332Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2318550777" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Populärt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0333Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4098605788" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular return</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0334Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1719736059" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0335Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2957361566" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0336Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3409971261" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0337Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2525792080" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0338Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2657288495" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0339Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4177097093" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0340Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3324443430" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Populärt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0341Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3202040195" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular page</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0342Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1613034852" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular index</source>
-          <target state="needs-translation" />
+          <target state="translated">Populärt index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0343Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2364519361" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0344Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2233022946" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Populärt arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0345Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2790200255" size-unit="char" translate="yes" xml:space="preserve">
           <source>Popular database</source>
-          <target state="needs-translation" />
+          <target state="translated">Populär databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0346Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 521614368" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended book</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0347Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1426966925" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended library</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderat bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0348Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 911607150" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended author</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0349Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 950828302" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0350Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2187345325" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended member</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0351Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1376509196" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0352Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2613026219" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderat lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0353Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 538988362" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended return</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0354Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1054348137" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0355Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 285088712" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0356Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1480029031" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0357Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 511011782" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0358Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 642508197" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0359Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2802615731" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0360Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1949962068" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderat kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0361Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 940214261" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended page</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0362Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2966595670" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended index</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderat index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0363Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 990037999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0364Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 858541584" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderat arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0365Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4143761073" size-unit="char" translate="yes" xml:space="preserve">
           <source>Recommended database</source>
-          <target state="needs-translation" />
+          <target state="translated">Rekommenderad databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0366Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1112441234" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured book</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0367Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 52485563" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured library</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvalt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0368Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3832093084" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured author</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0369Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3282973372" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0370Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3777159771" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured member</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0371Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1399398526" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0372Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2635915549" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvalt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0373Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2871133432" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured return</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0374Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2644162583" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0375Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3840211386" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0376Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 781761113" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0377Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2100826228" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0378Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2232322643" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0379Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 787835433" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0380Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3909035786" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvalt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0381Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 555109159" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured page</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0382Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3613559432" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured index</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvalt index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0383Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1920832621" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0384Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1468222926" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvalt arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0385Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1646529643" size-unit="char" translate="yes" xml:space="preserve">
           <source>Featured database</source>
-          <target state="needs-translation" />
+          <target state="translated">Utvald databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0386Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 451589324" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special book</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0387Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2137227809" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special library</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciellt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0388Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2726888642" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special author</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0389Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 887505234" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0390Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2434933873" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special member</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0391Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1334359504" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0392Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1465855919" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciellt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0393Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1299345174" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special return</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0394Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3567931061" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0395Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2467356692" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0396Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1877695859" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0397Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 632931802" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0398Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1127118201" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0399Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3026981876" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0400Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3158478291" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciellt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0401Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3322458230" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special page</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0402Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 574919573" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special index</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciellt index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0403Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1172827440" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0404Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2025481103" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciellt arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0405Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2189461042" size-unit="char" translate="yes" xml:space="preserve">
           <source>Special database</source>
-          <target state="needs-translation" />
+          <target state="translated">Speciell databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0406Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 163079633" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare book</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0407Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4209129020" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare library</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0408Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 408348123" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare author</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0409Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2247731531" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0410Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1753545132" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare member</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0411Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3222788429" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0412Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1306690862" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0413Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1835891591" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare return</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0414Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1341705192" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0415Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1410210697" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0416Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 173693674" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0417Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 702894403" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0418Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2008118564" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0419Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1437167430" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0420Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1568663845" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0421Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2578411652" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare page</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0422Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 552030243" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare index</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0423Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3877980290" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0424Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 435666657" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0425Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2166571712" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rare database</source>
-          <target state="needs-translation" />
+          <target state="translated">Sällsynt databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0426Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3755577055" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common book</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0427Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1876983950" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common library</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanligt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0428Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3113500973" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common author</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0429Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3787007197" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0430Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2592066878" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common member</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0431Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2075598619" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0432Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 880658300" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanligt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0433Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3375167257" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common return</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0434Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2180226938" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0435Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 942601431" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0436Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3321471160" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0437Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2283746773" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0438Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3547394230" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0439Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3451947728" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0440Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3583444143" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanligt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0441Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3005093458" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common page</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0442Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 257554801" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common index</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanligt index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0443Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 289977620" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0444Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3995284083" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanligt arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0445Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3416933398" size-unit="char" translate="yes" xml:space="preserve">
           <source>Common database</source>
-          <target state="needs-translation" />
+          <target state="translated">Vanlig databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0446Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1390551989" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique book</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0447Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3891764248" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique library</source>
-          <target state="needs-translation" />
+          <target state="translated">Unikt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0448Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 833313975" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique author</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0449Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2672697383" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0450Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1436180360" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique member</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0451Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2905423657" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0452Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1731656714" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Unikt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0453Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3764117867" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique return</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0454Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2569177548" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0455Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4038420845" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0456Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3585811150" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0457Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1127860255" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0458Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2433084416" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0459Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4084098466" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0460Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4215594881" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Unikt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0461Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 930375392" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique page</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0462Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3198961279" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique index</source>
-          <target state="needs-translation" />
+          <target state="translated">Unikt index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0463Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 922128358" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0464Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 332467525" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Unikt arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0465Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2063372580" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unique database</source>
-          <target state="needs-translation" />
+          <target state="translated">Unik databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0466Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 758148419" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital book</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0467Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 228947690" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital library</source>
-          <target state="needs-translation" />
+          <target state="translated">Digitalt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0468Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1465464713" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital author</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0469Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3469642425" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0470Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2274702106" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital member</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0471Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1758233847" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0472Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 563293528" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Digitalt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0473Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 307672317" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital return</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0474Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3366122590" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0475Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2170073787" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0476Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1654714012" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0477Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1966382001" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0478Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3230029458" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0479Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3494097420" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0480Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 435647147" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Digitalt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0481Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3068416526" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital page</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital sida</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0482Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 9966253" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital index</source>
-          <target state="needs-translation" />
+          <target state="translated">Digitalt index</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0483Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2402676936" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital reference</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital referens</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0484Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3597617255" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital archive</source>
-          <target state="needs-translation" />
+          <target state="translated">Digitalt arkiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0485Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2656576586" size-unit="char" translate="yes" xml:space="preserve">
           <source>Digital database</source>
-          <target state="needs-translation" />
+          <target state="translated">Digital databas</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0486Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3171936361" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical book</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0487Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3769844228" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical library</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysiskt bibliotek</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0488Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1743462819" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical author</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0489Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1024661123" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical reader</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk läsare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0490Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3730623076" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical member</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk medlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0491Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1999718021" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical genre</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0492Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 1147064358" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical loan</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysiskt lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0493Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 612821183" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical return</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0494Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2639202592" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical shelf</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk hylla</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0495Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 187140289" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical catalog</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk katalog</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0496Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 55643874" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical collection</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk samling</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0497Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3970236043" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical volume</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk volym</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0498Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2775295724" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical edition</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk upplaga</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0499Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 2132368291" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical publisher</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysisk utgivare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0500Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 4158749700" size-unit="char" translate="yes" xml:space="preserve">
           <source>Physical chapter</source>
-          <target state="needs-translation" />
+          <target state="translated">Fysiskt kapitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Translation Test Labels - NamedType Label0501Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 126860305 - NamedType 3149001893" size-unit="char" translate="yes" xml:space="preserve">
