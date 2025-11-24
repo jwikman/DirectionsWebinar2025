@@ -5,1273 +5,1066 @@
       <group id="body">
         <trans-unit id="Table 683393782 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Author</source>
-          <target>Författare</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1791119963 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies a brief biography of the author.</source>
-          <target>Anger en kort biografi om författaren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger en kort biografi om författaren.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Biography - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1791119963 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Biography</source>
-          <target>Biografi</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Biografi</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Biography - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 349316295 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the International Standard Name Identifier (16 digits).</source>
-          <target>Anger International Standard Name Identifier (16 siffror).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger International Standard Name Identifier (16 siffror).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ISNI - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 349316295 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ISNI</source>
-          <target>ISNI</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">ISNI</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ISNI - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 349316295 - Method 2126772001 - NamedType 2347388694" size-unit="char" translate="yes" xml:space="preserve">
           <source>ISNI must be exactly 16 digits.</source>
-          <target>ISNI måste vara exakt 16 siffror.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">ISNI måste vara exakt 16 siffror.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ISNI - Method OnValidate - NamedType InvalidISNIFormatErr</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the author.</source>
-          <target>Anger författarens namn.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger författarens namn.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Name</source>
-          <target>Namn</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Namn</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the unique identifier for the author.</source>
-          <target>Anger den unika identifieraren för författaren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger den unika identifieraren för författaren.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
-          <target>Nr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series from which the author number was assigned.</source>
-          <target>Anger nummerserien från vilken författarnumret tilldelades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerserien från vilken författarnumret tilldelades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. Series - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Series</source>
-          <target>Nr-serie</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr-serie</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. Series - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1775251981 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the Open Researcher and Contributor ID in format: 0000-0000-0000-0000.</source>
-          <target>Anger Open Researcher and Contributor ID i formatet: 0000-0000-0000-0000.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger Open Researcher and Contributor ID i formatet: 0000-0000-0000-0000.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ORCID - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1775251981 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ORCID</source>
-          <target>ORCID</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">ORCID</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ORCID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1775251981 - Method 2126772001 - NamedType 411844913" size-unit="char" translate="yes" xml:space="preserve">
           <source>ORCID must be in format: 0000-0000-0000-0000 (four groups of four digits separated by hyphens).</source>
-          <target>ORCID måste vara i formatet: 0000-0000-0000-0000 (fyra grupper om fyra siffror åtskilda med bindestreck).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">ORCID måste vara i formatet: 0000-0000-0000-0000 (fyra grupper om fyra siffror åtskilda med bindestreck).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ORCID - Method OnValidate - NamedType InvalidFormatErr</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1243607311 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the Virtual International Authority File identifier.</source>
-          <target>Anger Virtual International Authority File-identifieraren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger Virtual International Authority File-identifieraren.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field VIAF ID - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 683393782 - Field 1243607311 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>VIAF ID</source>
-          <target>VIAF ID</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">VIAF ID</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field VIAF ID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book</source>
-          <target>Bok</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bok</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 973451814 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the author of the book.</source>
-          <target>Anger bokens författare.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger bokens författare.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Author No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 973451814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Author No.</source>
-          <target>Författarnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Författarnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Author No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 621504254 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of copies currently available for loan.</source>
-          <target>Anger antalet exemplar som för närvarande är tillgängliga för lån.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger antalet exemplar som för närvarande är tillgängliga för lån.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Available Quantity - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 621504254 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Available Quantity</source>
-          <target>Disponibelt antal</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Disponibelt antal</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Available Quantity - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies a description of the book.</source>
-          <target>Anger en beskrivning av boken.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger en beskrivning av boken.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
-          <target>Beskrivning</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Beskrivning</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1436567594 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the genre of the book.</source>
-          <target>Anger bokens genre.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger bokens genre.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Genre Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1436567594 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Genre Code</source>
-          <target>Genrekod</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Genrekod</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Genre Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1328823306 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the International Standard Book Number.</source>
-          <target>Anger International Standard Book Number.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger International Standard Book Number.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field ISBN - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1328823306 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ISBN</source>
-          <target>ISBN</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">ISBN</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field ISBN - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1328823306 - Method 2126772001 - NamedType 2145184619" size-unit="char" translate="yes" xml:space="preserve">
           <source>ISBN must contain only numbers and hyphens.</source>
-          <target>ISBN får endast innehålla siffror och bindestreck.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">ISBN får endast innehålla siffror och bindestreck.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field ISBN - Method OnValidate - NamedType InvalidISBNFormatErr</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the unique identifier for the book.</source>
-          <target>Anger den unika identifieraren för boken.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger den unika identifieraren för boken.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
-          <target>Nr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series from which the book number was assigned.</source>
-          <target>Anger nummerserien från vilken boknumret tilldelades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerserien från vilken boknumret tilldelades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. Series - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Series</source>
-          <target>Nr-serie</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr-serie</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. Series - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1436795429 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the year the book was published.</source>
-          <target>Anger året då boken publicerades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger året då boken publicerades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Publication Year - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1436795429 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Publication Year</source>
-          <target>Publiceringsår</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Publiceringsår</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Publication Year - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 1436795429 - Method 2126772001 - NamedType 360477877" size-unit="char" translate="yes" xml:space="preserve">
           <source>Publication year must be between 1 and %1.</source>
-          <target>Publiceringsår måste vara mellan 1 och %1.</target>
+          <target state="translated">Publiceringsår måste vara mellan 1 och %1.</target>
           <note from="Developer" annotates="general" priority="2">%1 = current year</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Publication Year - Method OnValidate - NamedType InvalidYearErr</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the total number of copies owned.</source>
-          <target>Anger det totala antalet ägda exemplar.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger det totala antalet ägda exemplar.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Quantity - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity</source>
-          <target>Antal</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Quantity - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 2704404533 - Method 2126772001 - NamedType 1391271839" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity cannot be negative.</source>
-          <target>Antal kan inte vara negativt.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal kan inte vara negativt.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Quantity - Method OnValidate - NamedType NegativeQuantityErr</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 329424276 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the title of the book.</source>
-          <target>Anger bokens titel.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger bokens titel.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Title - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2816253730 - Field 329424276 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Title</source>
-          <target>Titel</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Titel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Title - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan Header</source>
-          <target>Boklånshuvud</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklånshuvud</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Method 3152277940 - NamedType 2949715000" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cannot delete a posted book loan.</source>
-          <target>Kan inte ta bort ett bokfört boklån.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Kan inte ta bort ett bokfört boklån.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Method OnDelete - NamedType CannotDeletePostedErr</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 2443976460 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the expected return date for the loaned books.</source>
-          <target>Anger förväntat returdatum för de lånade böckerna.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger förväntat returdatum för de lånade böckerna.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Expected Return Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 2443976460 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Expected Return Date</source>
-          <target>Förväntat returdatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Förväntat returdatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Expected Return Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 2443976460 - Method 2126772001 - NamedType 1432801292" size-unit="char" translate="yes" xml:space="preserve">
           <source>Expected return date must be after loan date.</source>
-          <target>Förväntat returdatum måste vara efter lånedatum.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Förväntat returdatum måste vara efter lånedatum.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Expected Return Date - Method OnValidate - NamedType InvalidDateErr</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 208718844 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the date when the books are loaned.</source>
-          <target>Anger datumet när böckerna lånas.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger datumet när böckerna lånas.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Loan Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 208718844 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Loan Date</source>
-          <target>Lånedatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Lånedatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Loan Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 3178072769 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the library member.</source>
-          <target>Anger namnet på biblioteksmedlemmen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger namnet på biblioteksmedlemmen.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 3178072769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member Name</source>
-          <target>Medlemsnamn</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemsnamn</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 1364069073 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the library member borrowing the books.</source>
-          <target>Anger biblioteksmedlemmen som lånar böckerna.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmen som lånar böckerna.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 1364069073 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member No.</source>
-          <target>Medlemsnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemsnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the unique identifier for the book loan.</source>
-          <target>Anger den unika identifieraren för boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger den unika identifieraren för boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
-          <target>Nr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 950508093 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of lines in the book loan.</source>
-          <target>Anger antalet rader i boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger antalet rader i boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. of Lines - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 950508093 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Lines</source>
-          <target>Antal rader</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal rader</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. of Lines - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series from which the loan number was assigned.</source>
-          <target>Anger nummerserien från vilken lånenumret tilldelades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerserien från vilken lånenumret tilldelades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. Series - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Series</source>
-          <target>Nr-serie</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr-serie</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. Series - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the status of the book loan (Open or Posted).</source>
-          <target>Anger status för boklånet (Öppet eller Bokfört).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger status för boklånet (Öppet eller Bokfört).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Status - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3681528399 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Status</source>
-          <target>Status</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Status</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Status - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan Ledger Entry</source>
-          <target>Boklånstransaktion</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklånstransaktion</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 4205704274 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the book number.</source>
-          <target>Anger boknumret.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger boknumret.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Book No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 4205704274 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book No.</source>
-          <target>Boknr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boknr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Book No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the document number.</source>
-          <target>Anger dokumentnumret.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger dokumentnumret.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Document No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document No.</source>
-          <target>Dokumentnr</target>
+          <target state="translated">Dokumentnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Document No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 4085727052 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies when the book should be returned.</source>
-          <target>Anger när boken ska returneras.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger när boken ska returneras.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Due Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 4085727052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Due Date</source>
-          <target>Förfallodatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Förfallodatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Due Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the entry number.</source>
-          <target>Anger löpnumret.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger löpnumret.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Entry No.</source>
-          <target>Löpnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Löpnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 149522872 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the entry type (Loan or Return).</source>
-          <target>Anger transaktionstypen (Lån eller Retur).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger transaktionstypen (Lån eller Retur).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry Type - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 149522872 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Entry Type</source>
-          <target>Transaktionstyp</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Transaktionstyp</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 208718844 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies when the book was loaned.</source>
-          <target>Anger när boken lånades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger när boken lånades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Loan Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 208718844 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Loan Date</source>
-          <target>Lånedatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Lånedatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Loan Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 1364069073 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the member number.</source>
-          <target>Anger medlemsnumret.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger medlemsnumret.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Member No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 1364069073 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member No.</source>
-          <target>Medlemsnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemsnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Member No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 3710982960 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the posting date.</source>
-          <target>Anger bokföringsdatumet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger bokföringsdatumet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Posting Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 3710982960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posting Date</source>
-          <target>Bokföringsdatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokföringsdatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Posting Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the quantity (positive for loan, negative for return).</source>
-          <target>Anger antalet (positivt för lån, negativt för retur).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger antalet (positivt för lån, negativt för retur).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Quantity - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity</source>
-          <target>Antal</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Quantity - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 935961474 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies when the book was actually returned (for Return entries).</source>
-          <target>Anger när boken faktiskt returnerades (för returtransaktioner).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger när boken faktiskt returnerades (för returtransaktioner).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Return Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2755938237 - Field 935961474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return Date</source>
-          <target>Returdatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Returdatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Return Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan Line</source>
-          <target>Boklånsrad</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklånsrad</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 4205704274 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the book being loaned.</source>
-          <target>Anger boken som lånas.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger boken som lånas.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 4205704274 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book No.</source>
-          <target>Boknr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boknr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 245842227 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the title of the book.</source>
-          <target>Anger bokens titel.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger bokens titel.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book Title - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 245842227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Title</source>
-          <target>Boktitel</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boktitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book Title - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the document number of the book loan.</source>
-          <target>Anger dokumentnumret för boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger dokumentnumret för boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Document No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document No.</source>
-          <target>Dokumentnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Dokumentnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Document No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 4085727052 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies when the book should be returned.</source>
-          <target>Anger när boken ska returneras.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger när boken ska returneras.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Due Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 4085727052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Due Date</source>
-          <target>Förfallodatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Förfallodatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Due Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 3320823955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the line number.</source>
-          <target>Anger radnumret.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger radnumret.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Line No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Line No.</source>
-          <target>Radnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Radnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Line No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the quantity (must be 1).</source>
-          <target>Anger antalet (måste vara 1).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger antalet (måste vara 1).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Quantity - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity</source>
-          <target>Antal</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Quantity - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 130980424 - Field 2704404533 - Method 2126772001 - NamedType 822536433" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity must be exactly 1 for book loans.</source>
-          <target>Antal måste vara exakt 1 för boklån.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal måste vara exakt 1 för boklån.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Quantity - Method OnValidate - NamedType InvalidQuantityErr</note>
         </trans-unit>
         <trans-unit id="Table 488128176 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Genre</source>
-          <target>Genre</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Genre</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 488128176 - Field 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the unique code for the genre.</source>
-          <target>Anger den unika koden för genren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger den unika koden för genren.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 488128176 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Code</source>
-          <target>Kod</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Kod</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 488128176 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the description of the genre.</source>
-          <target>Anger beskrivningen av genren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger beskrivningen av genren.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Description - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 488128176 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
-          <target>Beskrivning</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Beskrivning</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Library Member</source>
-          <target>Biblioteksmedlem</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Biblioteksmedlem</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1090351696 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies whether the library member is active.</source>
-          <target>Anger om biblioteksmedlemmen är aktiv.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger om biblioteksmedlemmen är aktiv.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Active - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1090351696 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Active</source>
-          <target>Aktiv</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Aktiv</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Active - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 3168444338 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the address of the library member.</source>
-          <target>Anger biblioteksmedlemmens adress.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmens adress.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Address - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Address</source>
-          <target>Adress</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Adress</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Address - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 714791889 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the city of the library member.</source>
-          <target>Anger biblioteksmedlemmens stad.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmens stad.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field City - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 714791889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>City</source>
-          <target>Ort</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Ort</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field City - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1285973296 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the email address of the library member.</source>
-          <target>Anger biblioteksmedlemmens e-postadress.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmens e-postadress.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Email - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1285973296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Email</source>
-          <target>E-post</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">E-post</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Email - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1285973296 - Method 2126772001 - NamedType 2611134452" size-unit="char" translate="yes" xml:space="preserve">
           <source>The email address is not valid.</source>
-          <target>E-postadressen är inte giltig.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">E-postadressen är inte giltig.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Email - Method OnValidate - NamedType InvalidEmailErr</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 2002717086 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the date when the member joined the library.</source>
-          <target>Anger datumet när medlemmen gick med i biblioteket.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger datumet när medlemmen gick med i biblioteket.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Member Since - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 2002717086 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member Since</source>
-          <target>Medlem sedan</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlem sedan</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Member Since - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1555633982 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the type of membership (Regular, Student, or Senior).</source>
-          <target>Anger typen av medlemskap (Ordinarie, Student eller Senior).</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger typen av medlemskap (Ordinarie, Student eller Senior).</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Membership Type - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1555633982 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Membership Type</source>
-          <target>Medlemskapstyp</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemskapstyp</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Membership Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the library member.</source>
-          <target>Anger biblioteksmedlemmens namn.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmens namn.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Name</source>
-          <target>Namn</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Namn</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the unique identifier for the library member.</source>
-          <target>Anger den unika identifieraren för biblioteksmedlemmen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger den unika identifieraren för biblioteksmedlemmen.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
-          <target>Nr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series from which the member number was assigned.</source>
-          <target>Anger nummerserien från vilken medlemsnumret tilldelades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerserien från vilken medlemsnumret tilldelades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. Series - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Series</source>
-          <target>Nr-serie</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr-serie</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. Series - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 3986423421 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the phone number of the library member.</source>
-          <target>Anger biblioteksmedlemmens telefonnummer.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmens telefonnummer.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Phone No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 3986423421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Phone No.</source>
-          <target>Telefonnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Telefonnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Phone No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 3660300303 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the postal code of the library member.</source>
-          <target>Anger biblioteksmedlemmens postnummer.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmens postnummer.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Post Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 1686036404 - Field 3660300303 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Post Code</source>
-          <target>Postnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Postnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Post Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Library Setup</source>
-          <target>Biblioteksinställningar</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Biblioteksinställningar</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 1760076907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series code used for assigning numbers to authors.</source>
-          <target>Anger nummerseriekoden som används för att tilldela nummer till författare.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerseriekoden som används för att tilldela nummer till författare.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Author Nos. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 1760076907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Author Nos.</source>
-          <target>Författarnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Författarnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Author Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 1785698507 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series code used for assigning numbers to book loans.</source>
-          <target>Anger nummerseriekoden som används för att tilldela nummer till boklån.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerseriekoden som används för att tilldela nummer till boklån.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Loan Nos. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 1785698507 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan Nos.</source>
-          <target>Boklånsnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklånsnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Loan Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 3748887319 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series code used for assigning numbers to books.</source>
-          <target>Anger nummerseriekoden som används för att tilldela nummer till böcker.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerseriekoden som används för att tilldela nummer till böcker.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Nos. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 3748887319 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Nos.</source>
-          <target>Boknr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boknr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 2006390016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series code used for assigning numbers to library members.</source>
-          <target>Anger nummerseriekoden som används för att tilldela nummer till biblioteksmedlemmar.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerseriekoden som används för att tilldela nummer till biblioteksmedlemmar.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Member Nos. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 2006390016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member Nos.</source>
-          <target>Medlemsnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemsnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Member Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 3743986908 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number series code used for assigning numbers to posted book loans.</source>
-          <target>Anger nummerseriekoden som används för att tilldela nummer till bokförda boklån.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger nummerseriekoden som används för att tilldela nummer till bokförda boklån.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Posted Book Loan Nos. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 3743986908 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Book Loan Nos.</source>
-          <target>Bokförda boklånsnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokförda boklånsnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Posted Book Loan Nos. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2752457625 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
-          <target>Primärnyckel</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Primärnyckel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Primary Key - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Book Loan Header</source>
-          <target>Bokfört boklånshuvud</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokfört boklånshuvud</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 2443976460 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the expected return date for the loaned books.</source>
-          <target>Anger förväntat returdatum för de lånade böckerna.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger förväntat returdatum för de lånade böckerna.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Expected Return Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 2443976460 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Expected Return Date</source>
-          <target>Förväntat returdatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Förväntat returdatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Expected Return Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 208718844 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the date when the books were loaned.</source>
-          <target>Anger datumet när böckerna lånades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger datumet när böckerna lånades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Loan Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 208718844 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Loan Date</source>
-          <target>Lånedatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Lånedatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Loan Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 3178072769 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the library member.</source>
-          <target>Anger namnet på biblioteksmedlemmen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger namnet på biblioteksmedlemmen.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 3178072769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member Name</source>
-          <target>Medlemsnamn</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemsnamn</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 1364069073 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the library member who borrowed the books.</source>
-          <target>Anger biblioteksmedlemmen som lånade böckerna.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger biblioteksmedlemmen som lånade böckerna.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 1364069073 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member No.</source>
-          <target>Medlemsnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemsnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the unique identifier for the posted book loan.</source>
-          <target>Anger den unika identifieraren för det bokförda boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger den unika identifieraren för det bokförda boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
-          <target>Nr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Nr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 950508093 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of lines in the posted book loan.</source>
-          <target>Anger antalet rader i det bokförda boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger antalet rader i det bokförda boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. of Lines - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 950508093 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Lines</source>
-          <target>Antal rader</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal rader</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. of Lines - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 3710982960 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the posting date of the book loan.</source>
-          <target>Anger bokföringsdatumet för boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger bokföringsdatumet för boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Posting Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2006060024 - Field 3710982960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posting Date</source>
-          <target>Bokföringsdatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokföringsdatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Posting Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Book Loan Line</source>
-          <target>Bokförd boklånsrad</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokförd boklånsrad</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 4205704274 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the book that was loaned.</source>
-          <target>Anger boken som lånades.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger boken som lånades.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 4205704274 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book No.</source>
-          <target>Boknr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boknr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 245842227 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the title of the book.</source>
-          <target>Anger bokens titel.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger bokens titel.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book Title - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 245842227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Title</source>
-          <target>Boktitel</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boktitel</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book Title - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the document number of the posted book loan.</source>
-          <target>Anger dokumentnumret för det bokförda boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger dokumentnumret för det bokförda boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Document No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document No.</source>
-          <target>Dokumentnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Dokumentnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Document No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 4085727052 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies when the book should be returned.</source>
-          <target>Anger när boken ska returneras.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger när boken ska returneras.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Due Date - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 4085727052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Due Date</source>
-          <target>Förfallodatum</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Förfallodatum</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Due Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 3320823955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the line number.</source>
-          <target>Anger radnumret.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger radnumret.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Line No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Line No.</source>
-          <target>Radnr</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Radnr</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Line No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the quantity.</source>
-          <target>Anger antalet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Anger antalet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Quantity - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 766761791 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity</source>
-          <target>Antal</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Antal</target>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Quantity - Property Caption</note>
         </trans-unit>
         <trans-unit id="Codeunit 487475185 - NamedType 1746037662" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan %1 has already been posted.</source>
-          <target>Boklån %1 har redan bokförts.</target>
+          <target state="translated">Boklån %1 har redan bokförts.</target>
           <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post - NamedType AlreadyPostedErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 487475185 - NamedType 3359697259" size-unit="char" translate="yes" xml:space="preserve">
           <source>There are no lines to post for Book Loan %1.</source>
-          <target>Det finns inga rader att bokföra för boklån %1.</target>
+          <target state="translated">Det finns inga rader att bokföra för boklån %1.</target>
           <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post - NamedType NoLinesErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 487475185 - NamedType 1446295496" size-unit="char" translate="yes" xml:space="preserve">
           <source>Member No. must have a value in Book Loan Header: No.=%1. It cannot be zero or empty.</source>
-          <target>Medlemsnr måste ha ett värde i boklånshuvud: Nr=%1. Det kan inte vara noll eller tomt.</target>
+          <target state="translated">Medlemsnr måste ha ett värde i boklånshuvud: Nr=%1. Det kan inte vara noll eller tomt.</target>
           <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post - NamedType NoMemberErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 3201229417 - NamedType 2712918880" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to post the book loan?</source>
-          <target>Vill du bokföra boklånet?</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Vill du bokföra boklånet?</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post (Yes/No) - NamedType ConfirmPostQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 4024492451 - NamedType 875579050" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to process the return of the loaned books?</source>
-          <target>Vill du behandla returen av de lånade böckerna?</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Vill du behandla returen av de lånade böckerna?</target>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Return-Post (Yes/No) - NamedType ConfirmReturnQst</note>
         </trans-unit>
         <trans-unit id="Page 3034983090 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Author Card</source>
-          <target>Författarkort</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Författarkort</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3034983090 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
-          <target>Allmänt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Allmänt</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author Card - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3034983090 - Control 3076206668 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Identifiers</source>
-          <target>Identifierare</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Identifierare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author Card - Control Identifiers - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2908121524 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Authors</source>
-          <target>Författare</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Författare</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1224753382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Card</source>
-          <target>Bokkort</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokkort</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1224753382 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
-          <target>Allmänt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Allmänt</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Card - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1224753382 - Control 2105307182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Inventory</source>
-          <target>Lager</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Lager</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Card - Control Inventory - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 865022784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Books</source>
-          <target>Böcker</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Böcker</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3467809054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan</source>
-          <target>Boklån</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3467809054 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
-          <target>Allmänt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Allmänt</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3467809054 - Action 2282416948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Post the book loan.</source>
-          <target>Bokför boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokför boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Action Post - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3467809054 - Action 2282416948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Post</source>
-          <target>Bokför</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokför</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Action Post - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3902466639 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan Ledger Entries</source>
-          <target>Boklånstransaktioner</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklånstransaktioner</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan Ledger Entries - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2232036316 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loans</source>
-          <target>Boklån</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2232036316 - Action 2282416948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Post the book loan.</source>
-          <target>Bokför boklånet.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokför boklånet.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan List - Action Post - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2232036316 - Action 2282416948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Post</source>
-          <target>Bokför</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokför</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan List - Action Post - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1031349775 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Lines</source>
-          <target>Rader</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Rader</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan Subpage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1768187042 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Genres</source>
-          <target>Genrer</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Genrer</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Genre List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4257259968 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Library Member Card</source>
-          <target>Biblioteksmedlemskort</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Biblioteksmedlemskort</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4257259968 - Control 3993128796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contact</source>
-          <target>Kontaktperson</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Kontaktperson</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member Card - Control Contact - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4257259968 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
-          <target>Allmänt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Allmänt</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member Card - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 347453126 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Library Members</source>
-          <target>Biblioteksmedlemmar</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Biblioteksmedlemmar</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2752457625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Library Setup</source>
-          <target>Biblioteksinställningar</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Biblioteksinställningar</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Setup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2752457625 - Control 1532816877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Numbering</source>
-          <target>Numrering</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Numrering</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Setup - Control Numbering - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1827842241 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Book Loan</source>
-          <target>Bokfört boklån</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokfört boklån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1827842241 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
-          <target>Allmänt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Allmänt</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1827842241 - Action 3223440110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Process the return of the loaned books.</source>
-          <target>Behandla returen av de lånade böckerna.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Behandla returen av de lånade böckerna.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Action Return - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1827842241 - Action 3223440110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return</source>
-          <target>Retur</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Action Return - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1313869907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Book Loans</source>
-          <target>Bokförda boklån</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokförda boklån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1313869907 - Action 3223440110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Process the return of the loaned books.</source>
-          <target>Behandla returen av de lånade böckerna.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Behandla returen av de lånade böckerna.</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan List - Action Return - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1313869907 - Action 3223440110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return</source>
-          <target>Retur</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan List - Action Return - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1548040075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Lines</source>
-          <target>Rader</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Rader</target>
           <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Subp. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2283397866 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan Entry Type</source>
-          <target>Boklånstransaktionstyp</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklånstransaktionstyp</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Entry Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2283397866 - EnumValue 2179104272 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Loan</source>
-          <target>Lån</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Lån</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Entry Type - EnumValue Loan - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2283397866 - EnumValue 3223440110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return</source>
-          <target>Retur</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Retur</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Entry Type - EnumValue Return - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3390048234 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Book Loan Status</source>
-          <target>Boklånsstatus</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Boklånsstatus</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Status - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3390048234 - EnumValue 4259830144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Open</source>
-          <target>Öppen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Öppen</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Status - EnumValue Open - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3390048234 - EnumValue 35450067 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted</source>
-          <target>Bokförd</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Bokförd</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Status - EnumValue Posted - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3153202263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Membership Type</source>
-          <target>Medlemskapstyp</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Medlemskapstyp</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3153202263 - EnumValue 244194350 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Regular</source>
-          <target>Ordinarie</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Ordinarie</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - EnumValue Regular - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3153202263 - EnumValue 3556667656 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Senior</source>
-          <target>Senior</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Senior</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - EnumValue Senior - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3153202263 - EnumValue 1418429579 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Student</source>
-          <target>Student</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Student</target>
           <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - EnumValue Student - Property Caption</note>
         </trans-unit>
         <trans-unit id="PermissionSet 52954276 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
           <source>Library Admin</source>
-          <target>Biblioteksadministratör</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <target state="translated">Biblioteksadministratör</target>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet LIB Admin - Property Caption</note>
         </trans-unit>
       </group>
