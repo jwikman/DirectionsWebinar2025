@@ -9,30 +9,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 683393782 - Field 1791119963 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies a brief biography of the author.</source>
-          <target>Anger en kort biografi om författaren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Biography - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Table 683393782 - Field 1791119963 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Biography</source>
-          <target>Biografi</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Biography - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 683393782 - Field 1856816140 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the country of the author.</source>
-          <target>Anger författarens land.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Country - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Table 683393782 - Field 1856816140 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Country</source>
-          <target>Land</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Country - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 683393782 - Field 349316295 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the International Standard Name Identifier (16 digits).</source>
           <target>Anger International Standard Name Identifier (16 siffror).</target>
