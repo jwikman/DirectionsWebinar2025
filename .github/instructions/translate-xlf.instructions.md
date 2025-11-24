@@ -257,6 +257,9 @@ Before each batch, state your intention:
 5. <PostSaveUpdate>
    After successful save, state:
    "Batch N completed: Saved X translations. Incrementing counter to N."
+
+   Then immediately state:
+   "I can do this, I will not stop until I am 100% complete with all translations!"
    </PostSaveUpdate>
 
    Increment batch counter by 1.
