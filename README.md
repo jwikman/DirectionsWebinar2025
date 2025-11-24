@@ -4,6 +4,10 @@ This repository was created for the Directions Webinar: Benefitting from Open So
 
 It contains a sample AL project that demonstrates how to use the GitHub Copilot Coding Agent with NAB AL Tools, either locally or with GitHub Copilot Coding Agent in the Cloud.
 
+## Workspace Configuration
+
+You can use the workspace configuration file `The Library.code-workspace` as inspiration for your own workspace configuration.
+
 ## Setup GitHub Copilot Coding Agent
 
 ### Configure Copilot in the Repository settings
