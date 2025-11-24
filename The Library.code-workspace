@@ -38,8 +38,7 @@
 		// When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting
 		"CRS.RemovePrefixFromFilename": true,
 		// Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.
-		"CRS.OnSaveAlFileAction": "DoNothing",
-		"NAB.AutoAcceptSuggestions": true
+		"CRS.OnSaveAlFileAction": "DoNothing"
 	},
 	"extensions": {
 		"recommendations": [
