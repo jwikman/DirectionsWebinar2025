@@ -2,13 +2,25 @@
 
 This repository was created for the Directions Webinar: Benefitting from Open Source 2025-11-25
 
-It contains a sample AL project that demonstrates how to use the GitHub Copilot Coding Agent with NAB AL Tools, either locally or with GitHub Copilot Coding Agent in the Cloud.
+It contains a sample AL project that demonstrates how to use the GitHub Copilot with NAB AL Tools, either locally or with GitHub Copilot Coding Agent in the Cloud.
 
 ## Workspace Configuration
 
 You can use the workspace configuration file `The Library.code-workspace` as inspiration for your own workspace configuration.
 
-## Setup GitHub Copilot Coding Agent
+## Using GitHub Copilot Locally
+
+Copy the following files from this repository to your local AL project (create the folders if they do not exist):
+
+- `.github\agents\BC Translator.agent.md`
+- `.github\prompts\Translate-App.prompt.md`
+
+After copying the files, you can start using the GitHub Copilot with
+NAB AL Tools locally. Just run the prompt above by writing `/Translate-App` in the Copilot chat in VSCode. You can also add additional instructions after the prompt command, like `/Translate-App please translate to French and German.`
+
+It should find the prompt file, switch to the BC Translator agent, and execute the translation according to instructions.
+
+## Using GitHub Copilot Coding Agent
 
 ### Configure Copilot in the Repository settings
 
@@ -16,10 +28,10 @@ Configure the NAB AL Tools MCP Server for the Copilot Coding Agent by using the 
 
 ```json
 {
-    "mcpServers": {
-        "nab-al-tools-mcp": {
-            "type": "local",
-            "command": "npx",
+  "mcpServers": {
+    "nab-al-tools-mcp": {
+      "type": "local",
+      "command": "npx",
             "args": [
                 "-y",
                 "@nabsolutions/nab-al-tools-mcp"
@@ -27,8 +39,8 @@ Configure the NAB AL Tools MCP Server for the Copilot Coding Agent by using the 
             "tools": [
                 "*"
             ]
-        }
     }
+  }
 }
 ```
 
