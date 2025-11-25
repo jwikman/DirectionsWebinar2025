@@ -5,6 +5,7 @@ using Microsoft.Foundation.NoSeries;
 table 70303 "LIB Book"
 {
     Caption = 'Book';
+    AllowInCustomizations = AsReadOnly;
     DataClassification = CustomerContent;
     DataPerCompany = true;
     Extensible = true;

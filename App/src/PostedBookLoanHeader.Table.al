@@ -3,6 +3,7 @@ namespace Demo.Library;
 table 70307 "LIB Posted Book Loan Header"
 {
     Caption = 'Posted Book Loan Header';
+    AllowInCustomizations = AsReadOnly;
     DataClassification = CustomerContent;
     DataPerCompany = true;
     Extensible = true;

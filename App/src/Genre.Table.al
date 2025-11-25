@@ -3,6 +3,7 @@ namespace Demo.Library;
 table 70302 "LIB Genre"
 {
     Caption = 'Genre';
+    AllowInCustomizations = AsReadOnly;
     DataClassification = CustomerContent;
     DataPerCompany = true;
     Extensible = true;

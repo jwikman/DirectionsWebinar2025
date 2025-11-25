@@ -5,6 +5,7 @@ using Microsoft.Foundation.NoSeries;
 table 70300 "LIB Library Setup"
 {
     Caption = 'Library Setup';
+    AllowInCustomizations = AsReadOnly;
     DataClassification = CustomerContent;
     DataPerCompany = true;
     Extensible = true;

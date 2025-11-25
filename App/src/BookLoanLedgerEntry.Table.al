@@ -3,6 +3,7 @@ namespace Demo.Library;
 table 70309 "LIB Book Loan Ledger Entry"
 {
     Caption = 'Book Loan Ledger Entry';
+    AllowInCustomizations = AsReadOnly;
     DataClassification = CustomerContent;
     DataPerCompany = true;
     Extensible = true;
