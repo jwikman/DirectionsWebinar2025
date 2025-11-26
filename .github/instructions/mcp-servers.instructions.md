@@ -24,7 +24,7 @@ This document describes the Model Context Protocol (MCP) servers available for u
    - Outputs JSON array of objects with 'source', 'target', and 'description'
 
 3. **refreshXlf**
-   - Refreshes and synchronizes a XLF language file using the generated XLF file
+   - Refreshes and synchronizes an XLF language file using the generated XLF file
    - Preserves existing translations while adding new translation units
    - Maintains the state of translated units and sorts the file
 
