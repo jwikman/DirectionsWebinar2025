@@ -24,7 +24,7 @@ This document describes the Model Context Protocol (MCP) servers available for u
    - Outputs JSON array of objects with 'source', 'target', and 'description'
 
 3. **refreshXlf**
-   - Refreshes and synchronizes an XLF language file using the generated XLF file
+   - Refreshes and synchronizes an XLF file using the generated XLF file
    - Preserves existing translations while adding new translation units
    - Maintains the state of translated units and sorts the file
 
@@ -51,7 +51,7 @@ This document describes the Model Context Protocol (MCP) servers available for u
 8. **createLanguageXlf**
    - Creates a new XLF file for a specified target language
    - Based on the generated XLF file from the initialized app
-   - Optionally pre-populated with matching translations from Microsoft's base application
+   - Optionally prepopulated with matching translations from Microsoft's base application
 
 9. **getTextsByKeyword**
    - Searches source or target texts in an XLF file for a given keyword or regex
