@@ -24,7 +24,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$containerName = "TheLibrary",
+    [string]$containerName = "bcserver",
     [string]$bcVersion = "27",
     [string]$licenseFile = "",
     [string]$memoryLimit = "8G",
@@ -123,15 +123,6 @@ try {
     # Wait for container to be ready
     Write-Host "Waiting for container to be fully ready..." -ForegroundColor Yellow
     Wait-BcContainerReady -containerName $containerName -timeout 600
-
-    # Initialize compilation environment if not already done
-    Write-Host "Initializing compilation environment..." -ForegroundColor Yellow
-    $initScript = Join-Path $PSScriptRoot "initialize-coding-agent.ps1"
-    if (Test-Path $initScript) {
-        & $initScript
-    } else {
-        throw "Initialize script not found: $initScript"
-    }
 
     # Install test libraries first (required by TestApp)
     Write-Host "Installing Microsoft test libraries..." -ForegroundColor Yellow
