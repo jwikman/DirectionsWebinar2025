@@ -214,16 +214,17 @@ al compile $($ParametersList -join " ")
 }
 
 # Setup BC Container if requested
-Write-Host ""
-Write-Host "Setting up Business Central container..." -ForegroundColor Green
-$setupContainerScript = Join-Path $PSScriptRoot "setup-bc-container.ps1"
-
-if (Test-Path $setupContainerScript) {
-    & $setupContainerScript -containerName $ContainerName
-}
-else {
-    Write-Warning "Container setup script not found: $setupContainerScript"
-    Write-Host "You can manually run the container setup using:" -ForegroundColor Yellow
-    Write-Host "  .\setup-bc-container.ps1" -ForegroundColor Cyan
+if ($SetupContainer) {
+    Write-Host ""
+    Write-Host "Setting up Business Central container..." -ForegroundColor Green
+    $setupContainerScript = Join-Path $PSScriptRoot "setup-bc-container.ps1"
+    
+    if (Test-Path $setupContainerScript) {
+        & $setupContainerScript -containerName $ContainerName
+    } else {
+        Write-Warning "Container setup script not found: $setupContainerScript"
+        Write-Host "You can manually run the container setup using:" -ForegroundColor Yellow
+        Write-Host "  .\setup-bc-container.ps1" -ForegroundColor Cyan
+    }
 }
 
