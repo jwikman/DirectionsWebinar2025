@@ -16,31 +16,28 @@
 
 [CmdletBinding()]
 param(
-    [switch]$SetupContainer = $false,
+    [switch]$SetupContainer,
     [string]$ContainerName = "bcserver"
 )
 
 $ErrorActionPreference = "Stop"
 
+# This script is designed to run on Linux only
+if (-not $IsLinux) {
+    throw "This script is designed to run on Linux environments only (GitHub Codespaces/Actions). Current platform: $($PSVersionTable.Platform)"
+}
+
 $tempFolder = Join-Path $PWD.Path ".github/.tmp"
 if (!(Test-Path -Path $tempFolder)) {
     New-Item -Path $tempFolder -ItemType Directory -Force | Out-Null
 }
-$version = $null
-if ($IsLinux) {
-    $toolName = "Microsoft.Dynamics.BusinessCentral.Development.Tools.Linux"
-    $version = "17.0.28.6483-beta"
-}
-else {
-    $toolName = "Microsoft.Dynamics.BusinessCentral.Development.Tools"
-}
+
+$toolName = "Microsoft.Dynamics.BusinessCentral.Development.Tools.Linux"
+$version = "17.0.28.6483-beta"
+
 Write-Host "Install $toolName"
-if ($version) {
-    dotnet tool install $toolName --global --version $version
-}
-else {
-    dotnet tool install $toolName --global --prerelease
-}
+dotnet tool install $toolName --global --version $version
+
 $ALToolVersion = (dotnet tool list $toolName --global | Select-String -Pattern "$toolName" | ForEach-Object { $_ -split '\s+' })[1]
 Write-Host "Installed version $ALToolVersion of $toolName"
 
@@ -48,28 +45,8 @@ Install-Module -Name BcContainerHelper -Scope CurrentUser -Force -AllowClobber
 Import-Module -Name BcContainerHelper -DisableNameChecking
 
 $bcContainerHelperConfig.MicrosoftTelemetryConnectionString = ""
-$bcContainerHelperConfig.TrustedNuGetFeeds = @(
-    [PSCustomObject]@{
-        "Url"      = "https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSApps/nuget/v3/index.json";
-        "Patterns" = @("*")
-    },
-    [PSCustomObject]@{
-        "Url"      = "https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json";
-        "Patterns" = @("*")
-    },
-    [PSCustomObject]@{
-        "Url"      = "https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/AppSourceSymbols/nuget/v3/index.json"
-        "Patterns" = @("*")
-    }
-)
 
-if ($IsLinux) {
-    $analyzerFolderPath = Join-Path $env:HOME "/.dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/" -Resolve
-}
-else {
-    # Used for development on Windows
-    $analyzerFolderPath = Join-Path $env:USERPROFILE "/.dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/" -Resolve
-}
+$analyzerFolderPath = Join-Path $env:HOME "/.dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/" -Resolve
 
 # Download BusinessCentral.LinterCop
 $LinterCopDllPath = Join-Path $analyzerFolderPath "BusinessCentral.LinterCop.dll"
@@ -81,6 +58,14 @@ try {
     $LinterCopAvailable = $true
 }
 catch {
+    Write-Host "LINTERCOP DOWNLOAD ERROR:" -ForegroundColor Red
+    Write-Host "Error Message: $($_.Exception.Message)" -ForegroundColor Yellow
+    Write-Host "Error Type: $($_.Exception.GetType().FullName)" -ForegroundColor Yellow
+    Write-Host "Stack Trace:" -ForegroundColor Yellow
+    Write-Host "$($_.ScriptStackTrace)" -ForegroundColor Cyan
+    if ($_.Exception.InnerException) {
+        Write-Host "Inner Exception: $($_.Exception.InnerException.Message)" -ForegroundColor Yellow
+    }
     Write-Host "Failed to download LinterCop DLL ($($LinterCopUrl)), ignoring until it is available for this version."
 }
 
@@ -100,7 +85,6 @@ if ($testAppExists) {
         New-Item -Path $testAppCacheFolder -ItemType Directory -Force | Out-Null
     }
 }
-$AppManifestObject = Get-Content (Join-Path $appFolder "app.json") -Encoding UTF8 | ConvertFrom-Json
 $appFolders = @("App")
 if ($testAppExists) {
     $appFolders += @("TestApp")
@@ -116,42 +100,6 @@ $appFolders | ForEach-Object {
     if (!(Test-Path -Path $packagecachepath)) {
         New-Item -Path $packagecachepath -ItemType Directory -Force | Out-Null
     }
-
-    # $nonMsftDependencies = $ManifestObject.dependencies | Where-Object { $_.publisher -ne "Microsoft" -and $_.name -ne $AppManifestObject.name }
-    # foreach ($Dependency in $nonMsftDependencies) {
-    #     $DependencyFileName = (("{0}_{1}_{2}.app" -f $Dependency.publisher, $Dependency.name, $Dependency.version).Split([System.IO.Path]::GetInvalidFileNameChars()) -join '')
-    #     if (!(Test-Path -Path (Join-Path $packagecachepath $DependencyFileName))) {
-    #         $PackageName = ("{0}.{1}.symbols.{2}" -f $Dependency.publisher, $Dependency.name, $Dependency.id ) -replace ' ', ''
-    #         Write-Host "Get $PackageName"
-
-    #         Download-BcNuGetPackageToFolder -packageName $PackageName -downloadDependencies none -folder $packagecachepath -version $Dependency.version -select Exact -allowPrerelease
-    #     }
-    #     else {
-    #         Write-Host "$DependencyFileName already in .alpackages"
-    #     }
-    # }
-
-    # $msftDependencies = $ManifestObject.dependencies | Where-Object { $_.publisher -eq "Microsoft" }
-    # foreach ($Dependency in $msftDependencies) {
-    #     $DependencyFileName = (("{0}_{1}_*.app" -f $Dependency.publisher, $Dependency.name).Split([System.IO.Path]::GetInvalidFileNameChars()) -join '')
-    #     if (!(Test-Path -Path (Join-Path $packagecachepath $DependencyFileName))) {
-    #         $PackageName = ("{0}.{1}.symbols.{2}" -f $Dependency.publisher, $Dependency.name, $Dependency.id ) -replace ' ', ''
-    #         Write-Host "Get $PackageName"
-
-    #         Download-BcNuGetPackageToFolder -packageName $PackageName -downloadDependencies none -folder $packagecachepath -version $Dependency.version -select LatestMatching
-    #     }
-    #     else {
-    #         Write-Host "$DependencyFileName already in .alpackages"
-    #     }
-    # }
-    # if (!(Test-Path -Path (Join-Path $packagecachepath "Microsoft_Application_*.app"))) {
-    #     Write-Host "Get symbols for Application $applicationVersion"
-    #     $PackageName = "Microsoft.Application.symbols"
-    #     Download-BcNuGetPackageToFolder -packageName $PackageName -downloadDependencies all -folder $packagecachepath -version $applicationVersion -select LatestMatching
-    # }
-    # else {
-    #     Write-Host "Symbols for Application already in .alpackages"
-    # }
 
     $AppFileName = (("{0}_{1}_{2}.app" -f $ManifestObject.publisher, $ManifestObject.name, $ManifestObject.version).Split([System.IO.Path]::GetInvalidFileNameChars()) -join '')
     $appPath = $(Join-Path $tempFolder $AppFileName)
@@ -214,16 +162,43 @@ al compile $($ParametersList -join " ")
 }
 
 # Setup BC Container if requested
-Write-Host ""
-Write-Host "Setting up Business Central container..." -ForegroundColor Green
-$setupContainerScript = Join-Path $PSScriptRoot "setup-bc-container.ps1"
+if ($SetupContainer.IsPresent) {
+    Write-Host ""
+    Write-Host "Setting up Business Central container..." -ForegroundColor Green
 
-if (Test-Path $setupContainerScript) {
-    & $setupContainerScript -containerName $ContainerName
+    $setupContainerScript = Join-Path $PSScriptRoot "setup-bc-container-linux.ps1"
+    Write-Host "Using Linux-compatible container setup..." -ForegroundColor Yellow
+
+    if (Test-Path $setupContainerScript) {
+        try {
+            & $setupContainerScript -containerName $ContainerName
+        }
+        catch {
+            Write-Host "CONTAINER SETUP ERROR:" -ForegroundColor Red
+            Write-Host "Error Message: $($_.Exception.Message)" -ForegroundColor Yellow
+            Write-Host "Error Type: $($_.Exception.GetType().FullName)" -ForegroundColor Yellow
+            Write-Host "Stack Trace:" -ForegroundColor Yellow
+            Write-Host "$($_.ScriptStackTrace)" -ForegroundColor Cyan
+            if ($_.Exception.InnerException) {
+                Write-Host "Inner Exception: $($_.Exception.InnerException.Message)" -ForegroundColor Yellow
+            }
+            Write-Host "Command that failed: & $setupContainerScript -containerName $ContainerName" -ForegroundColor Yellow
+            Write-Warning "Container setup failed: $($_.Exception.Message)"
+            Write-Host "Linux container setup failed. This may be due to Docker limitations in the current environment." -ForegroundColor Yellow
+            Write-Host "Development environment is still configured for AL compilation." -ForegroundColor Green
+            Write-Host "You can try running the container setup manually:" -ForegroundColor Yellow
+            Write-Host "  .\setup-bc-container-linux.ps1 -skipContainer" -ForegroundColor Cyan
+        }
+    }
+    else {
+        Write-Warning "Container setup script not found: $setupContainerScript"
+        Write-Host "You can manually run the container setup using:" -ForegroundColor Yellow
+        Write-Host "  .\setup-bc-container-linux.ps1" -ForegroundColor Cyan
+    }
 }
 else {
-    Write-Warning "Container setup script not found: $setupContainerScript"
-    Write-Host "You can manually run the container setup using:" -ForegroundColor Yellow
-    Write-Host "  .\setup-bc-container.ps1" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "Container setup skipped (use -SetupContainer to enable)" -ForegroundColor Yellow
+    Write-Host "Development environment configured for AL compilation only." -ForegroundColor Green
 }
 
