@@ -14,6 +14,12 @@
 #
 # 4. CODE COPS: PerTenantExtensionCop is used for app. LinterCop is used for app, if available for the AL Tools version.
 
+[CmdletBinding()]
+param(
+    [switch]$SetupContainer = $false,
+    [string]$ContainerName = "bcserver"
+)
+
 $ErrorActionPreference = "Stop"
 
 $tempFolder = Join-Path $PWD.Path ".github/.tmp"
@@ -205,4 +211,19 @@ al compile $($ParametersList -join " ")
     }
     $compileAppScriptPath = Join-Path $PWD.Path ".github/.tmp/$($compileScriptPrefix)compile-$($_.ToLower()).ps1"
     Set-Content -Path $compileAppScriptPath -Value $compileScript -Force
+}
+
+# Setup BC Container if requested
+if ($SetupContainer) {
+    Write-Host ""
+    Write-Host "Setting up Business Central container..." -ForegroundColor Green
+    $setupContainerScript = Join-Path $PSScriptRoot "setup-bc-container.ps1"
+
+    if (Test-Path $setupContainerScript) {
+        & $setupContainerScript -containerName $ContainerName
+    } else {
+        Write-Warning "Container setup script not found: $setupContainerScript"
+        Write-Host "You can manually run the container setup using:" -ForegroundColor Yellow
+        Write-Host "  .\setup-bc-container.ps1" -ForegroundColor Cyan
+    }
 }
