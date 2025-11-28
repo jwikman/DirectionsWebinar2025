@@ -39,7 +39,7 @@ if (!(Get-Module -Name BcContainerHelper -ListAvailable)) {
 Import-Module -Name BcContainerHelper -DisableNameChecking
 
 # Check if container exists
-$container = Get-BcContainer -containerName $containerName -ErrorAction SilentlyContinue
+$container = $containerName -in (Get-BcContainers)
 
 if (!$container -and $Action -ne "GetInfo") {
     Write-Error "Container '$containerName' not found. Run .\.github\setup-bc-container.ps1 first."

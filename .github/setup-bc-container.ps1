@@ -73,7 +73,7 @@ Write-Host "Main App: $($appManifest.name) v$($appManifest.version)" -Foreground
 Write-Host "Test App: $($testAppManifest.name) v$($testAppManifest.version)" -ForegroundColor Cyan
 
 # Remove existing container if it exists
-if (Get-BcContainer -containerName $containerName -ErrorAction SilentlyContinue) {
+if ($containerName -in (Get-BcContainers)) {
     Write-Host "Removing existing container '$containerName'..." -ForegroundColor Yellow
     Remove-BcContainer -containerName $containerName -Force
 }
@@ -202,7 +202,7 @@ try {
     Write-Error "Failed to create or configure container: $($_.Exception.Message)"
 
     # Clean up on failure
-    if (Get-BcContainer -containerName $containerName -ErrorAction SilentlyContinue) {
+    if ($containerName -in (Get-BcContainers)) {
         Write-Host "Cleaning up failed container..." -ForegroundColor Yellow
         Remove-BcContainer -containerName $containerName -Force
     }
