@@ -55,16 +55,22 @@ When updating instruction files (`.instructions.md`), prompt files (`.prompt.md`
 ### Markdown Formatting
 When creating or editing markdown files, follow common markdown best practices and formatting standards to avoid linter warnings
 
+**Placeholder Conventions:**
+- Use `< >` for placeholders (e.g., `<Title>`, `<YYYY-MM-DD>`, `<Description>`)
+- Use `[ ]` only for proper markdown links (e.g., `[Link Text](https://example.com)`)
+- This avoids confusion between placeholders and actual markdown link syntax
+
 ## Communication
 
 ### Question Format
-When presenting options to users:
-1. Always provide numbered alternatives when possible
+When presenting ANY questions to users (not just options):
+1. **Always provide numbered alternatives** - This applies to clarification questions, option selection, and requirements gathering
 2. Place the recommended option as **number 1** with justification
 3. Include 3-5 relevant alternatives when applicable
-4. Use open-ended questions only when alternatives cannot be determined without additional context
+4. Use bold for question headers to separate multiple questions clearly
+5. Use open-ended questions ONLY when alternatives cannot be determined without additional context
 
-**Example:**
+**Formatting Example - Option Selection:**
 ```
 How many story points should this user story have?
 1. 1 point - Very simple, well-understood change (Recommended - single page update with clear requirements)
@@ -74,6 +80,23 @@ How many story points should this user story have?
 5. 8 points - Large feature, significant unknowns
 
 Please select 1-5, or provide your own assessment.
+```
+
+**Formatting Example - Clarification Questions:**
+```
+**What does "reconciliation" refer to in your system?**
+1. A single reconciliation record/document (Recommended - most common interpretation)
+2. Multiple reconciliations selected by the user
+3. A reconciliation batch or group
+4. Other (please specify)
+
+**What are the "files" that need to be included?**
+1. Attachments already linked to the reconciliation record (Recommended - standard BC pattern)
+2. Supporting documents from separate storage
+3. Generated files during process
+4. Other (please specify)
+
+Please select the numbered option that best fits, or provide your own answer for each question.
 ```
 
 ### Iterative Approach
