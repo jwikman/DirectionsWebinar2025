@@ -90,24 +90,24 @@ jobs:
         echo "Downloading Microsoft.Platform.symbols v$PLATFORM_VERSION (System dependency)..."
         curl -L -s -o "temp_packages/microsoft.platform.symbols.nupkg" \
             "$BC_BASE_URL/microsoft.platform.symbols/$PLATFORM_VERSION/microsoft.platform.symbols.$PLATFORM_VERSION.nupkg" || echo "Failed to download Platform (System)"
-        
+
         # Test Framework packages (required by TestApp)
         echo "Downloading Microsoft.Library Assert.US.symbols (Test Framework)..."
         curl -L -s -o "temp_packages/microsoft.library.assert.us.symbols.nupkg" \
             "$BC_BASE_URL/microsoft.library.assert.us.symbols/$BC_VERSION/microsoft.library.assert.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Library Assert"
-        
+
         echo "Downloading Microsoft.Any.US.symbols (Test Framework)..."
         curl -L -s -o "temp_packages/microsoft.any.us.symbols.nupkg" \
             "$BC_BASE_URL/microsoft.any.us.symbols/$BC_VERSION/microsoft.any.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Any"
-        
+
         echo "Downloading Microsoft.Test Runner.US.symbols (Test Framework)..."
         curl -L -s -o "temp_packages/microsoft.test.runner.us.symbols.nupkg" \
             "$BC_BASE_URL/microsoft.test.runner.us.symbols/$BC_VERSION/microsoft.test.runner.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Test Runner"
-        
+
         echo "Downloading Microsoft.Library Variable Storage.US.symbols (Test Framework)..."
         curl -L -s -o "temp_packages/microsoft.library.variable.storage.us.symbols.nupkg" \
             "$BC_BASE_URL/microsoft.library.variable.storage.us.symbols/$BC_VERSION/microsoft.library.variable.storage.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Library Variable Storage"
-        
+
         # Extract .nupkg files (which are zip files)
         mkdir -p temp_packages/extracted
         for nupkg in temp_packages/*.nupkg; do
@@ -154,6 +154,7 @@ jobs:
       run: |
         echo "Compiling AL extension..."
         COMPILE_START=$(date +%s.%N)
+
         # Compile the App folder
         if al compile /project:"App" /packagecachepath:"App/.alpackages"; then
             echo "App compilation successful"
@@ -162,10 +163,18 @@ jobs:
             exit 1
         fi
 
-        # Copy the compiled app to TestApp dependencies
+        # Prepare TestApp dependencies - copy all symbol packages from App
         mkdir -p TestApp/.alpackages
+        echo "Copying all symbol packages to TestApp/.alpackages..."
         cp App/.alpackages/*.app TestApp/.alpackages/
+
+        # Copy the compiled main app to TestApp dependencies
+        echo "Copying compiled main app to TestApp/.alpackages..."
         cp App/*.app TestApp/.alpackages/
+
+        # List what's available for TestApp compilation
+        echo "TestApp dependencies:"
+        ls -la TestApp/.alpackages/
 
         # Compile the TestApp folder
         if al compile /project:"TestApp" /packagecachepath:"TestApp/.alpackages"; then
