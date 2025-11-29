@@ -1,0 +1,19 @@
+name: Build Linux (Full Test)
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+env:
+  AL_VERSION: 'latest'
+  BCDEV_REPO: 'https://github.com/StefanMaron/BCDevOnLinux.git'
+  BCDEV_BRANCH: 'v2'
+
+jobs:
+  build-linux-full-test:
+    runs-on: ubuntu-latest
+    name: Linux Full Test Build
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
