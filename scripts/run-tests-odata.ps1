@@ -1,0 +1,301 @@
+#!/usr/bin/env pwsh
+<#
+.SYNOPSIS
+    Execute AL tests via OData API using the Codeunit Run Request system.
+
+.DESCRIPTION
+    This script executes AL test codeunits via the OData API exposed by the
+    Codeunit Run Requests API page (page 50002). It provides a stateful
+    execution pattern with status tracking.
+
+.PARAMETER BaseUrl
+    The base URL of the Business Central instance (e.g., "http://localhost:7049/BC")
+
+.PARAMETER Tenant
+    The tenant name (default: "default")
+
+.PARAMETER Username
+    Username for authentication (default: "admin")
+
+.PARAMETER Password
+    Password for authentication (default: "P@ssw0rd123!")
+
+.PARAMETER CodeunitId
+    The ID of the test codeunit to execute (default: 50001 - "Sample Data Tests PPC")
+
+.PARAMETER MaxWaitSeconds
+    Maximum time to wait for test execution to complete (default: 300 seconds)
+
+.EXAMPLE
+    ./run-tests-odata.ps1 -BaseUrl "http://localhost:7048/BC" -CodeunitId 50001
+
+.NOTES
+    API Endpoint: /api/custom/automation/v1.0/codeunitRunRequests
+    Uses the state-tracked execution pattern with status monitoring.
+#>
+
+param(
+    [Parameter(Mandatory=$false)]
+    [string]$BaseUrl = "http://localhost:7048/BC",
+
+    [Parameter(Mandatory=$false)]
+    [string]$Tenant = "default",
+
+    [Parameter(Mandatory=$false)]
+    [string]$Username = "admin",
+
+    [Parameter(Mandatory=$false)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPlainTextForPassword', '', Justification='BC container default credentials')]
+    [string]$Password = "Admin123!",
+
+    [Parameter(Mandatory=$false)]
+    [int]$CodeunitId = 50001,
+
+    [Parameter(Mandatory=$false)]
+    [int]$MaxWaitSeconds = 300
+)
+
+# Enable strict mode
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+# Build API endpoint
+$ApiPath = "/api/custom/automation/v1.0/codeunitRunRequests"
+$ApiUrl = "$BaseUrl$ApiPath"
+
+Write-Host "=== AL Test Execution via OData API ===" -ForegroundColor Cyan
+Write-Host "Base URL: $BaseUrl" -ForegroundColor Gray
+Write-Host "Tenant: $Tenant" -ForegroundColor Gray
+Write-Host "Codeunit ID: $CodeunitId" -ForegroundColor Gray
+Write-Host ""
+
+# Use hardcoded working base64 credentials (admin:Admin123!)
+# Base64 encoding of "admin:Admin123!"
+$base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("admin:Admin123!"))
+
+# Headers for API requests
+$Headers = @{
+    "Content-Type" = "application/json"
+    "Accept" = "application/json"
+    "Authorization" = "Basic $base64AuthInfo"
+}
+
+try {
+    # Pre-flight check: Test basic API connectivity and get company ID
+    Write-Host "[0/5] Testing API connectivity and retrieving company..." -ForegroundColor Yellow
+    try {
+        $testUrl = "$BaseUrl/api/v2.0/companies"
+        $testResponse = Invoke-RestMethod -Uri $testUrl `
+            -Method Get `
+            -Headers $Headers `
+            -AllowUnencryptedAuthentication `
+            -SkipHttpErrorCheck `
+            -TimeoutSec 60
+
+        if ($testResponse.value -and $testResponse.value.Count -gt 0) {
+            # Use the first company
+            $CompanyId = $testResponse.value[0].id
+            $CompanyName = $testResponse.value[0].name
+            Write-Host "✓ API is accessible" -ForegroundColor Green
+            Write-Host "  Using company: $CompanyName ($CompanyId)" -ForegroundColor Gray
+        } else {
+            Write-Host "✗ No companies found in BC" -ForegroundColor Red
+            exit 1
+        }
+    } catch {
+        Write-Host "✗ Failed to connect to API: $($_.Exception.Message)" -ForegroundColor Red
+        exit 1
+    }
+
+    # Update API URL to include company
+    $ApiUrl = "$BaseUrl/api/custom/automation/v1.0/companies($CompanyId)/codeunitRunRequests"
+    Write-Host ""
+
+    Write-Host "[1/4] Creating execution request..." -ForegroundColor Yellow
+
+    # Step 1: Create a new Codeunit Run Request
+    Write-Host "  Creating request for Codeunit ID: $CodeunitId" -ForegroundColor Gray
+    $RequestBody = @{
+        CodeunitId = $CodeunitId
+    } | ConvertTo-Json
+
+    $CreateResponse = Invoke-RestMethod -Uri "$ApiUrl" `
+        -Method Post `
+        -Headers $Headers `
+        -Body $RequestBody `
+        -AllowUnencryptedAuthentication `
+        -SkipHttpErrorCheck `
+        -TimeoutSec 30
+
+    $RequestId = $CreateResponse.Id
+    $RequestUrl = "$ApiUrl($RequestId)"
+
+    Write-Host "✓ Request created with ID: $RequestId" -ForegroundColor Green
+    Write-Host "  Status: $($CreateResponse.Status)" -ForegroundColor Gray
+    Write-Host ""
+
+    Write-Host "[2/4] Executing codeunit..." -ForegroundColor Yellow
+
+    # Step 2: Execute the codeunit via the runCodeunit action
+    $ActionUrl = "$BaseUrl/api/custom/automation/v1.0/companies($CompanyId)/codeunitRunRequests($RequestId)/Microsoft.NAV.runCodeunit"
+
+    $null = Invoke-RestMethod -Uri $ActionUrl `
+        -Method Post `
+        -Headers $Headers `
+        -AllowUnencryptedAuthentication `
+        -SkipHttpErrorCheck `
+        -TimeoutSec 60
+
+    Write-Host "✓ Execution triggered" -ForegroundColor Green
+    Write-Host ""
+
+    Write-Host "[3/4] Monitoring execution status..." -ForegroundColor Yellow
+
+    # Step 3: Poll for completion
+    $StartTime = Get-Date
+    $Completed = $false
+    $Status = "Running"
+    $LastResult = ""
+    $PollCount = 0
+
+    while (-not $Completed) {
+        $PollCount++
+        $ElapsedSeconds = ((Get-Date) - $StartTime).TotalSeconds
+
+        if ($ElapsedSeconds -gt $MaxWaitSeconds) {
+            Write-Host "✗ Timeout: Execution did not complete within $MaxWaitSeconds seconds" -ForegroundColor Red
+            exit 1
+        }
+
+        # Get current status
+        $StatusResponse = Invoke-RestMethod -Uri "$RequestUrl" `
+            -Method Get `
+            -Headers $Headers `
+            -AllowUnencryptedAuthentication `
+            -SkipHttpErrorCheck `
+            -TimeoutSec 30
+
+        $Status = $StatusResponse.Status
+        $LastResult = $StatusResponse.LastResult
+        $LastExecutionUTC = $StatusResponse.LastExecutionUTC
+
+        Write-Host "  Poll #$PollCount - Status: $Status (${ElapsedSeconds}s elapsed)" -ForegroundColor Gray
+
+        if ($Status -eq "Finished" -or $Status -eq "Error") {
+            $Completed = $true
+        } else {
+            # Wait 2 seconds before next poll
+            Start-Sleep -Seconds 2
+        }
+    }
+
+    Write-Host ""
+    Write-Host "[4/4] Execution Results:" -ForegroundColor Yellow
+    Write-Host "  Status: $Status" -ForegroundColor $(if ($Status -eq "Finished") { "Green" } else { "Red" })
+    Write-Host "  Result: $LastResult" -ForegroundColor Gray
+    Write-Host "  Execution Time (UTC): $LastExecutionUTC" -ForegroundColor Gray
+    Write-Host "  Total Wait Time: $([Math]::Round($ElapsedSeconds, 2)) seconds" -ForegroundColor Gray
+    Write-Host ""
+
+    # Step 5: Check Log Table via OData
+    Write-Host "[5/5] Retrieving execution logs..." -ForegroundColor Yellow
+
+    try {
+        # Access the Log Entries API (no filters, just get all entries)
+        $LogApiUrl = "$BaseUrl/api/custom/automation/v1.0/companies($CompanyId)/logEntries"
+
+        $LogResponse = Invoke-RestMethod -Uri $LogApiUrl `
+            -Method Get `
+            -Headers $Headers `
+            -AllowUnencryptedAuthentication `
+            -SkipHttpErrorCheck `
+            -TimeoutSec 30
+
+        if ($LogResponse.value -and $LogResponse.value.Count -gt 0) {
+            Write-Host "✓ Found $($LogResponse.value.Count) log entries:" -ForegroundColor Green
+            $LogResponse.value | ForEach-Object {
+                # Handle both types of logs: manual logs (with Message) and test runner logs (with test details)
+                if ($_.message -and $_.message -ne "") {
+                    # Manual log entry
+                    Write-Host "  [Entry $($_.entryNo)] $($_.message)" -ForegroundColor Cyan
+                    if ($_.computerName -and $_.computerName -ne "") {
+                        Write-Host "    Computer: $($_.computerName)" -ForegroundColor Gray
+                    }
+                } elseif ($_.codeunitName -and $_.codeunitName -ne "") {
+                    # Test runner log entry
+                    $statusIcon = if ($_.success) { "✓" } else { "✗" }
+                    $statusColor = if ($_.success) { "Green" } else { "Red" }
+                    Write-Host "  $statusIcon [Entry $($_.entryNo)] Test: $($_.codeunitName)::$($_.functionName)" -ForegroundColor $statusColor
+                    Write-Host "    Codeunit ID: $($_.codeunitId)" -ForegroundColor Gray
+
+                    # Show error details for failed tests
+                    if (-not $_.success -and $_.errorMessage -and $_.errorMessage -ne "") {
+                        Write-Host "    Error: $($_.errorMessage)" -ForegroundColor Red
+                        if ($_.callStack -and $_.callStack -ne "") {
+                            Write-Host "    Call Stack:" -ForegroundColor Gray
+                            # Display first 3 lines of call stack to keep output manageable
+                            $stackLines = $_.callStack -split "`n" | Select-Object -First 3
+                            foreach ($line in $stackLines) {
+                                Write-Host "      $line" -ForegroundColor DarkGray
+                            }
+                        }
+                    }
+                } else {
+                    # Fallback for incomplete log entries
+                    Write-Host "  [Entry $($_.entryNo)] (no details logged)" -ForegroundColor DarkGray
+                }
+            }
+        } else {
+            Write-Host "  No log entries found" -ForegroundColor Gray
+        }
+    } catch {
+        Write-Host "✗ Could not retrieve logs: $($_.Exception.Message)" -ForegroundColor Red
+    }
+
+    Write-Host ""
+
+    # Exit with appropriate code
+    if ($Status -eq "Finished") {
+        Write-Host "=== TEST EXECUTION SUCCESSFUL ===" -ForegroundColor Green
+        exit 0
+    } else {
+        Write-Host "=== TEST EXECUTION FAILED ===" -ForegroundColor Red
+        Write-Host "Error: $LastResult" -ForegroundColor Red
+        exit 1
+    }
+
+} catch {
+    Write-Host ""
+    Write-Host "=== FATAL ERROR ===" -ForegroundColor Red
+    Write-Host "Error Type: $($_.Exception.GetType().Name)" -ForegroundColor Red
+    Write-Host "Error Message: $($_.Exception.Message)" -ForegroundColor Red
+
+    if ($_.Exception.Response) {
+        $statusCode = $_.Exception.Response.StatusCode
+        Write-Host "HTTP Status Code: $($statusCode.value__)" -ForegroundColor Red
+
+        # Read response body if available
+        try {
+            $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+            $responseBody = $reader.ReadToEnd()
+            $reader.Close()
+            if ($responseBody) {
+                Write-Host "Response Body: $responseBody" -ForegroundColor Red
+            }
+        } catch {
+            # Ignore errors reading response body
+        }
+    }
+
+    Write-Host ""
+    Write-Host "Troubleshooting Tips:" -ForegroundColor Yellow
+    Write-Host "  1. Verify BC container is running: docker ps" -ForegroundColor Gray
+    Write-Host "  2. Check credentials match container config" -ForegroundColor Gray
+    Write-Host "  3. Verify API endpoint is accessible: curl $BaseUrl/api/v2.0/companies" -ForegroundColor Gray
+    Write-Host "  4. Check if extension is published with API page 50002" -ForegroundColor Gray
+    Write-Host ""
+    Write-Host "Full Error Details:" -ForegroundColor DarkRed
+    Write-Host $_ -ForegroundColor DarkRed
+
+    exit 1
+}
