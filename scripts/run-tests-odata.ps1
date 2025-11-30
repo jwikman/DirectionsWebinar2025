@@ -69,6 +69,15 @@ Write-Host "Tenant: $Tenant" -ForegroundColor Gray
 Write-Host "Codeunit ID: $CodeunitId" -ForegroundColor Gray
 Write-Host ""
 
+# Diagnostic information
+Write-Host "=== DIAGNOSTIC INFORMATION ===" -ForegroundColor Magenta
+Write-Host "PowerShell Version: $($PSVersionTable.PSVersion)" -ForegroundColor Gray
+Write-Host "OS: $($PSVersionTable.OS)" -ForegroundColor Gray
+Write-Host "Platform: $($PSVersionTable.Platform)" -ForegroundColor Gray
+Write-Host "Is Linux: $($IsLinux)" -ForegroundColor Gray
+Write-Host "Is Windows: $($IsWindows)" -ForegroundColor Gray
+Write-Host ""
+
 # Use hardcoded working base64 credentials (admin:Admin123!)
 # Base64 encoding of "admin:Admin123!"
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("admin:Admin123!"))
@@ -80,17 +89,142 @@ $Headers = @{
     "Authorization" = "Basic $base64AuthInfo"
 }
 
+# Function to make HTTP requests with fallback to curl on Linux
+function Invoke-BCApiRequest {
+    param(
+        [string]$Uri,
+        [string]$Method = "GET",
+        [hashtable]$Headers,
+        [string]$Body = $null,
+        [int]$TimeoutSec = 30
+    )
+
+    Write-Host "[DEBUG] Invoke-BCApiRequest - Method: $Method, Uri: $Uri" -ForegroundColor Magenta
+
+    # Try Invoke-RestMethod first
+    try {
+        $params = @{
+            Uri = $Uri
+            Method = $Method
+            Headers = $Headers
+            TimeoutSec = $TimeoutSec
+        }
+
+        if ($Body) {
+            $params.Body = $Body
+        }
+
+        # Add Linux-specific parameters
+        if ($IsLinux) {
+            $params.AllowUnencryptedAuthentication = $true
+            $params.SkipHttpErrorCheck = $true
+        }
+
+        $response = Invoke-RestMethod @params
+        Write-Host "[DEBUG] Invoke-RestMethod succeeded" -ForegroundColor Magenta
+        return $response
+    }
+    catch {
+        Write-Host "[WARNING] Invoke-RestMethod failed: $($_.Exception.Message)" -ForegroundColor Yellow
+
+        # On Linux, fall back to curl
+        if ($IsLinux) {
+            Write-Host "[INFO] Falling back to curl..." -ForegroundColor Yellow
+
+            try {
+                $curlArgs = @(
+                    "-s"  # Silent
+                    "-X", $Method
+                    "-u", "admin:Admin123!"
+                    "-H", "Content-Type: application/json"
+                    "-H", "Accept: application/json"
+                )
+
+                if ($Body) {
+                    $curlArgs += @("-d", $Body)
+                }
+
+                $curlArgs += $Uri
+
+                Write-Host "[DEBUG] Curl command: curl $($curlArgs -join ' ')" -ForegroundColor Magenta
+
+                $curlOutput = & curl @curlArgs 2>&1
+                Write-Host "[DEBUG] Curl output (first 500 chars): $($curlOutput.ToString().Substring(0, [Math]::Min(500, $curlOutput.ToString().Length)))" -ForegroundColor Magenta
+
+                # Parse JSON response
+                if ($curlOutput) {
+                    $response = $curlOutput | ConvertFrom-Json
+                    Write-Host "[DEBUG] Curl succeeded, parsed JSON response" -ForegroundColor Magenta
+                    return $response
+                }
+                else {
+                    Write-Host "[ERROR] Curl returned empty response" -ForegroundColor Red
+                    throw "Empty response from curl"
+                }
+            }
+            catch {
+                Write-Host "[ERROR] Curl fallback failed: $($_.Exception.Message)" -ForegroundColor Red
+                throw
+            }
+        }
+        else {
+            # On Windows, just rethrow the original error
+            throw
+        }
+    }
+}
+
 try {
+    # Pre-flight diagnostics: Check Docker container status
+    Write-Host "[DIAGNOSTIC] Checking Docker container status..." -ForegroundColor Magenta
+    try {
+        $dockerContainers = docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" 2>&1
+        Write-Host "Docker containers:" -ForegroundColor Gray
+        Write-Host $dockerContainers -ForegroundColor Gray
+        Write-Host ""
+    } catch {
+        Write-Host "Could not retrieve Docker container info: $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+
+    # Check if BC container is accessible via curl
+    Write-Host "[DIAGNOSTIC] Testing BC endpoint with curl..." -ForegroundColor Magenta
+    try {
+        $curlTest = curl -s -o /dev/null -w "%{http_code}" "$BaseUrl/api/v2.0/companies" -u "admin:Admin123!" 2>&1
+        Write-Host "Curl test result (HTTP status): $curlTest" -ForegroundColor Gray
+
+        # Also try to get actual response
+        $curlResponse = curl -s "$BaseUrl/api/v2.0/companies" -u "admin:Admin123!" 2>&1
+        Write-Host "Curl response (first 500 chars):" -ForegroundColor Gray
+        Write-Host ($curlResponse | Out-String).Substring(0, [Math]::Min(500, ($curlResponse | Out-String).Length)) -ForegroundColor Gray
+        Write-Host ""
+    } catch {
+        Write-Host "Curl test failed: $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+
+    # Check BC container logs
+    Write-Host "[DIAGNOSTIC] Checking BC container logs (last 20 lines)..." -ForegroundColor Magenta
+    try {
+        $bcLogs = docker logs --tail 20 $(docker ps -q --filter "name=bc") 2>&1
+        Write-Host $bcLogs -ForegroundColor Gray
+        Write-Host ""
+    } catch {
+        Write-Host "Could not retrieve BC logs: $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+
     # Pre-flight check: Test basic API connectivity and get company ID
     Write-Host "[0/5] Testing API connectivity and retrieving company..." -ForegroundColor Yellow
     try {
         $testUrl = "$BaseUrl/api/v2.0/companies"
-        $testResponse = Invoke-RestMethod -Uri $testUrl `
-            -Method Get `
-            -Headers $Headers `
-            -AllowUnencryptedAuthentication `
-            -SkipHttpErrorCheck `
-            -TimeoutSec 60
+        Write-Host "[DEBUG] Test URL: $testUrl" -ForegroundColor Magenta
+        Write-Host "[DEBUG] Attempting API request..." -ForegroundColor Magenta
+
+        $testResponse = Invoke-BCApiRequest -Uri $testUrl -Method Get -Headers $Headers -TimeoutSec 60
+
+        Write-Host "[DEBUG] Response type: $($testResponse.GetType().FullName)" -ForegroundColor Magenta
+        Write-Host "[DEBUG] Response content (first 500 chars):" -ForegroundColor Magenta
+        $responseJson = $testResponse | ConvertTo-Json -Depth 3 -Compress
+        Write-Host $responseJson.Substring(0, [Math]::Min(500, $responseJson.Length)) -ForegroundColor Gray
+        Write-Host ""
 
         if ($testResponse.value -and $testResponse.value.Count -gt 0) {
             # Use the first company
@@ -100,10 +234,30 @@ try {
             Write-Host "  Using company: $CompanyName ($CompanyId)" -ForegroundColor Gray
         } else {
             Write-Host "✗ No companies found in BC" -ForegroundColor Red
+            Write-Host "[DEBUG] Full response:" -ForegroundColor Magenta
+            Write-Host ($testResponse | ConvertTo-Json -Depth 5) -ForegroundColor Gray
             exit 1
         }
     } catch {
-        Write-Host "✗ Failed to connect to API: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "✗ Failed to connect to API" -ForegroundColor Red
+        Write-Host "[ERROR] Exception Type: $($_.Exception.GetType().FullName)" -ForegroundColor Red
+        Write-Host "[ERROR] Exception Message: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "[ERROR] Stack Trace:" -ForegroundColor Red
+        Write-Host $_.ScriptStackTrace -ForegroundColor DarkRed
+
+        if ($_.Exception.InnerException) {
+            Write-Host "[ERROR] Inner Exception: $($_.Exception.InnerException.Message)" -ForegroundColor Red
+        }
+
+        if ($_.Exception.Response) {
+            Write-Host "[ERROR] HTTP Response Status: $($_.Exception.Response.StatusCode)" -ForegroundColor Red
+            Write-Host "[ERROR] HTTP Response Status Description: $($_.Exception.Response.StatusDescription)" -ForegroundColor Red
+        }
+
+        # Additional error details for troubleshooting
+        Write-Host "[DEBUG] Error Record:" -ForegroundColor Magenta
+        Write-Host ($_ | Format-List * -Force | Out-String) -ForegroundColor Gray
+
         exit 1
     }
 
@@ -115,17 +269,26 @@ try {
 
     # Step 1: Create a new Codeunit Run Request
     Write-Host "  Creating request for Codeunit ID: $CodeunitId" -ForegroundColor Gray
+    Write-Host "[DEBUG] API URL: $ApiUrl" -ForegroundColor Magenta
+
     $RequestBody = @{
         CodeunitId = $CodeunitId
     } | ConvertTo-Json
 
-    $CreateResponse = Invoke-RestMethod -Uri "$ApiUrl" `
-        -Method Post `
-        -Headers $Headers `
-        -Body $RequestBody `
-        -AllowUnencryptedAuthentication `
-        -SkipHttpErrorCheck `
-        -TimeoutSec 30
+    Write-Host "[DEBUG] Request Body: $RequestBody" -ForegroundColor Magenta
+
+    try {
+        $CreateResponse = Invoke-BCApiRequest -Uri $ApiUrl -Method Post -Headers $Headers -Body $RequestBody -TimeoutSec 30
+
+        Write-Host "[DEBUG] Create Response Type: $($CreateResponse.GetType().FullName)" -ForegroundColor Magenta
+        Write-Host "[DEBUG] Create Response: $($CreateResponse | ConvertTo-Json -Depth 3 -Compress)" -ForegroundColor Magenta
+    } catch {
+        Write-Host "[ERROR] Failed to create execution request" -ForegroundColor Red
+        Write-Host "[ERROR] Exception: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "[ERROR] Stack Trace:" -ForegroundColor Red
+        Write-Host $_.ScriptStackTrace -ForegroundColor DarkRed
+        throw
+    }
 
     $RequestId = $CreateResponse.Id
     $RequestUrl = "$ApiUrl($RequestId)"
@@ -138,13 +301,19 @@ try {
 
     # Step 2: Execute the codeunit via the runCodeunit action
     $ActionUrl = "$BaseUrl/api/custom/automation/v1.0/companies($CompanyId)/codeunitRunRequests($RequestId)/Microsoft.NAV.runCodeunit"
+    Write-Host "[DEBUG] Action URL: $ActionUrl" -ForegroundColor Magenta
 
-    $null = Invoke-RestMethod -Uri $ActionUrl `
-        -Method Post `
-        -Headers $Headers `
-        -AllowUnencryptedAuthentication `
-        -SkipHttpErrorCheck `
-        -TimeoutSec 60
+    try {
+        $ExecuteResponse = Invoke-BCApiRequest -Uri $ActionUrl -Method Post -Headers $Headers -TimeoutSec 60
+
+        Write-Host "[DEBUG] Execute Response: $($ExecuteResponse | ConvertTo-Json -Depth 3 -Compress)" -ForegroundColor Magenta
+    } catch {
+        Write-Host "[ERROR] Failed to execute codeunit" -ForegroundColor Red
+        Write-Host "[ERROR] Exception: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "[ERROR] Stack Trace:" -ForegroundColor Red
+        Write-Host $_.ScriptStackTrace -ForegroundColor DarkRed
+        throw
+    }
 
     Write-Host "✓ Execution triggered" -ForegroundColor Green
     Write-Host ""
@@ -168,12 +337,16 @@ try {
         }
 
         # Get current status
-        $StatusResponse = Invoke-RestMethod -Uri "$RequestUrl" `
-            -Method Get `
-            -Headers $Headers `
-            -AllowUnencryptedAuthentication `
-            -SkipHttpErrorCheck `
-            -TimeoutSec 30
+        try {
+            $StatusResponse = Invoke-BCApiRequest -Uri $RequestUrl -Method Get -Headers $Headers -TimeoutSec 30
+
+            Write-Host "[DEBUG] Poll #$PollCount Response: $($StatusResponse | ConvertTo-Json -Depth 2 -Compress)" -ForegroundColor Magenta
+        } catch {
+            Write-Host "[ERROR] Poll #$PollCount failed: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host "[ERROR] Stack Trace:" -ForegroundColor Red
+            Write-Host $_.ScriptStackTrace -ForegroundColor DarkRed
+            throw
+        }
 
         $Status = $StatusResponse.Status
         $LastResult = $StatusResponse.LastResult
@@ -203,13 +376,12 @@ try {
     try {
         # Access the Log Entries API (no filters, just get all entries)
         $LogApiUrl = "$BaseUrl/api/custom/automation/v1.0/companies($CompanyId)/logEntries"
+        Write-Host "[DEBUG] Log API URL: $LogApiUrl" -ForegroundColor Magenta
 
-        $LogResponse = Invoke-RestMethod -Uri $LogApiUrl `
-            -Method Get `
-            -Headers $Headers `
-            -AllowUnencryptedAuthentication `
-            -SkipHttpErrorCheck `
-            -TimeoutSec 30
+        $LogResponse = Invoke-BCApiRequest -Uri $LogApiUrl -Method Get -Headers $Headers -TimeoutSec 30
+
+        Write-Host "[DEBUG] Log Response Type: $($LogResponse.GetType().FullName)" -ForegroundColor Magenta
+        Write-Host "[DEBUG] Log Entry Count: $($LogResponse.value.Count)" -ForegroundColor Magenta
 
         if ($LogResponse.value -and $LogResponse.value.Count -gt 0) {
             Write-Host "✓ Found $($LogResponse.value.Count) log entries:" -ForegroundColor Green
