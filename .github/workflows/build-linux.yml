@@ -180,84 +180,72 @@ jobs:
         echo "Container start took: $CONTAINER_START_DURATION seconds"
         cd ..
 
-    - name: Extract BC Symbol Packages from Container
+    - name: Download BC Symbol Packages via Development Endpoint
       run: |
-        echo "Extracting Business Central symbol packages from container..."
+        echo "Downloading Business Central symbol packages via Development endpoint..."
         EXTRACT_START=$(date +%s.%N)
 
-        cd bcdev-temp
-
-        # Get BC container name
-        CONTAINER_NAME=$(docker compose ps -q bc | head -n 1)
-        echo "Container name: $CONTAINER_NAME"
-
-        # Verify container is healthy
-        HEALTH_STATUS=$(docker inspect --format='{{.State.Health.Status}}' $CONTAINER_NAME 2>/dev/null || echo "unknown")
-        echo "Container health status: $HEALTH_STATUS"
-
-        # Create temporary directory for extraction
-        mkdir -p ../bc-symbols-temp
-
-        # Extract symbol files from container (BcContainerHelper approach)
-        # These are the paths where BC stores symbol .app files in BCDevOnLinux
+        # Download symbols using BC Server's Development endpoint (port 7049)
+        # This is the same approach BcContainerHelper uses
+        
+        # Required symbols for App (platform + application)
         echo ""
-        echo "Extracting symbols from container file system..."
+        echo "Downloading System symbols..."
+        curl -u "admin:Admin123!" \
+             -o "App/.alpackages/System.app" \
+             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=System&versionText=26.0" \
+             || echo "Warning: Could not download System.app"
 
-        # Try to find System.app
-        echo "Looking for System.app..."
-        docker exec $CONTAINER_NAME find /home -name "System.app" 2>/dev/null || echo "System.app search completed"
-
-        # Try common paths for symbols
-        echo "Copying from /home/alc/ ..."
-        docker cp "$CONTAINER_NAME:/home/alc/." ../bc-symbols-temp/ 2>/dev/null || echo "No files in /home/alc/"
-
-        echo "Copying from /Applications/ ..."
-        docker cp "$CONTAINER_NAME:/Applications/." ../bc-symbols-temp/ 2>/dev/null || echo "No files in /Applications/"
-
-        # BC Server Service folder
-        echo "Copying from BC Service folder..."
-        docker exec $CONTAINER_NAME bash -c "find /BC -name '*.app' -type f 2>/dev/null" | while read appPath; do
-            echo "  Found: $appPath"
-            docker cp "$CONTAINER_NAME:$appPath" ../bc-symbols-temp/ 2>/dev/null || true
-        done
-
-        # Count extracted apps
-        APP_COUNT=$(find ../bc-symbols-temp -name "*.app" -type f | wc -l)
         echo ""
-        echo "Found $APP_COUNT .app files in container"
+        echo "Downloading Application symbols..."
+        curl -u "admin:Admin123!" \
+             -o "App/.alpackages/Application.app" \
+             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Application&versionText=26.0" \
+             || echo "Warning: Could not download Application.app"
 
-        if [ "$APP_COUNT" -gt 0 ]; then
-            # List found apps
-            echo "Extracted symbol files:"
-            find ../bc-symbols-temp -name "*.app" -type f -exec basename {} \;
+        # Additional symbols needed for TestApp
+        echo ""
+        echo "Downloading test framework symbols..."
+        
+        curl -u "admin:Admin123!" \
+             -o "App/.alpackages/Library Assert.app" \
+             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Library Assert&versionText=26.0" \
+             || echo "Warning: Could not download Library Assert.app"
 
-            # Copy all extracted .app files to the App/.alpackages directory
-            echo ""
-            echo "Copying extracted .app files to App/.alpackages..."
-            find ../bc-symbols-temp -name "*.app" -type f -exec cp {} ../App/.alpackages/ \;
+        curl -u "admin:Admin123!" \
+             -o "App/.alpackages/Any.app" \
+             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Any&versionText=26.0" \
+             || echo "Warning: Could not download Any.app"
 
-            # Verify copy
-            COPIED_COUNT=$(find ../App/.alpackages -name "*.app" -type f | wc -l)
-            echo "Copied $COPIED_COUNT symbol files to App/.alpackages"
-        else
-            echo "WARNING: No symbol files found in container!"
-            echo "Container may need initialization or files are in different locations"
-        fi
+        curl -u "admin:Admin123!" \
+             -o "App/.alpackages/Test Runner.app" \
+             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Test Runner&versionText=26.0" \
+             || echo "Warning: Could not download Test Runner.app"
 
-        # Clean up temporary directory
-        rm -rf ../bc-symbols-temp
-
-        cd ..
+        curl -u "admin:Admin123!" \
+             -o "App/.alpackages/Library Variable Storage.app" \
+             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Library Variable Storage&versionText=26.0" \
+             || echo "Warning: Could not download Library Variable Storage.app"
 
         EXTRACT_END=$(date +%s.%N)
         EXTRACT_DURATION=$(echo "$EXTRACT_END - $EXTRACT_START" | bc -l | sed 's/^\./0./')
         echo "SYMBOL_EXTRACT_DURATION=$EXTRACT_DURATION" >> $GITHUB_ENV
-        echo "BC symbol extraction took: $EXTRACT_DURATION seconds"
+        echo "BC symbol download took: $EXTRACT_DURATION seconds"
 
         # List all symbols in .alpackages
         echo ""
-        echo "Final symbol packages in App/.alpackages:"
+        echo "Downloaded symbol packages in App/.alpackages:"
         ls -lah App/.alpackages/
+        
+        # Count and verify
+        SYMBOL_COUNT=$(find App/.alpackages -name "*.app" -type f | wc -l)
+        echo ""
+        echo "Total symbols downloaded: $SYMBOL_COUNT"
+        
+        if [ "$SYMBOL_COUNT" -lt 2 ]; then
+            echo "ERROR: Missing required symbols (System and Application)"
+            exit 1
+        fi
 
     - name: Pre-compilation setup
       run: |
