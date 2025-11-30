@@ -78,6 +78,141 @@ Write-Host "Is Linux: $($IsLinux)" -ForegroundColor Gray
 Write-Host "Is Windows: $($IsWindows)" -ForegroundColor Gray
 Write-Host ""
 
+# Pre-flight API diagnostics
+Write-Host "=== PRE-FLIGHT API DIAGNOSTICS ===" -ForegroundColor Magenta
+Write-Host "Testing BC API endpoints before main execution..." -ForegroundColor Gray
+Write-Host ""
+
+# Test 1: Metadata endpoint (should work without auth)
+Write-Host "Test 1: Metadata endpoint (no auth required)..." -ForegroundColor Yellow
+$metadataUrl = "$BaseUrl/api/v2.0/`$metadata"
+try {
+    if ($IsLinux) {
+        $metadataTest = & bash -c "curl -s -o /dev/null -w '%{http_code}' '$metadataUrl'" 2>&1
+        Write-Host "  HTTP Status: $metadataTest" -ForegroundColor $(if ($metadataTest -eq "200") { "Green" } else { "Yellow" })
+    } else {
+        $metadataResponse = Invoke-WebRequest -Uri $metadataUrl -UseBasicParsing -ErrorAction SilentlyContinue
+        Write-Host "  HTTP Status: $($metadataResponse.StatusCode)" -ForegroundColor Green
+    }
+} catch {
+    Write-Host "  Failed: $($_.Exception.Message)" -ForegroundColor Yellow
+}
+Write-Host ""
+
+# Test 2: Companies endpoint with authentication
+Write-Host "Test 2: Companies endpoint (testing authentication)..." -ForegroundColor Yellow
+$companiesUrl = "$BaseUrl/api/v2.0/companies"
+$authSuccess = $false
+
+try {
+    if ($IsLinux) {
+        $companiesTest = & bash -c "curl -s -u '${Username}:${Password}' -o /dev/null -w '%{http_code}' '$companiesUrl'" 2>&1
+        Write-Host "  HTTP Status with provided password: $companiesTest" -ForegroundColor $(if ($companiesTest -eq "200") { "Green" } else { "Red" })
+
+        if ($companiesTest -eq "200") {
+            Write-Host "  ✓ Authentication successful!" -ForegroundColor Green
+            $authSuccess = $true
+            $companiesData = & bash -c "curl -s -u '${Username}:${Password}' '$companiesUrl'" 2>&1
+            Write-Host "  First company:" -ForegroundColor Gray
+            Write-Host "  $($companiesData | Select-Object -First 3)" -ForegroundColor Gray
+        } else {
+            Write-Host "  ✗ Authentication failed! Testing alternative passwords..." -ForegroundColor Red
+
+            # Try alternative passwords
+            $altPasswords = @("admin", "Admin123", "YourStrong!Passw0rd", "P@ssw0rd", "")
+            foreach ($altPass in $altPasswords) {
+                Write-Host "    Trying: '$altPass'" -ForegroundColor Yellow
+                $altTest = & bash -c "curl -s -u '${Username}:${altPass}' -o /dev/null -w '%{http_code}' '$companiesUrl'" 2>&1
+                Write-Host "      HTTP $altTest" -ForegroundColor $(if ($altTest -eq "200") { "Green" } else { "Gray" })
+                if ($altTest -eq "200") {
+                    Write-Host "      ✓ SUCCESS! This password works: '$altPass'" -ForegroundColor Green
+                    Write-Host "      WARNING: Update script to use this password!" -ForegroundColor Yellow
+                    $authSuccess = $true
+                    break
+                }
+            }
+        }
+    } else {
+        $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("${Username}:${Password}"))
+        $headers = @{ Authorization = "Basic $base64AuthInfo" }
+        $companiesResponse = Invoke-WebRequest -Uri $companiesUrl -Headers $headers -UseBasicParsing -ErrorAction Stop
+        Write-Host "  HTTP Status: $($companiesResponse.StatusCode)" -ForegroundColor Green
+        Write-Host "  ✓ Authentication successful!" -ForegroundColor Green
+        $authSuccess = $true
+    }
+} catch {
+    Write-Host "  Failed: $($_.Exception.Message)" -ForegroundColor Red
+}
+
+if (-not $authSuccess) {
+    Write-Host ""
+    Write-Host "WARNING: Authentication test failed. Test execution will likely fail!" -ForegroundColor Red
+    Write-Host ""
+}
+Write-Host ""
+
+# Test 3: Check if custom test API endpoint exists
+Write-Host "Test 3: Custom test API endpoint..." -ForegroundColor Yellow
+$testApiUrl = "$BaseUrl/api/JohannesWikman/TheLibraryTester/v1.0/companies"
+try {
+    if ($IsLinux) {
+        $testApiTest = & bash -c "curl -s -u '${Username}:${Password}' -o /dev/null -w '%{http_code}' '$testApiUrl'" 2>&1
+        Write-Host "  HTTP Status: $testApiTest" -ForegroundColor $(if ($testApiTest -eq "200") { "Green" } else { "Yellow" })
+        if ($testApiTest -ne "200") {
+            Write-Host "  Note: Custom API may not be published yet (this is normal)" -ForegroundColor Gray
+        }
+    }
+} catch {
+    Write-Host "  Not accessible (may not be published yet)" -ForegroundColor Gray
+}
+Write-Host ""
+
+# Test 4: Check Docker container status (Linux only)
+if ($IsLinux) {
+    Write-Host "Test 4: Docker container health and process status..." -ForegroundColor Yellow
+    try {
+        # Check BC container is running
+        $bcContainerStatus = & bash -c "docker ps --filter 'name=bc' --format '{{.Status}}' | head -1" 2>&1
+        Write-Host "  BC Container Status: $bcContainerStatus" -ForegroundColor $(if ($bcContainerStatus -match "healthy") { "Green" } else { "Yellow" })
+
+        # Check BC Server process
+        $bcProcess = & bash -c "docker exec bcdevonlinux-bc-1 pgrep -f 'Microsoft.Dynamics.Nav.Server' 2>&1" 2>&1
+        if ($bcProcess -match "\d+") {
+            Write-Host "  BC Server Process ID: $bcProcess" -ForegroundColor Green
+        } else {
+            Write-Host "  BC Server Process: NOT RUNNING" -ForegroundColor Red
+        }
+
+        # Check port accessibility from within container
+        Write-Host "  Testing internal port 7048..." -ForegroundColor Gray
+        $portTest = & bash -c "docker exec bcdevonlinux-bc-1 bash -c 'command -v nc >/dev/null && nc -zv localhost 7048 2>&1 || echo notfound'" 2>&1
+        if ($portTest -match "succeeded|open|Connected") {
+            Write-Host "    ✓ Port 7048 is accessible inside container" -ForegroundColor Green
+        } elseif ($portTest -match "notfound") {
+            Write-Host "    Note: nc command not available in container" -ForegroundColor Gray
+        } else {
+            Write-Host "    ✗ Port 7048 not accessible" -ForegroundColor Red
+        }
+    } catch {
+        Write-Host "  Could not check container status: $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+    Write-Host ""
+}
+
+# Test 5: Show final diagnostic summary
+Write-Host "=== PRE-FLIGHT DIAGNOSTIC SUMMARY ===" -ForegroundColor Magenta
+if ($authSuccess) {
+    Write-Host "✓ Authentication: SUCCESS" -ForegroundColor Green
+    Write-Host "  Ready to proceed with test execution" -ForegroundColor Green
+} else {
+    Write-Host "✗ Authentication: FAILED" -ForegroundColor Red
+    Write-Host "  Test execution will likely fail!" -ForegroundColor Red
+    Write-Host "  Check the password combinations tested above" -ForegroundColor Yellow
+}
+Write-Host ""
+Write-Host "======================================" -ForegroundColor Cyan
+Write-Host ""
+
 # Use hardcoded working base64 credentials (admin:Admin123!)
 # Base64 encoding of "admin:Admin123!"
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("admin:Admin123!"))

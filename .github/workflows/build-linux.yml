@@ -376,19 +376,109 @@ jobs:
         echo "PUBLISH_DURATION=$PUBLISH_DURATION" >> $GITHUB_ENV
         echo "Publishing took: $PUBLISH_DURATION seconds"
 
-    - name: Create BC User for API Testing
+    - name: Verify BC User for API Testing
       run: |
-        echo "Creating BC user for API testing..."
+        echo "=== COMPREHENSIVE BC TROUBLESHOOTING ==="
+        TROUBLESHOOT_START=$(date +%s.%N)
         cd bcdev-temp
 
-        # Create admin user using BCDevOnLinux script
-        docker compose exec -T bc bash /home/scripts/bc/create-bc-user-sql.sh admin "Admin123!" SUPER
+        # 1. Check environment variables that BCDevOnLinux uses
+        echo ""
+        echo "1. Checking BCDevOnLinux environment variables..."
+        docker compose exec -T bc printenv | grep -i password || echo "No password environment variables found"
+        docker compose exec -T bc printenv | grep -i admin || echo "No admin environment variables found"
 
-        # Wait a moment for user to be created
-        sleep 5
+        # 2. Check BC Server version and configuration
+        echo ""
+        echo "2. Checking BC Server configuration..."
+        docker compose exec -T bc cat /BC/Service/CustomSettings.config 2>/dev/null | grep -E "ServerInstance|DatabaseServer|DatabaseName|ClientServicesCredentialType" || echo "Could not read CustomSettings.config"
 
-        # Verify user was created by checking SQL
-        docker compose exec -T sql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd" -d BC -Q "SELECT [User Name], State FROM [dbo].[User] WHERE [User Name] = 'admin'" -C -N
+        # 3. Verify admin user exists and check authentication mode
+        echo ""
+        echo "3. Checking BC users in database..."
+        docker compose exec -T sql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd" -d BC -Q "SELECT [User Name], [User Security ID], State, [License Type], [Authentication Email] FROM [dbo].[User]" -C -N || echo "Failed to query users"
+
+        # 4. Check User Property for admin user (including password hash)
+        echo ""
+        echo "4. Checking admin user properties..."
+        docker compose exec -T sql /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd" -d BC -Q "SELECT [User Security ID], [User Name], [Password] FROM [dbo].[User] WHERE [User Name] = 'admin'" -C -N || echo "Failed to query admin user properties"
+
+        # 5. Test API endpoints accessibility
+        echo ""
+        echo "5. Testing API endpoint accessibility (no auth)..."
+        curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" "http://localhost:7048/BC/api/v2.0/\$metadata" 2>&1
+        curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" "http://localhost:7048/BC/api/v2.0/companies" 2>&1
+
+        # 6. Test multiple password combinations (non-blocking)
+        echo ""
+        echo "6. Testing API access with different password combinations..."
+
+        # Array of passwords to test
+        PASSWORDS=("Admin123!" "admin" "Admin123" "YourStrong!Passw0rd" "" "P@ssw0rd")
+
+        for PASS in "${PASSWORDS[@]}"; do
+            if [ -z "$PASS" ]; then
+                echo "  Testing with no password..."
+                RESULT=$(curl -s -u "admin:" -o /dev/null -w "%{http_code}" "http://localhost:7048/BC/api/v2.0/companies" 2>&1)
+            else
+                echo "  Testing password: $PASS"
+                RESULT=$(curl -s -u "admin:$PASS" -o /dev/null -w "%{http_code}" "http://localhost:7048/BC/api/v2.0/companies" 2>&1)
+            fi
+            echo "    Result: HTTP $RESULT"
+
+            # If we get 200, show success and the first company
+            if [ "$RESULT" = "200" ]; then
+                echo "    ✓ SUCCESS! Password works: $PASS"
+                echo "    First company data:"
+                curl -s -u "admin:$PASS" "http://localhost:7048/BC/api/v2.0/companies" 2>&1 | head -10
+                echo "WORKING_PASSWORD=$PASS" >> $GITHUB_ENV
+                break
+            fi
+        done
+
+        # 7. Check BC Server logs for authentication errors
+        echo ""
+        echo "7. Checking BC Server logs for authentication errors..."
+        docker compose exec -T bc tail -50 /home/bc-init.log 2>/dev/null | grep -i -E "error|auth|password|user" || echo "No relevant log entries found"
+
+        # 8. Verify Web Services are enabled
+        echo ""
+        echo "8. Checking if OData web services are accessible..."
+        curl -v "http://localhost:7048/BC/api/v2.0/\$metadata" 2>&1 | grep -E "HTTP/|OData|<?xml" | head -20
+
+        # 9. Check BC container processes
+        echo ""
+        echo "9. Checking BC Server process details..."
+        docker compose exec -T bc ps aux | grep -i "dynamics\|service" || echo "No BC processes found"
+
+        # 10. Check port bindings
+        echo ""
+        echo "10. Verifying port bindings..."
+        docker compose ps
+        echo ""
+        echo "Testing localhost connectivity to ports:"
+        for PORT in 7046 7047 7048 7049; do
+            nc -zv localhost $PORT 2>&1 | grep -E "succeeded|open|Connected" && echo "  Port $PORT: OPEN" || echo "  Port $PORT: CLOSED"
+        done
+
+        # 11. Check BC Server service status (if systemd or similar)
+        echo ""
+        echo "11. Checking BC service status inside container..."
+        docker compose exec -T bc bash -c "ls -la /BC/Service/" 2>/dev/null | head -20 || echo "Could not list BC Service directory"
+
+        # 12. Final summary
+        echo ""
+        echo "=== TROUBLESHOOTING COMPLETE ==="
+        if [ -n "$WORKING_PASSWORD" ]; then
+            echo "✓ Working password found: $WORKING_PASSWORD"
+        else
+            echo "✗ No working password found - authentication will likely fail"
+        fi
+
+        TROUBLESHOOT_END=$(date +%s.%N)
+        TROUBLESHOOT_DURATION=$(echo "$TROUBLESHOOT_END - $TROUBLESHOOT_START" | bc -l | sed 's/^\./0./')
+        echo ""
+        echo "Troubleshooting diagnostics took: $TROUBLESHOOT_DURATION seconds"
 
         cd ..
 
@@ -397,6 +487,15 @@ jobs:
         echo "Running AL tests in BC container via OData API..."
         TEST_START=$(date +%s.%N)
 
+        # Use the discovered working password if available, otherwise use default
+        if [ -n "$WORKING_PASSWORD" ]; then
+            echo "Using discovered working password: $WORKING_PASSWORD"
+            TEST_PASSWORD="$WORKING_PASSWORD"
+        else
+            echo "Using default password (Admin123!)"
+            TEST_PASSWORD="Admin123!"
+        fi
+
         # Execute test codeunit via OData API using PowerShell script
         # Running Library Author Tests (codeunit 70451)
         # Port mappings: 7046=WebClient, 7047=SOAP, 7048=OData/API, 7049=Development
@@ -404,7 +503,7 @@ jobs:
           -BaseUrl "http://localhost:7048/BC" \
           -Tenant "default" \
           -Username "admin" \
-          -Password "Admin123!" \
+          -Password "$TEST_PASSWORD" \
           -CodeunitId 70451 \
           -MaxWaitSeconds 300
         TEST_EXIT_CODE=$?
