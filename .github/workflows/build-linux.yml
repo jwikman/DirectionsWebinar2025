@@ -193,9 +193,10 @@ jobs:
             local retries=5
             local delay=10
             
-            # URL-encode spaces in app name
+            # URL-encode the app name properly for use in URLs
+            # Handles spaces and other common URL-unsafe characters
             local encoded_name
-            encoded_name=$(echo "$app_name" | sed 's/ /%20/g')
+            encoded_name=$(echo "$app_name" | sed 's/ /%20/g; s/&/%26/g; s/?/%3F/g; s/#/%23/g; s/+/%2B/g')
             
             for attempt in $(seq 1 $retries); do
                 echo "  → Downloading $app_name (attempt $attempt/$retries)..."
