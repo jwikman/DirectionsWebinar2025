@@ -185,47 +185,86 @@ jobs:
         echo "Downloading Business Central symbol packages via Development endpoint..."
         EXTRACT_START=$(date +%s.%N)
 
+        # Function to download a symbol package with retries and verification
+        # Uses URL encoding for app names and verifies downloaded files are not empty
+        download_symbol() {
+            local app_name="$1"
+            local output_file="$2"
+            local retries=5
+            local delay=10
+            
+            # URL-encode spaces in app name
+            local encoded_name
+            encoded_name=$(echo "$app_name" | sed 's/ /%20/g')
+            
+            for attempt in $(seq 1 $retries); do
+                echo "  → Downloading $app_name (attempt $attempt/$retries)..."
+                
+                # Use --fail to make curl return error on HTTP errors
+                # Use --silent with --show-error for cleaner output
+                if curl --fail --silent --show-error \
+                        -u "admin:Admin123!" \
+                        -o "$output_file" \
+                        "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=${encoded_name}&versionText=26.0" 2>&1; then
+                    
+                    # Verify file is not empty (at least 1KB for a valid .app file)
+                    if [ -f "$output_file" ]; then
+                        local size
+                        size=$(stat -c%s "$output_file" 2>/dev/null || echo "0")
+                        if [ "$size" -gt 1024 ]; then
+                            echo "  ✓ $app_name downloaded successfully ($(numfmt --to=iec-i --suffix=B $size))"
+                            return 0
+                        else
+                            echo "  ⚠ Downloaded file is too small ($size bytes), retrying..."
+                            rm -f "$output_file"
+                        fi
+                    fi
+                else
+                    echo "  ⚠ Download failed, retrying..."
+                fi
+                
+                [ $attempt -lt $retries ] && sleep $delay
+            done
+            
+            echo "  ✗ Failed to download $app_name after $retries attempts"
+            return 1
+        }
+
+        # Wait a moment for the development endpoint to fully initialize
+        echo "Waiting 30 seconds for BC development endpoint to fully initialize..."
+        sleep 30
+
         # Download symbols using BC Server's Development endpoint (port 7049)
         # This is the same approach BcContainerHelper uses
         
         # Required symbols for App (platform + application)
         echo ""
         echo "Downloading System symbols..."
-        curl -u "admin:Admin123!" \
-             -o "App/.alpackages/System.app" \
-             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=System&versionText=26.0" \
-             || echo "Warning: Could not download System.app"
+        download_symbol "System" "App/.alpackages/System.app"
+        SYSTEM_RESULT=$?
 
         echo ""
         echo "Downloading Application symbols..."
-        curl -u "admin:Admin123!" \
-             -o "App/.alpackages/Application.app" \
-             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Application&versionText=26.0" \
-             || echo "Warning: Could not download Application.app"
+        download_symbol "Application" "App/.alpackages/Application.app"
+        APPLICATION_RESULT=$?
+
+        # Check if required symbols were downloaded
+        if [ $SYSTEM_RESULT -ne 0 ] || [ $APPLICATION_RESULT -ne 0 ]; then
+            echo ""
+            echo "ERROR: Failed to download required symbols (System and/or Application)"
+            echo "Checking if development endpoint is accessible..."
+            curl -v -u "admin:Admin123!" "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=System&versionText=26.0" 2>&1 | head -50
+            exit 1
+        fi
 
         # Additional symbols needed for TestApp
         echo ""
         echo "Downloading test framework symbols..."
         
-        curl -u "admin:Admin123!" \
-             -o "App/.alpackages/Library Assert.app" \
-             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Library Assert&versionText=26.0" \
-             || echo "Warning: Could not download Library Assert.app"
-
-        curl -u "admin:Admin123!" \
-             -o "App/.alpackages/Any.app" \
-             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Any&versionText=26.0" \
-             || echo "Warning: Could not download Any.app"
-
-        curl -u "admin:Admin123!" \
-             -o "App/.alpackages/Test Runner.app" \
-             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Test Runner&versionText=26.0" \
-             || echo "Warning: Could not download Test Runner.app"
-
-        curl -u "admin:Admin123!" \
-             -o "App/.alpackages/Library Variable Storage.app" \
-             "http://localhost:7049/BC/dev/packages?publisher=Microsoft&appName=Library Variable Storage&versionText=26.0" \
-             || echo "Warning: Could not download Library Variable Storage.app"
+        download_symbol "Library Assert" "App/.alpackages/Library Assert.app"
+        download_symbol "Any" "App/.alpackages/Any.app"
+        download_symbol "Test Runner" "App/.alpackages/Test Runner.app"
+        download_symbol "Library Variable Storage" "App/.alpackages/Library Variable Storage.app"
 
         EXTRACT_END=$(date +%s.%N)
         EXTRACT_DURATION=$(echo "$EXTRACT_END - $EXTRACT_START" | bc -l | sed 's/^\./0./')
@@ -237,12 +276,18 @@ jobs:
         echo "Downloaded symbol packages in App/.alpackages:"
         ls -lah App/.alpackages/
         
-        # Count and verify
-        SYMBOL_COUNT=$(find App/.alpackages -name "*.app" -type f | wc -l)
+        # Count and verify required symbols (System and Application are mandatory)
         echo ""
-        echo "Total symbols downloaded: $SYMBOL_COUNT"
-        
-        if [ "$SYMBOL_COUNT" -lt 2 ]; then
+        if [ -f "App/.alpackages/System.app" ] && [ -f "App/.alpackages/Application.app" ]; then
+            SYSTEM_SIZE=$(stat -c%s "App/.alpackages/System.app" 2>/dev/null || echo "0")
+            APP_SIZE=$(stat -c%s "App/.alpackages/Application.app" 2>/dev/null || echo "0")
+            if [ "$SYSTEM_SIZE" -gt 1024 ] && [ "$APP_SIZE" -gt 1024 ]; then
+                echo "✓ Required symbols downloaded successfully"
+            else
+                echo "ERROR: Required symbol files are empty or too small"
+                exit 1
+            fi
+        else
             echo "ERROR: Missing required symbols (System and Application)"
             exit 1
         fi
