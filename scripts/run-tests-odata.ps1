@@ -189,23 +189,44 @@ try {
     # Check if BC container is accessible via curl
     Write-Host "[DIAGNOSTIC] Testing BC endpoint with curl..." -ForegroundColor Magenta
     try {
-        $curlTest = curl -s -o /dev/null -w "%{http_code}" "$BaseUrl/api/v2.0/companies" -u "admin:Admin123!" 2>&1
-        Write-Host "Curl test result (HTTP status): $curlTest" -ForegroundColor Gray
+        # Test without auth first
+        $curlTestNoAuth = curl -s -o /dev/null -w "%{http_code}" "$BaseUrl/api/v2.0/companies" 2>&1
+        Write-Host "Curl test (no auth) result (HTTP status): $curlTestNoAuth" -ForegroundColor Gray
 
-        # Also try to get actual response
-        $curlResponse = curl -s "$BaseUrl/api/v2.0/companies" -u "admin:Admin123!" 2>&1
-        Write-Host "Curl response (first 500 chars):" -ForegroundColor Gray
-        Write-Host ($curlResponse | Out-String).Substring(0, [Math]::Min(500, ($curlResponse | Out-String).Length)) -ForegroundColor Gray
+        # Test with auth
+        $curlTest = curl -s -o /dev/null -w "%{http_code}" "$BaseUrl/api/v2.0/companies" -u "admin:Admin123!" 2>&1
+        Write-Host "Curl test (with admin:Admin123!) result (HTTP status): $curlTest" -ForegroundColor Gray
+
+        # Also try to get actual response with verbose headers
+        Write-Host "Curl verbose response:" -ForegroundColor Gray
+        $curlResponse = curl -v "$BaseUrl/api/v2.0/companies" -u "admin:Admin123!" 2>&1
+        Write-Host $curlResponse -ForegroundColor Gray
+
+        # Try checking if user exists in BC database
+        Write-Host ""
+        Write-Host "Checking BC user table..." -ForegroundColor Gray
+        $bcContainerName = docker ps --filter "name=bc" --format "{{.Names}}" | Select-Object -First 1
+        if ($bcContainerName) {
+            $sqlCmd = "SELECT [User Name], [User Security ID], State FROM [dbo].[User] WHERE [User Name] = 'admin'"
+            $checkUser = docker exec $bcContainerName bash -c "sqlcmd -S sql -U sa -P 'YourStrong!Passw0rd' -d BC -Q `"$sqlCmd`" -C -N" 2>&1
+            Write-Host "User check result:" -ForegroundColor Gray
+            Write-Host $checkUser -ForegroundColor Gray
+        }
         Write-Host ""
     } catch {
         Write-Host "Curl test failed: $($_.Exception.Message)" -ForegroundColor Yellow
-    }
-
-    # Check BC container logs
+    }    # Check BC container logs
     Write-Host "[DIAGNOSTIC] Checking BC container logs (last 20 lines)..." -ForegroundColor Magenta
     try {
-        $bcLogs = docker logs --tail 20 $(docker ps -q --filter "name=bc") 2>&1
-        Write-Host $bcLogs -ForegroundColor Gray
+        # Get BC container name first
+        $bcContainerName = docker ps --filter "name=bc" --format "{{.Names}}" | Select-Object -First 1
+        if ($bcContainerName) {
+            Write-Host "BC Container: $bcContainerName" -ForegroundColor Gray
+            $bcLogs = docker logs --tail 20 $bcContainerName 2>&1
+            Write-Host $bcLogs -ForegroundColor Gray
+        } else {
+            Write-Host "No BC container found" -ForegroundColor Yellow
+        }
         Write-Host ""
     } catch {
         Write-Host "Could not retrieve BC logs: $($_.Exception.Message)" -ForegroundColor Yellow
@@ -221,6 +242,19 @@ try {
         $testResponse = Invoke-BCApiRequest -Uri $testUrl -Method Get -Headers $Headers -TimeoutSec 60
 
         Write-Host "[DEBUG] Response type: $($testResponse.GetType().FullName)" -ForegroundColor Magenta
+
+        # Check if response is empty or invalid
+        if (-not $testResponse -or $testResponse -is [string] -and [string]::IsNullOrWhiteSpace($testResponse)) {
+            Write-Host "[ERROR] API returned empty or invalid response" -ForegroundColor Red
+            Write-Host "[ERROR] This typically indicates:" -ForegroundColor Yellow
+            Write-Host "  - Authentication failure (401)" -ForegroundColor Yellow
+            Write-Host "  - BC Server not fully initialized" -ForegroundColor Yellow
+            Write-Host "  - API endpoints not available" -ForegroundColor Yellow
+            Write-Host ""
+            Write-Host "[DEBUG] Raw response: '$testResponse'" -ForegroundColor Magenta
+            exit 1
+        }
+
         Write-Host "[DEBUG] Response content (first 500 chars):" -ForegroundColor Magenta
         $responseJson = $testResponse | ConvertTo-Json -Depth 3 -Compress
         Write-Host $responseJson.Substring(0, [Math]::Min(500, $responseJson.Length)) -ForegroundColor Gray
