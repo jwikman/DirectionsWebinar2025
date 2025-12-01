@@ -69,6 +69,12 @@ try {
     }
 
     if ($envContent.Count -gt 0) {
+        # Remove any existing .env file to ensure clean state
+        if (Test-Path ".env") {
+            Remove-Item ".env" -Force
+            Write-Host "Removed existing .env file" -ForegroundColor Gray
+        }
+
         # Write .env file using Set-Content for better cross-platform compatibility
         Set-Content -Path ".env" -Value $envContent -Encoding utf8NoBOM -Force
         Write-Host "Created .env file with configuration:" -ForegroundColor Cyan
@@ -80,15 +86,6 @@ try {
             else {
                 Write-Host "  $line" -ForegroundColor Gray
             }
-        }
-
-        # Verify .env file was created successfully
-        if (Test-Path -Path ".env" -PathType Leaf) {
-            $envFileInfo = Get-ChildItem ".env"
-            Write-Host "✓ .env file created successfully ($($envFileInfo.Length) bytes)" -ForegroundColor Green
-        }
-        else {
-            Write-Host "⚠ Warning: .env file creation failed!" -ForegroundColor Yellow
         }
     }
 
