@@ -98,9 +98,9 @@ jobs:
             "$BC_FEED_SYMBOLS/microsoft.application.symbols/$BC_VERSION/microsoft.application.symbols.$BC_VERSION.nupkg" || echo "Failed to download Application"
 
         # Second-level dependencies
-        echo "Downloading Microsoft.BusinessFoundation.AT (second-level dependency)..."
-        curl -L -s -o "temp_packages/microsoft.businessfoundation.at.nupkg" \
-            "$BC_FEED_MAIN/microsoft.businessfoundation.at.f3552374-a1f2-4356-848e-196002525837/$BC_VERSION/microsoft.businessfoundation.at.f3552374-a1f2-4356-848e-196002525837.$BC_VERSION.nupkg" || echo "Failed to download Business Foundation"
+        echo "Downloading Microsoft.BusinessFoundation (second-level dependency)..."
+        curl -L -s -o "temp_packages/microsoft.businessfoundation.nupkg" \
+            "$BC_FEED_MAIN/microsoft.businessfoundation.f3552374-a1f2-4356-848e-196002525837/$BC_VERSION/microsoft.businessfoundation.f3552374-a1f2-4356-848e-196002525837.$BC_VERSION.nupkg" || echo "Failed to download Business Foundation"
 
         # The actual System package (not SystemApplication)
         echo "Downloading Microsoft.Platform v$PLATFORM_VERSION (System dependency)..."
