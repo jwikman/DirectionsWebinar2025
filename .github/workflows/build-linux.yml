@@ -13,8 +13,8 @@ env:
   AL_VERSION: '17.0.28.6483-beta'
   BCDEV_REPO: 'https://github.com/StefanMaron/BCDevOnLinux.git'
   BCDEV_BRANCH: 'main'
-  BC_VERSION: '26.3.36158.36341'
-  PLATFORM_VERSION: '26.0.38176'
+  BC_VERSION: '27.1.41698.41776'
+  PLATFORM_VERSION: '27.0.41766'
 
 jobs:
   build-linux-full-test:
@@ -79,52 +79,50 @@ jobs:
         echo "Downloading Business Central symbol packages from Microsoft feed..."
         DOWNLOAD_START=$(date +%s.%N)
 
-        # Microsoft BC Symbols NuGet feed
-        BC_FEED="https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json"
-
-        # Download packages directly using the discovered package base URL
-        BC_BASE_URL="https://dynamicssmb2.pkgs.visualstudio.com/571e802d-b44b-45ec-bd41-4cfddec73b44/_packaging/b656b10c-3de0-440c-900c-bc2e4e86d84c/nuget/v3/flat2"
+        # Microsoft BC Symbols NuGet feeds (two different feeds for different package types)
+        BC_FEED_SYMBOLS="https://dynamicssmb2.pkgs.visualstudio.com/571e802d-b44b-45fc-bd41-4cfddec73b44/_packaging/b656b10c-3de0-440c-900c-bc2e4e86d84c/nuget/v3/flat2"
+        BC_FEED_MAIN="https://dynamicssmb2.pkgs.visualstudio.com/571e802d-b44b-45fc-bd41-4cfddec73b44/_packaging/9c5cd71f-8d45-40bf-8fde-4ac4d924365a/nuget/v3/flat2"
 
         mkdir -p temp_packages
 
-        echo "Downloading Microsoft.SystemApplication.US.symbols..."
-        curl -L -s -o "temp_packages/microsoft.systemapplication.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.systemapplication.us.symbols.63ca2fa4-4f03-4f2b-a480-172fef340d3f/$BC_VERSION/microsoft.systemapplication.us.symbols.63ca2fa4-4f03-4f2b-a480-172fef340d3f.$BC_VERSION.nupkg" || echo "Failed to download System Application"
+        echo "Downloading Microsoft.SystemApplication..."
+        curl -L -s -o "temp_packages/microsoft.systemapplication.nupkg" \
+            "$BC_FEED_MAIN/microsoft.systemapplication.63ca2fa4-4f03-4f2b-a480-172fef340d3f/$BC_VERSION/microsoft.systemapplication.63ca2fa4-4f03-4f2b-a480-172fef340d3f.$BC_VERSION.nupkg" || echo "Failed to download System Application"
 
-        echo "Downloading Microsoft.BaseApplication.US.symbols..."
-        curl -L -s -o "temp_packages/microsoft.baseapplication.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.baseapplication.us.symbols.437dbf0e-84ff-417a-965d-ed2bb9650972/$BC_VERSION/microsoft.baseapplication.us.symbols.437dbf0e-84ff-417a-965d-ed2bb9650972.$BC_VERSION.nupkg" || echo "Failed to download Base Application"
+        echo "Downloading Microsoft.BaseApplication..."
+        curl -L -s -o "temp_packages/microsoft.baseapplication.nupkg" \
+            "$BC_FEED_MAIN/microsoft.baseapplication.437dbf0e-84ff-417a-965d-ed2bb9650972/$BC_VERSION/microsoft.baseapplication.437dbf0e-84ff-417a-965d-ed2bb9650972.$BC_VERSION.nupkg" || echo "Failed to download Base Application"
 
-        echo "Downloading Microsoft.Application.US.symbols..."
-        curl -L -s -o "temp_packages/microsoft.application.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.application.us.symbols/$BC_VERSION/microsoft.application.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Application"
+        echo "Downloading Microsoft.Application.symbols..."
+        curl -L -s -o "temp_packages/microsoft.application.symbols.nupkg" \
+            "$BC_FEED_SYMBOLS/microsoft.application.symbols/$BC_VERSION/microsoft.application.symbols.$BC_VERSION.nupkg" || echo "Failed to download Application"
 
         # Second-level dependencies
-        echo "Downloading Microsoft.BusinessFoundation.US.symbols (second-level dependency)..."
-        curl -L -s -o "temp_packages/microsoft.businessfoundation.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.businessfoundation.us.symbols.f3552374-a1f2-4356-848e-196002525837/$BC_VERSION/microsoft.businessfoundation.us.symbols.f3552374-a1f2-4356-848e-196002525837.$BC_VERSION.nupkg" || echo "Failed to download Business Foundation"
+        echo "Downloading Microsoft.BusinessFoundation.AT (second-level dependency)..."
+        curl -L -s -o "temp_packages/microsoft.businessfoundation.at.nupkg" \
+            "$BC_FEED_MAIN/microsoft.businessfoundation.at.f3552374-a1f2-4356-848e-196002525837/$BC_VERSION/microsoft.businessfoundation.at.f3552374-a1f2-4356-848e-196002525837.$BC_VERSION.nupkg" || echo "Failed to download Business Foundation"
 
         # The actual System package (not SystemApplication)
-        echo "Downloading Microsoft.Platform.symbols v$PLATFORM_VERSION (System dependency)..."
-        curl -L -s -o "temp_packages/microsoft.platform.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.platform.symbols/$PLATFORM_VERSION/microsoft.platform.symbols.$PLATFORM_VERSION.nupkg" || echo "Failed to download Platform (System)"
+        echo "Downloading Microsoft.Platform v$PLATFORM_VERSION (System dependency)..."
+        curl -L -s -o "temp_packages/microsoft.platform.nupkg" \
+            "$BC_FEED_MAIN/microsoft.platform/$PLATFORM_VERSION/microsoft.platform.$PLATFORM_VERSION.nupkg" || echo "Failed to download Platform (System)"
 
         # Test dependencies
-        echo "Downloading Microsoft.Any.US.symbols (test dependency)..."
-        curl -L -s -o "temp_packages/microsoft.any.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.any.us.symbols/$BC_VERSION/microsoft.any.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Any"
+        echo "Downloading Microsoft.Any.symbols (test dependency)..."
+        curl -L -s -o "temp_packages/microsoft.any.symbols.nupkg" \
+            "$BC_FEED_SYMBOLS/microsoft.any.symbols.e7320ebb-08b3-4406-b1ec-b4927d3e280b/$BC_VERSION/microsoft.any.symbols.e7320ebb-08b3-4406-b1ec-b4927d3e280b.$BC_VERSION.nupkg" || echo "Failed to download Any"
 
-        echo "Downloading Microsoft.Assert.US.symbols (test dependency)..."
-        curl -L -s -o "temp_packages/microsoft.assert.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.assert.us.symbols/$BC_VERSION/microsoft.assert.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Assert"
+        echo "Downloading Microsoft.LibraryAssert.symbols (test dependency)..."
+        curl -L -s -o "temp_packages/microsoft.libraryassert.symbols.nupkg" \
+            "$BC_FEED_SYMBOLS/microsoft.libraryassert.symbols.dd0be2ea-f733-4d65-bb34-a28f4624fb14/$BC_VERSION/microsoft.libraryassert.symbols.dd0be2ea-f733-4d65-bb34-a28f4624fb14.$BC_VERSION.nupkg" || echo "Failed to download Library Assert"
 
-        echo "Downloading Microsoft.TestRunner.US.symbols (test dependency)..."
-        curl -L -s -o "temp_packages/microsoft.testrunner.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.testrunner.us.symbols/$BC_VERSION/microsoft.testrunner.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Test Runner"
+        echo "Downloading Microsoft.TestRunner.symbols (test dependency)..."
+        curl -L -s -o "temp_packages/microsoft.testrunner.symbols.nupkg" \
+            "$BC_FEED_SYMBOLS/microsoft.testrunner.symbols.23de40a6-dfe8-4f80-80db-d70f83ce8caf/$BC_VERSION/microsoft.testrunner.symbols.23de40a6-dfe8-4f80-80db-d70f83ce8caf.$BC_VERSION.nupkg" || echo "Failed to download Test Runner"
 
-        echo "Downloading Microsoft.LibraryVariableStorage.US.symbols (test dependency)..."
-        curl -L -s -o "temp_packages/microsoft.libraryvariablestorage.us.symbols.nupkg" \
-            "$BC_BASE_URL/microsoft.libraryvariablestorage.us.symbols/$BC_VERSION/microsoft.libraryvariablestorage.us.symbols.$BC_VERSION.nupkg" || echo "Failed to download Library Variable Storage"
+        echo "Downloading Microsoft.LibraryVariableStorage.symbols (test dependency)..."
+        curl -L -s -o "temp_packages/microsoft.libraryvariablestorage.symbols.nupkg" \
+            "$BC_FEED_SYMBOLS/microsoft.libraryvariablestorage.symbols.5095f467-0a01-4b99-99d1-9ff1237d286f/$BC_VERSION/microsoft.libraryvariablestorage.symbols.5095f467-0a01-4b99-99d1-9ff1237d286f.$BC_VERSION.nupkg" || echo "Failed to download Library Variable Storage"
 
         # Extract .nupkg files (which are zip files)
         mkdir -p temp_packages/extracted
