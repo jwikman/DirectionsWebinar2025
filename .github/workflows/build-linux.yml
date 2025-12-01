@@ -6,8 +6,7 @@ on:
   push:
     paths:
       - ".github/workflows/build-linux.yml"
-      - "scripts/deploy-bc-container-local.ps1"
-      - "scripts/linux/run-tests-odata.ps1"
+      - "scripts/**"
 
 env:
   AL_VERSION: "17.0.28.6483-beta"
