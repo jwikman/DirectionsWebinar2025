@@ -23,7 +23,7 @@
 
 param(
     [Parameter(Mandatory = $false)]
-    [string]$BCDevRepo = "https://github.com/StefanMaron/BCDevOnLinux.git",
+    [string]$BCDevRepo = "https://github.com/jwikman/BCDevOnLinux.git",
     [Parameter(Mandatory = $false)]
     [string]$BCDevBranch = "main",
     [Parameter(Mandatory = $true)]
@@ -46,11 +46,6 @@ git clone --branch $BCDevBranch --depth 1 $BCDevRepo bcdev-temp
 # Pull BC Wine Base Image
 Write-Host "Pulling BC Wine base image..." -ForegroundColor Yellow
 docker pull stefanmaronbc/bc-wine-base:latest
-
-# Clean up any existing BC artifacts volume to force fresh download
-Write-Host "Cleaning up any existing BC artifacts volume..." -ForegroundColor Yellow
-docker volume rm bcdev-temp_bc_artifacts -f 2>$null
-Write-Host "✓ BC artifacts volume removed (will be recreated fresh)" -ForegroundColor Green
 
 # Build BC Container with Docker Compose
 Write-Host "Building Business Central container..." -ForegroundColor Yellow
@@ -95,53 +90,6 @@ try {
             else {
                 Write-Host "  $line" -ForegroundColor Gray
             }
-        }
-    }
-
-    # Build with environment variables explicitly passed to ensure they're available during build
-    # The --build-arg approach ensures BC_ARTIFACT_URL reaches the cache-artifacts.ps1 script
-    Write-Host "Building container with BC_ARTIFACT_URL environment variable..." -ForegroundColor Yellow
-
-    $buildEnv = @{}
-    if ($BCArtifactUrl) {
-        $buildEnv['BC_ARTIFACT_URL'] = $BCArtifactUrl
-    }
-    if ($env:SA_PASSWORD) {
-        $buildEnv['SA_PASSWORD'] = $env:SA_PASSWORD
-    }
-
-    # Set environment variables for the build process
-    foreach ($key in $buildEnv.Keys) {
-        [Environment]::SetEnvironmentVariable($key, $buildEnv[$key], [EnvironmentVariableTarget]::Process)
-    }
-
-    # CRITICAL FIX: BCDevOnLinux's compose.yml doesn't include BC_ARTIFACT_URL in the bc service environment
-    # We need to add it so cache-artifacts.ps1 can read it at runtime
-    if ($BCArtifactUrl -and (Test-Path "compose.yml")) {
-        Write-Host "Modifying compose.yml to add BC_ARTIFACT_URL to bc service environment..." -ForegroundColor Yellow
-
-        $composeContent = Get-Content "compose.yml" -Raw
-
-        # Find the bc service environment section and add BC_ARTIFACT_URL
-        # The environment section for bc service currently has:
-        #   environment:
-        #     - SA_PASSWORD=${SA_PASSWORD:-P@ssw0rd123!}
-        #     - SQL_SERVER=sql
-        #     ...
-
-        # We'll add BC_ARTIFACT_URL after SA_PASSWORD
-        $pattern = '(environment:\s+- SA_PASSWORD=\$\{SA_PASSWORD:-P@ssw0rd123!\})'
-        $replacement = "`$1`n      - BC_ARTIFACT_URL=`${BC_ARTIFACT_URL}"
-
-        $modifiedContent = $composeContent -replace $pattern, $replacement
-
-        if ($modifiedContent -ne $composeContent) {
-            Set-Content -Path "compose.yml" -Value $modifiedContent -Encoding utf8NoBOM -Force
-            Write-Host "✓ Added BC_ARTIFACT_URL to compose.yml bc service environment" -ForegroundColor Green
-        }
-        else {
-            Write-Host "⚠ Could not modify compose.yml - pattern not found" -ForegroundColor Yellow
-            Write-Host "BC_ARTIFACT_URL may not be passed to container" -ForegroundColor Yellow
         }
     }
 

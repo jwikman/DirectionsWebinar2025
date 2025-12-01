@@ -10,10 +10,8 @@ on:
 
 env:
   AL_VERSION: "17.0.28.6483-beta"
-  BCDEV_REPO: "https://github.com/StefanMaron/BCDevOnLinux.git"
+  BCDEV_REPO: "https://github.com/jwikman/BCDevOnLinux.git"
   BCDEV_BRANCH: "main"
-  BC_VERSION: "27.1.41698.41776"
-  PLATFORM_VERSION: "27.0.41766"
   BC_USERNAME: "admin"
   BC_PASSWORD: "Admin123!"
   SA_PASSWORD: "P@ssw0rd123!"

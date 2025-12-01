@@ -24,52 +24,6 @@ Write-Host "Starting Business Central container..." -ForegroundColor Cyan
 Push-Location bcdev-temp
 
 try {
-    # Verify .env file exists before starting
-    if (Test-Path ".env") {
-        Write-Host "✓ .env file found in bcdev-temp directory" -ForegroundColor Green
-        Write-Host "Contents:" -ForegroundColor Gray
-        Get-Content ".env" | ForEach-Object {
-            # Mask password in output
-            if ($_ -match "^SA_PASSWORD=") {
-                Write-Host "  SA_PASSWORD=********" -ForegroundColor Gray
-            }
-            else {
-                Write-Host "  $_" -ForegroundColor Gray
-            }
-        }
-
-        # Dump full docker compose config for troubleshooting
-        Write-Host "`nDumping full docker compose config for troubleshooting:" -ForegroundColor Gray
-        $composeConfig = docker compose config 2>&1
-
-        # Save to file for later reference
-        $composeConfig | Out-File "docker-c.yml" -Encoding utf8
-        Write-Host "✓ Full config saved to docker-compose-resolved.yml" -ForegroundColor Green
-
-        # Show key environment variables
-        Write-Host "`nKey environment variables in resolved config:" -ForegroundColor Gray
-        $composeConfig | Select-String -Pattern "BC_ARTIFACT_URL|SA_PASSWORD" | ForEach-Object {
-            $line = $_.Line
-            if ($line -match "SA_PASSWORD") {
-                Write-Host "  (SA_PASSWORD found in config)" -ForegroundColor Gray
-            }
-            else {
-                Write-Host "  $line" -ForegroundColor Gray
-            }
-        }
-
-        # Count occurrences
-        $bcArtifactCount = ($composeConfig | Select-String -Pattern "BC_ARTIFACT_URL" -AllMatches).Matches.Count
-        $saPasswordCount = ($composeConfig | Select-String -Pattern "SA_PASSWORD" -AllMatches).Matches.Count
-        Write-Host "`nEnvironment variable occurrence count:" -ForegroundColor Cyan
-        Write-Host "  BC_ARTIFACT_URL: $bcArtifactCount" -ForegroundColor $(if ($bcArtifactCount -gt 0) { "Green" } else { "Red" })
-        Write-Host "  SA_PASSWORD: $saPasswordCount" -ForegroundColor $(if ($saPasswordCount -gt 0) { "Green" } else { "Red" })
-    }
-    else {
-        Write-Host "⚠ Warning: .env file not found in bcdev-temp directory!" -ForegroundColor Yellow
-        Write-Host "Environment variables may not be set correctly" -ForegroundColor Yellow
-    }
-
     # Start the container
     docker compose up -d
 
@@ -130,46 +84,6 @@ try {
     docker compose ps
     Write-Host "`nRecent container logs:" -ForegroundColor Cyan
     docker compose logs --tail=20
-
-    # Verify BC version in the container
-    Write-Host "`nVerifying Business Central version..." -ForegroundColor Cyan
-    try {
-        # Method 1: Check the artifact URL that was actually used (from container env)
-        $artifactUrlInContainer = docker compose exec -T bc bash -c 'echo $BC_ARTIFACT_URL' 2>$null
-        if ($artifactUrlInContainer -and $artifactUrlInContainer.Trim()) {
-            Write-Host "✓ BC Artifact URL in container: $($artifactUrlInContainer.Trim())" -ForegroundColor Green
-
-            # Extract version from URL (e.g., sandbox/27.1.41698.42876/w1)
-            if ($artifactUrlInContainer -match '/(\d+\.\d+\.\d+\.\d+)/') {
-                Write-Host "✓ BC Version from URL: $($matches[1])" -ForegroundColor Green
-            }
-            elseif ($artifactUrlInContainer -match '/(\d+\.\d+)/') {
-                Write-Host "✓ BC Version from URL: $($matches[1])" -ForegroundColor Green
-            }
-        }
-        else {
-            Write-Host "⚠ BC_ARTIFACT_URL not set in container" -ForegroundColor Yellow
-        }
-
-        # Method 2: Check BC artifacts directory structure for platform version
-        $bcPlatformDir = docker compose exec -T bc bash -c "ls -d /home/bcartifacts/platform/ServiceTier/* 2>/dev/null | head -1 | xargs basename" 2>$null
-        if ($bcPlatformDir -and $bcPlatformDir.Trim()) {
-            Write-Host "✓ BC Platform directory: $($bcPlatformDir.Trim())" -ForegroundColor Green
-        }
-
-        # Method 3: Check if BC Server executable exists
-        $bcServerExe = docker compose exec -T bc bash -c "find /home/bcartifacts/platform -name 'Microsoft.Dynamics.Nav.Server.exe' -type f 2>/dev/null | head -1" 2>$null
-        if ($bcServerExe -and $bcServerExe.Trim()) {
-            Write-Host "✓ BC Server executable confirmed" -ForegroundColor Green
-        }
-        else {
-            Write-Host "⚠ BC Server executable not found" -ForegroundColor Yellow
-        }
-    }
-    catch {
-        Write-Host "⚠ Could not verify BC version: $_" -ForegroundColor Yellow
-    }
-
 }
 finally {
     Pop-Location
