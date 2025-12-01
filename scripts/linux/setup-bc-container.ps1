@@ -47,6 +47,11 @@ git clone --branch $BCDevBranch --depth 1 $BCDevRepo bcdev-temp
 Write-Host "Pulling BC Wine base image..." -ForegroundColor Yellow
 docker pull stefanmaronbc/bc-wine-base:latest
 
+# Clean up any existing BC artifacts volume to force fresh download
+Write-Host "Cleaning up any existing BC artifacts volume..." -ForegroundColor Yellow
+docker volume rm bcdev-temp_bc_artifacts -f 2>$null
+Write-Host "✓ BC artifacts volume removed (will be recreated fresh)" -ForegroundColor Green
+
 # Build BC Container with Docker Compose
 Write-Host "Building Business Central container..." -ForegroundColor Yellow
 Push-Location bcdev-temp
