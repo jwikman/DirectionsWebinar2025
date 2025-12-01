@@ -31,9 +31,19 @@ jobs:
         run: |
           pwsh ./scripts/linux/setup-dotnet-and-al.ps1 -ALVersion "$AL_VERSION"
 
+      - name: Get Latest BC Artifact URL
+        id: get-bc-artifact
+        run: |
+          pwsh -Command "
+            Install-Module -Name BcContainerHelper -Force -AllowClobber -Scope CurrentUser
+            \$artifactUrl = Get-BcArtifactUrl -type Sandbox -country w1 -select Latest
+            Write-Host \"Latest BC Artifact URL: \$artifactUrl\"
+            echo \"artifact-url=\$artifactUrl\" >> \$env:GITHUB_OUTPUT
+          "
+
       - name: Setup BC Container
         run: |
-          pwsh ./scripts/linux/setup-bc-container.ps1 -BCDevRepo "$BCDEV_REPO" -BCDevBranch "$BCDEV_BRANCH"
+          pwsh ./scripts/linux/setup-bc-container.ps1 -BCDevRepo "$BCDEV_REPO" -BCDevBranch "$BCDEV_BRANCH" -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
 
       - name: Start BC Container
         run: |

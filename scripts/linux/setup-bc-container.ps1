@@ -13,7 +13,7 @@
     BCDevOnLinux repository branch (default: main)
 
 .PARAMETER BCArtifactUrl
-    BC Artifact URL to use for the container (optional - uses BCDevOnLinux defaults if not provided)
+    BC Artifact URL to use for the container (mandatory)
 
 .EXAMPLE
     ./setup-bc-container.ps1
@@ -24,7 +24,8 @@
 param(
     [string]$BCDevRepo = "https://github.com/StefanMaron/BCDevOnLinux.git",
     [string]$BCDevBranch = "main",
-    [string]$BCArtifactUrl = "https://bcartifacts-exdbf9fwegejdqak.b02.azurefd.net/sandbox/27.1.41698.42876/w1"
+    [Parameter(Mandatory = $true)]
+    [string]$BCArtifactUrl
 )
 
 $ErrorActionPreference = "Stop"
