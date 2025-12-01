@@ -69,10 +69,14 @@ try {
     }
 
     if ($envContent.Count -gt 0) {
-        # Remove any existing .env file to ensure clean state
+        # Remove any existing .env files to ensure clean state
         if (Test-Path ".env") {
             Remove-Item ".env" -Force
             Write-Host "Removed existing .env file" -ForegroundColor Gray
+        }
+        if (Test-Path ".env.example") {
+            Remove-Item ".env.example" -Force
+            Write-Host "Removed .env.example file" -ForegroundColor Gray
         }
 
         # Write .env file using Set-Content for better cross-platform compatibility
