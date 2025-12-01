@@ -51,14 +51,26 @@ docker pull stefanmaronbc/bc-wine-base:latest
 Write-Host "Building Business Central container..." -ForegroundColor Yellow
 Push-Location bcdev-temp
 try {
-    # Create .env file with BC version configuration if artifact URL provided
+    # Create .env file with BC configuration
+    $envContent = @()
+
     if ($BCArtifactUrl) {
         Write-Host "Using BC Artifact URL: $BCArtifactUrl" -ForegroundColor Cyan
-        "BC_ARTIFACT_URL=$BCArtifactUrl" | Out-File -FilePath ".env" -Encoding utf8
-        Write-Host "Created .env file with BC artifact configuration" -ForegroundColor Gray
+        $envContent += "BC_ARTIFACT_URL=$BCArtifactUrl"
     }
     else {
         Write-Host "No BC artifact URL specified - using BCDevOnLinux defaults" -ForegroundColor Yellow
+    }
+
+    # Add SA_PASSWORD from environment if available
+    if ($env:SA_PASSWORD) {
+        Write-Host "Setting SQL SA password from environment" -ForegroundColor Gray
+        $envContent += "SA_PASSWORD=$env:SA_PASSWORD"
+    }
+
+    if ($envContent.Count -gt 0) {
+        $envContent | Out-File -FilePath ".env" -Encoding utf8
+        Write-Host "Created .env file with configuration" -ForegroundColor Gray
     }
 
     docker compose build

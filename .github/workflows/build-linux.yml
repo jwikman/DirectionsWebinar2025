@@ -17,6 +17,7 @@ env:
   PLATFORM_VERSION: "27.0.41766"
   BC_USERNAME: "admin"
   BC_PASSWORD: "Admin123!"
+  SA_PASSWORD: "P@ssw0rd123!"
 
 jobs:
   build-linux-full-test:
@@ -42,6 +43,8 @@ jobs:
           "
 
       - name: Setup BC Container
+        env:
+          SA_PASSWORD: ${{ env.SA_PASSWORD }}
         run: |
           pwsh ./scripts/linux/setup-bc-container.ps1 -BCDevRepo "$BCDEV_REPO" -BCDevBranch "$BCDEV_BRANCH" -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
 
