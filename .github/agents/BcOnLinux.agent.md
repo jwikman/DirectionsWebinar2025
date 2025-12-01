@@ -12,7 +12,6 @@ tools:
     "todos",
     "runSubagent",
   ]
-target: vscode
 ---
 
 # BC on Linux Development Agent
