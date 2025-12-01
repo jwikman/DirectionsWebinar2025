@@ -86,7 +86,9 @@ $Headers = @{
 # Based on app.json and testApp.json dependencies for The Library project
 # Using version 26.0.0.0 to match platform/application version from app.json
 $dependencies = @(
+    @{ Publisher = "Microsoft"; Name = "System"; Version = "26.0.0.0"; AppId = "8874ed3a-0643-4247-9ced-7a7002f7135d" }
     @{ Publisher = "Microsoft"; Name = "System Application"; Version = "26.0.0.0"; AppId = "63ca2fa4-4f03-4f2b-a480-172fef340d3f" }
+    @{ Publisher = "Microsoft"; Name = "Business Foundation"; Version = "26.0.0.0"; AppId = "f3552374-a1f2-4356-848e-196002525837" }
     @{ Publisher = "Microsoft"; Name = "Base Application"; Version = "26.0.0.0"; AppId = "437dbf0e-84ff-417a-965d-ed2bb9650972" }
     @{ Publisher = "Microsoft"; Name = "Application"; Version = "26.0.0.0"; AppId = "c1335042-3002-4257-bf8a-75c898ccb1b8" }
     # Test dependencies from TestApp/app.json
@@ -95,9 +97,6 @@ $dependencies = @(
     @{ Publisher = "Microsoft"; Name = "Library Variable Storage"; Version = "26.0.0.0"; AppId = "5095f467-0a01-4b99-99d1-9ff1237d286f" }
     @{ Publisher = "Microsoft"; Name = "Test Runner"; Version = "26.0.0.0"; AppId = "23de40a6-dfe8-4f80-80db-d70f83ce8caf" }
 )
-
-# Also need System.app (platform dependency)
-$systemAppNeeded = $true
 
 Write-Host "Downloading symbol packages..." -ForegroundColor Yellow
 Write-Host ""
@@ -124,8 +123,8 @@ foreach ($dep in $dependencies) {
     }
 
     # Construct developer endpoint URL
-    # Using appId parameter (BC v20+) as primary method
-    $url = "$BaseUrl/dev/packages?appId=$appId&versionText=$version&tenant=$Tenant"
+    # Using publisher&appName&versionText&appId&tenant format (matches BcContainerHelper pattern)
+    $url = "$BaseUrl/dev/packages?publisher=$publisher&appName=$name&versionText=$version&appId=$appId&tenant=$Tenant"
 
     Write-Host "  ↓ $symbolsName" -ForegroundColor Cyan
     Write-Host "    URL: $url" -ForegroundColor DarkGray
@@ -152,9 +151,9 @@ foreach ($dep in $dependencies) {
     catch {
         Write-Host "    ✗ Download failed: $($_.Exception.Message)" -ForegroundColor Red
 
-        # Try fallback URL using publisher/name parameters (BC v19 and earlier)
+        # Try fallback URL without appId (for older BC versions)
         try {
-            Write-Host "    ↻ Retrying with legacy URL format..." -ForegroundColor Yellow
+            Write-Host "    ↻ Retrying without appId parameter..." -ForegroundColor Yellow
             $legacyUrl = "$BaseUrl/dev/packages?publisher=$publisher&appName=$name&versionText=$version&tenant=$Tenant"
             Write-Host "    URL: $legacyUrl" -ForegroundColor DarkGray
 
@@ -178,47 +177,6 @@ foreach ($dep in $dependencies) {
         catch {
             Write-Host "    ✗ Fallback also failed: $($_.Exception.Message)" -ForegroundColor Red
             $failedCount++
-        }
-    }
-}
-
-# Handle System.app separately - it's a special case
-if ($systemAppNeeded) {
-    $systemSymbolsName = "System.app"
-    $systemSymbolsFile = Join-Path $SymbolsFolder $systemSymbolsName
-
-    if (Test-Path $systemSymbolsFile) {
-        Write-Host "  ↷ $systemSymbolsName (already exists)" -ForegroundColor DarkGray
-        $skippedCount++
-    } else {
-        Write-Host "  ↓ $systemSymbolsName" -ForegroundColor Cyan
-
-        # System.app doesn't have a version or appId in the same way
-        # Try to get it from the platform endpoint (using platform version 26.0.0.0)
-        $systemUrl = "$BaseUrl/dev/packages?appId=00000000-0000-0000-0000-000000000000&versionText=26.0.0.0&tenant=$Tenant"
-        Write-Host "    URL: $systemUrl" -ForegroundColor DarkGray
-
-        try {
-            Invoke-WebRequest -Uri $systemUrl `
-                -Method Get `
-                -Headers $Headers `
-                -OutFile $systemSymbolsFile `
-                -UseBasicParsing `
-                -AllowUnencryptedAuthentication `
-                -TimeoutSec 300 | Out-Null
-
-            if (Test-Path $systemSymbolsFile) {
-                $fileSize = (Get-Item $systemSymbolsFile).Length
-                Write-Host "    ✓ Downloaded ($([Math]::Round($fileSize / 1KB, 2)) KB)" -ForegroundColor Green
-                $downloadedCount++
-            } else {
-                Write-Host "    ✗ Download failed - file not created" -ForegroundColor Yellow
-                Write-Host "    Note: System.app may not be needed for this BC version" -ForegroundColor DarkGray
-            }
-        }
-        catch {
-            Write-Host "    ✗ Download failed: $($_.Exception.Message)" -ForegroundColor Yellow
-            Write-Host "    Note: System.app may not be needed for this BC version" -ForegroundColor DarkGray
         }
     }
 }
