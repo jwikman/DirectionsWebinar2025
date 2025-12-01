@@ -187,36 +187,66 @@ jobs:
         
         cd bcdev-temp
         
-        # The BC artifacts are stored in /home/bcartifacts inside the container
-        # Symbol files are located in the ModernDev/program files path
-        echo "Locating symbol files in container..."
+        # BC artifacts are stored in /home/bcartifacts inside the container
+        # The structure varies - symbols can be in multiple locations:
+        # 1. ModernDev/program files/Microsoft Dynamics NAV/260/AL Development Environment/ (platform symbols like System.app)
+        # 2. applications/<AppName>/Source/ (application symbols like Application.app, test frameworks)
         
-        # Find the exact path to symbol files in the container
-        # They should be in /home/bcartifacts/ModernDev/program files/Microsoft Dynamics NAV/260/AL Development Environment/
-        SYMBOL_PATH="/home/bcartifacts/ModernDev/program files/Microsoft Dynamics NAV/260/AL Development Environment"
+        echo "Discovering BC artifact structure in container..."
+        echo ""
         
-        echo "Checking symbol path in container..."
-        docker compose exec -T bc ls -la "$SYMBOL_PATH/" 2>/dev/null || {
-            echo "Primary symbol path not found, searching for alternatives..."
-            # Try to find symbol files anywhere in the container
-            docker compose exec -T bc find /home/bcartifacts -name "*.app" -type f 2>/dev/null | head -20
-            # Also check for ALLanguage location
-            docker compose exec -T bc find /home/bcartifacts -type d -name "AL Development Environment" 2>/dev/null | head -5
-        }
+        # First, find all .app files to understand the structure
+        echo "Searching for all .app files in bcartifacts (first 50)..."
+        docker compose exec -T bc find /home/bcartifacts -name "*.app" -type f 2>/dev/null | head -50
+        echo ""
         
-        # Create a helper function to copy symbol files
+        # Check for ModernDev folder (platform symbols)
+        echo "Checking for ModernDev folder structure..."
+        docker compose exec -T bc ls -la /home/bcartifacts/ModernDev/ 2>/dev/null | head -20 || echo "No ModernDev folder found"
+        echo ""
+        
+        # Check for applications folder (application symbols)
+        echo "Checking for applications folder..."
+        docker compose exec -T bc ls /home/bcartifacts/applications/ 2>/dev/null | head -30 || echo "No applications folder found"
+        echo ""
+        
+        # Create a helper function to find and copy symbol files from any location
         copy_symbol() {
             local app_name="$1"
             local output_file="$2"
             
-            echo "  → Copying $app_name symbol..."
+            echo "  → Searching for $app_name symbol..."
             
-            # The symbol files in BC artifacts use the format: Microsoft_<AppName>_<version>.app
-            # First try to find the exact file
             local found_file
-            found_file=$(docker compose exec -T bc find "$SYMBOL_PATH" -maxdepth 1 -name "Microsoft_${app_name}_*.app" -type f 2>/dev/null | head -1)
+            
+            # Search strategy 1: Look in ModernDev AL Development Environment (platform symbols)
+            found_file=$(docker compose exec -T bc find /home/bcartifacts/ModernDev -name "Microsoft_${app_name}_*.app" -type f 2>/dev/null | head -1)
+            
+            # Search strategy 2: Look in applications folder with exact name
+            if [ -z "$found_file" ]; then
+                found_file=$(docker compose exec -T bc find /home/bcartifacts/applications -name "Microsoft_${app_name}.app" -type f 2>/dev/null | head -1)
+            fi
+            
+            # Search strategy 3: Look for app name with underscore instead of space
+            if [ -z "$found_file" ]; then
+                local underscore_name="${app_name// /_}"
+                found_file=$(docker compose exec -T bc find /home/bcartifacts -name "Microsoft_${underscore_name}*.app" -type f 2>/dev/null | grep -v "Test" | head -1)
+            fi
+            
+            # Search strategy 4: Broader search anywhere in bcartifacts
+            if [ -z "$found_file" ]; then
+                found_file=$(docker compose exec -T bc find /home/bcartifacts -name "*${app_name}*.app" -type f 2>/dev/null | grep -i "Microsoft_" | grep -v "Test" | head -1)
+            fi
+            
+            # Search strategy 5: For System symbol, also check platform folder
+            if [ -z "$found_file" ] && [ "$app_name" = "System" ]; then
+                found_file=$(docker compose exec -T bc find /home/bcartifacts -path "*program*files*" -name "*.app" -type f 2>/dev/null | grep -i "System" | head -1)
+            fi
             
             if [ -n "$found_file" ]; then
+                # Trim any whitespace/newlines from found_file
+                found_file=$(echo "$found_file" | tr -d '\r\n' | xargs)
+                echo "    Found: $found_file"
                 docker compose cp "bc:$found_file" "../$output_file"
                 if [ -f "../$output_file" ]; then
                     local size
@@ -224,18 +254,17 @@ jobs:
                     if [ "$size" -gt 1024 ]; then
                         echo "  ✓ $app_name copied successfully ($(numfmt --to=iec-i --suffix=B $size))"
                         return 0
+                    else
+                        echo "  ⚠ File copied but too small ($size bytes)"
                     fi
+                else
+                    echo "  ⚠ Copy command succeeded but file not found locally"
                 fi
             fi
             
             echo "  ⚠ Could not find $app_name symbol file"
             return 1
         }
-        
-        # List available symbol files in the container for debugging
-        echo ""
-        echo "Available symbol files in container:"
-        docker compose exec -T bc ls -la "$SYMBOL_PATH/" 2>/dev/null | grep "Microsoft_" | head -20 || echo "Could not list symbol files"
         
         # Copy required symbols for App (platform + application)
         echo ""
@@ -253,22 +282,45 @@ jobs:
             echo ""
             echo "ERROR: Failed to extract required symbols (System and/or Application)"
             echo ""
-            echo "Debugging: Listing all .app files in container's bcartifacts..."
-            docker compose exec -T bc find /home/bcartifacts -name "*.app" -type f 2>/dev/null | head -50
+            echo "Debugging: Complete listing of all .app files in container..."
+            docker compose exec -T bc find /home/bcartifacts -name "*.app" -type f 2>/dev/null
             echo ""
-            echo "Debugging: Container artifact structure..."
-            docker compose exec -T bc ls -laR /home/bcartifacts/ModernDev/ 2>/dev/null | head -100 || echo "ModernDev path not found"
+            echo "Debugging: Container top-level structure..."
+            docker compose exec -T bc ls -la /home/bcartifacts/ 2>/dev/null
             exit 1
         fi
 
-        # Additional symbols needed for TestApp
+        # Additional symbols needed for TestApp (optional but recommended)
         echo ""
         echo "Copying test framework symbols..."
         
-        copy_symbol "Library Assert" "App/.alpackages/Library Assert.app"
-        copy_symbol "Any" "App/.alpackages/Any.app"
-        copy_symbol "Test Runner" "App/.alpackages/Test Runner.app"
-        copy_symbol "Library Variable Storage" "App/.alpackages/Library Variable Storage.app"
+        TEST_SYMBOLS_FAILED=0
+        
+        if ! copy_symbol "Library Assert" "App/.alpackages/Library Assert.app"; then
+            echo "  ⚠ Warning: Library Assert symbol not found (optional for TestApp)"
+            TEST_SYMBOLS_FAILED=$((TEST_SYMBOLS_FAILED + 1))
+        fi
+        
+        if ! copy_symbol "Any" "App/.alpackages/Any.app"; then
+            echo "  ⚠ Warning: Any symbol not found (optional for TestApp)"
+            TEST_SYMBOLS_FAILED=$((TEST_SYMBOLS_FAILED + 1))
+        fi
+        
+        if ! copy_symbol "Test Runner" "App/.alpackages/Test Runner.app"; then
+            echo "  ⚠ Warning: Test Runner symbol not found (optional for TestApp)"
+            TEST_SYMBOLS_FAILED=$((TEST_SYMBOLS_FAILED + 1))
+        fi
+        
+        if ! copy_symbol "Library Variable Storage" "App/.alpackages/Library Variable Storage.app"; then
+            echo "  ⚠ Warning: Library Variable Storage symbol not found (optional for TestApp)"
+            TEST_SYMBOLS_FAILED=$((TEST_SYMBOLS_FAILED + 1))
+        fi
+        
+        if [ $TEST_SYMBOLS_FAILED -gt 0 ]; then
+            echo ""
+            echo "⚠ $TEST_SYMBOLS_FAILED test framework symbols could not be found"
+            echo "  TestApp compilation may fail if these are required dependencies"
+        fi
 
         cd ..
 

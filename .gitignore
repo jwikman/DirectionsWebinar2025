@@ -20,5 +20,6 @@ rad.json
 cache_*
 debug.log
 ~$*
-.tmpbcdev-temp/
+.tmp
+bcdev-temp/
 bcdev-check/
