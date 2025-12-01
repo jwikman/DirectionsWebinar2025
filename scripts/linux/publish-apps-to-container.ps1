@@ -10,20 +10,24 @@
     Base URL of the BC container (default: http://localhost:7049)
 
 .PARAMETER Username
-    Username for authentication (default: admin)
+    Username for authentication (required)
 
 .PARAMETER Password
-    Password for authentication (default: Admin123!)
+    Password for authentication (required)
 
 .EXAMPLE
-    ./publish-apps-to-container.ps1
+    ./publish-apps-to-container.ps1 -Username "admin" -Password "Admin123!"
     ./publish-apps-to-container.ps1 -BaseUrl "http://localhost:7049" -Username "admin" -Password "Admin123!"
 #>
 
 param(
     [string]$BaseUrl = "http://localhost:7049",
-    [string]$Username = "admin",
-    [string]$Password = "Admin123!"
+
+    [Parameter(Mandatory = $true)]
+    [string]$Username,
+
+    [Parameter(Mandatory = $true)]
+    [string]$Password
 )
 
 $ErrorActionPreference = "Stop"

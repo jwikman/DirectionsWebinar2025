@@ -19,10 +19,10 @@
     The tenant name (default: "default")
 
 .PARAMETER Username
-    Username for authentication (default: "admin")
+    Username for authentication (required)
 
 .PARAMETER Password
-    Password for authentication (default: "Admin123!")
+    Password for authentication (required)
     Note: Using String type for compatibility with BC container default credentials
 
 .PARAMETER SymbolsFolder
@@ -57,10 +57,11 @@ param(
     [string]$Tenant = "default",
 
     [Parameter(Mandatory = $false)]
-    [string]$Username = "admin",
+    [Parameter(Mandatory = $true)]
+    [string]$Username,
 
-    [Parameter(Mandatory = $false)]
-    [string]$Password = "Admin123!",
+    [Parameter(Mandatory = $true)]
+    [string]$Password,
 
     [Parameter(Mandatory = $false)]
     [string]$SymbolsFolder = ".alpackages"

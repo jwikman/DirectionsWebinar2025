@@ -16,10 +16,10 @@
     The tenant name (default: "default")
 
 .PARAMETER Username
-    Username for authentication (default: "admin")
+    Username for authentication (required)
 
 .PARAMETER Password
-    Password for authentication (default: "Admin123!")
+    Password for authentication (required)
 
 .PARAMETER CodeunitId
     The ID of the test codeunit to execute (default: 70454 - "LIB Test Suite")
@@ -43,10 +43,11 @@ param(
     [string]$Tenant = "default",
 
     [Parameter(Mandatory=$false)]
-    [string]$Username = "admin",
+    [Parameter(Mandatory = $true)]
+    [string]$Username,
 
-    [Parameter(Mandatory=$false)]
-    [string]$Password = "Admin123!",
+    [Parameter(Mandatory = $true)]
+    [string]$Password,
 
     [Parameter(Mandatory=$false)]
     [int]$CodeunitId = 70454,

@@ -15,6 +15,8 @@ env:
   BCDEV_BRANCH: "main"
   BC_VERSION: "27.1.41698.41776"
   PLATFORM_VERSION: "27.0.41766"
+  BC_USERNAME: "admin"
+  BC_PASSWORD: "Admin123!"
 
 jobs:
   build-linux-full-test:
@@ -47,8 +49,8 @@ jobs:
             -AppJsonPath "./App/app.json" \
             -BaseUrl "http://localhost:7049/BC" \
             -Tenant "default" \
-            -Username "admin" \
-            -Password "Admin123!" \
+            -Username "$BC_USERNAME" \
+            -Password "$BC_PASSWORD" \
             -SymbolsFolder ".alpackages"
 
       - name: Compile Main App
@@ -62,8 +64,8 @@ jobs:
             -AppJsonPath "./TestApp/app.json" \
             -BaseUrl "http://localhost:7049/BC" \
             -Tenant "default" \
-            -Username "admin" \
-            -Password "Admin123!" \
+            -Username "$BC_USERNAME" \
+            -Password "$BC_PASSWORD" \
             -SymbolsFolder ".alpackages"
 
       - name: Compile Test App
@@ -73,7 +75,7 @@ jobs:
 
       - name: Publish Apps to Container
         run: |
-          pwsh ./scripts/linux/publish-apps-to-container.ps1 -BaseUrl "http://localhost:7049" -Username "admin" -Password "Admin123!"
+          pwsh ./scripts/linux/publish-apps-to-container.ps1 -BaseUrl "http://localhost:7049" -Username "$BC_USERNAME" -Password "$BC_PASSWORD"
 
       - name: Run AL Tests in Container via OData
         run: |
@@ -81,8 +83,8 @@ jobs:
           pwsh ./scripts/run-tests-odata.ps1 \
             -BaseUrl "http://localhost:7048/BC" \
             -Tenant "default" \
-            -Username "admin" \
-            -Password "Admin123!" \
+            -Username "$BC_USERNAME" \
+            -Password "$BC_PASSWORD" \
             -CodeunitId 70454 \
             -MaxWaitSeconds 300
 
