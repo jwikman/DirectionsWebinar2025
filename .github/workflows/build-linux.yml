@@ -5,16 +5,16 @@ on:
   workflow_call:
   push:
     paths:
-      - '.github/workflows/build-linux.yml'
-      - 'scripts/deploy-bc-container-local.ps1'
-      - 'scripts/run-tests-odata.ps1'
+      - ".github/workflows/build-linux.yml"
+      - "scripts/deploy-bc-container-local.ps1"
+      - "scripts/run-tests-odata.ps1"
 
 env:
-  AL_VERSION: '17.0.28.6483-beta'
-  BCDEV_REPO: 'https://github.com/StefanMaron/BCDevOnLinux.git'
-  BCDEV_BRANCH: 'main'
-  BC_VERSION: '27.1.41698.41776'
-  PLATFORM_VERSION: '27.0.41766'
+  AL_VERSION: "17.0.28.6483-beta"
+  BCDEV_REPO: "https://github.com/StefanMaron/BCDevOnLinux.git"
+  BCDEV_BRANCH: "main"
+  BC_VERSION: "27.1.41698.41776"
+  PLATFORM_VERSION: "27.0.41766"
 
 jobs:
   build-linux-full-test:
@@ -22,135 +22,140 @@ jobs:
     name: Linux Full Test Build
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Record start time
-      run: |
-        # Function to format bc output to ensure leading zero for decimals
-        format_duration() {
-            echo "$1" | sed 's/^\./0./'
-        }
-        START_TIME=$(date -Iseconds)
-        START_EPOCH=$(date +%s.%N)
-        echo "BUILD_START_TIME=$START_TIME" >> $GITHUB_ENV
-        echo "BUILD_START_EPOCH=$START_EPOCH" >> $GITHUB_ENV
-        echo "Build started at: $START_TIME"
+      - name: Record start time
+        run: |
+          # Function to format bc output to ensure leading zero for decimals
+          format_duration() {
+              echo "$1" | sed 's/^\./0./'
+          }
+          START_TIME=$(date -Iseconds)
+          START_EPOCH=$(date +%s.%N)
+          echo "BUILD_START_TIME=$START_TIME" >> $GITHUB_ENV
+          echo "BUILD_START_EPOCH=$START_EPOCH" >> $GITHUB_ENV
+          echo "Build started at: $START_TIME"
 
-    - name: Setup .NET 8.0 and AL Tools
-      run: |
-        chmod +x ./scripts/linux/setup-dotnet-and-al.sh
-        ./scripts/linux/setup-dotnet-and-al.sh "$AL_VERSION" "$BUILD_START_EPOCH"
+      - name: Setup .NET 8.0 and AL Tools
+        run: |
+          chmod +x ./scripts/linux/setup-dotnet-and-al.sh
+          ./scripts/linux/setup-dotnet-and-al.sh "$AL_VERSION" "$BUILD_START_EPOCH"
 
-    - name: Create dependencies directory
-      run: |
-        DIR_START=$(date +%s.%N)
-        mkdir -p .alpackages
-        DIR_END=$(date +%s.%N)
-        DIR_DURATION=$(echo "$DIR_END - $DIR_START" | bc -l | sed 's/^\./0./')
-        echo "DIR_CREATION_DURATION=$DIR_DURATION" >> $GITHUB_ENV
-        echo "Directory creation took: $DIR_DURATION seconds"
+      - name: Setup BC Container
+        run: |
+          chmod +x ./scripts/linux/setup-bc-container.sh
+          ./scripts/linux/setup-bc-container.sh "$BCDEV_REPO" "$BCDEV_BRANCH"
 
-    - name: Download BC Symbol Packages
-      run: |
-        chmod +x ./scripts/linux/download-bc-symbols.sh
-        ./scripts/linux/download-bc-symbols.sh "$BC_VERSION" "$PLATFORM_VERSION"
+      - name: Start BC Container
+        run: |
+          chmod +x ./scripts/linux/start-bc-container.sh
+          ./scripts/linux/start-bc-container.sh 1200
 
-    - name: Calculate total dependency time
-      run: |
-        # Calculate total time for BC symbol downloads
-        echo "BASE_DOWNLOAD_DURATION=0" >> $GITHUB_ENV
-        echo "BASE_EXTRACT_DURATION=0" >> $GITHUB_ENV
-        TOTAL_DEP_TIME=$(echo "$SYSTEM_DOWNLOAD_DURATION + $SYSTEM_EXTRACT_DURATION" | bc -l | sed 's/^\./0./')
-        echo "TOTAL_DEPENDENCY_DURATION=$TOTAL_DEP_TIME" >> $GITHUB_ENV
-        echo "Total dependency handling: $TOTAL_DEP_TIME seconds"
+      - name: Create dependencies directory
+        run: |
+          DIR_START=$(date +%s.%N)
+          mkdir -p .alpackages
+          DIR_END=$(date +%s.%N)
+          DIR_DURATION=$(echo "$DIR_END - $DIR_START" | bc -l | sed 's/^\./0./')
+          echo "DIR_CREATION_DURATION=$DIR_DURATION" >> $GITHUB_ENV
+          echo "Directory creation took: $DIR_DURATION seconds"
 
-    - name: Compile Main App and Test App
-      run: |
-        chmod +x ./scripts/linux/compile-al-apps.sh
-        ./scripts/linux/compile-al-apps.sh
+      - name: Download BC Symbol Packages
+        run: |
+          pwsh ./scripts/linux/download-bc-symbols.ps1 \
+            -BaseUrl "http://localhost:7049/BC" \
+            -Tenant "default" \
+            -Username "admin" \
+            -Password "Admin123!" \
+            -SymbolsFolder ".alpackages" \
+            -BCVersion "$BC_VERSION"
 
-    - name: Setup BC Container
-      run: |
-        chmod +x ./scripts/linux/setup-bc-container.sh
-        ./scripts/linux/setup-bc-container.sh "$BCDEV_REPO" "$BCDEV_BRANCH"
+      - name: Calculate total dependency time
+        run: |
+          # Calculate total time for BC symbol downloads
+          echo "BASE_DOWNLOAD_DURATION=0" >> $GITHUB_ENV
+          echo "BASE_EXTRACT_DURATION=0" >> $GITHUB_ENV
+          TOTAL_DEP_TIME=$(echo "$SYSTEM_DOWNLOAD_DURATION + $SYSTEM_EXTRACT_DURATION" | bc -l | sed 's/^\./0./')
+          echo "TOTAL_DEPENDENCY_DURATION=$TOTAL_DEP_TIME" >> $GITHUB_ENV
+          echo "Total dependency handling: $TOTAL_DEP_TIME seconds"
 
-    - name: Start BC Container
-      run: |
-        chmod +x ./scripts/linux/start-bc-container.sh
-        ./scripts/linux/start-bc-container.sh 1200
+      - name: Compile Main App and Test App
+        run: |
+          chmod +x ./scripts/linux/compile-al-apps.sh
+          ./scripts/linux/compile-al-apps.sh
 
-    - name: Publish Apps to Container
-      run: |
-        chmod +x ./scripts/linux/publish-apps-to-container.sh
-        ./scripts/linux/publish-apps-to-container.sh "http://localhost:7049" "admin" "Admin123!"
+      - name: Publish Apps to Container
+        run: |
+          chmod +x ./scripts/linux/publish-apps-to-container.sh
+          ./scripts/linux/publish-apps-to-container.sh "http://localhost:7049" "admin" "Admin123!"
 
-    - name: Run AL Tests in Container via OData
-      run: |
-        echo "Running AL tests in BC container via OData API..."
-        TEST_START=$(date +%s.%N)
+      - name: Run AL Tests in Container via OData
+        run: |
+          echo "Running AL tests in BC container via OData API..."
+          TEST_START=$(date +%s.%N)
 
-        # Execute test suite via OData API using PowerShell script
-        # The script will execute test codeunit 70454 (LIB Test Suite)
-        pwsh ./scripts/run-tests-odata.ps1 \
-          -BaseUrl "http://localhost:7048/BC" \
-          -Tenant "default" \
-          -Username "admin" \
-          -Password "Admin123!" \
-          -CodeunitId 70454 \
-          -MaxWaitSeconds 300
+          # Execute test suite via OData API using PowerShell script
+          # The script will execute test codeunit 70454 (LIB Test Suite)
+          pwsh ./scripts/run-tests-odata.ps1 \
+            -BaseUrl "http://localhost:7048/BC" \
+            -Tenant "default" \
+            -Username "admin" \
+            -Password "Admin123!" \
+            -CodeunitId 70454 \
+            -MaxWaitSeconds 300
 
-        TEST_EXIT_CODE=$?
+          TEST_EXIT_CODE=$?
 
-        TEST_END=$(date +%s.%N)
-        TEST_DURATION=$(echo "$TEST_END - $TEST_START" | bc -l | sed 's/^\./0./')
-        echo "TEST_DURATION=$TEST_DURATION" >> $GITHUB_ENV
-        echo "Testing took: $TEST_DURATION seconds"
+          TEST_END=$(date +%s.%N)
+          TEST_DURATION=$(echo "$TEST_END - $TEST_START" | bc -l | sed 's/^\./0./')
+          echo "TEST_DURATION=$TEST_DURATION" >> $GITHUB_ENV
+          echo "Testing took: $TEST_DURATION seconds"
 
-        # Exit with the test script's exit code
-        exit $TEST_EXIT_CODE
+          # Exit with the test script's exit code
+          exit $TEST_EXIT_CODE
 
-    - name: Calculate comprehensive build metrics
-      run: |
-        END_TIME=$(date -Iseconds)
-        END_EPOCH=$(date +%s.%N)
-        TOTAL_DURATION=$(echo "$END_EPOCH - $BUILD_START_EPOCH" | bc -l | sed 's/^\./0./')
+      - name: Calculate comprehensive build metrics
+        run: |
+          END_TIME=$(date -Iseconds)
+          END_EPOCH=$(date +%s.%N)
+          TOTAL_DURATION=$(echo "$END_EPOCH - $BUILD_START_EPOCH" | bc -l | sed 's/^\./0./')
 
-        echo "=== LINUX FULL BUILD & TEST PERFORMANCE SUMMARY ==="
-        echo "Build Start Time: $BUILD_START_TIME"
-        echo "Build End Time: $END_TIME"
-        echo ""
-        echo "=== DETAILED TIMINGS ==="
-        echo "Setup (.NET + AL tools): ${SETUP_DURATION:-N/A} seconds"
-        echo "Directory Creation: ${DIR_CREATION_DURATION:-N/A} seconds"
-        echo "System App Download: ${SYSTEM_DOWNLOAD_DURATION:-N/A} seconds"
-        echo "Total Dependencies: ${TOTAL_DEPENDENCY_DURATION:-N/A} seconds"
-        echo "Main App Compilation: ${COMPILE_DURATION:-N/A} seconds"
-        echo "Test App Compilation: ${TEST_COMPILE_DURATION:-N/A} seconds"
-        echo "Post-compile Analysis: ${POST_COMPILE_ANALYSIS_DURATION:-N/A} seconds"
-        echo "Docker Setup: ${DOCKER_SETUP_DURATION:-N/A} seconds"
-        echo "BCDevOnLinux Clone: ${BCDEV_CLONE_DURATION:-N/A} seconds"
-        echo "Base Image Pull: ${BASE_IMAGE_PULL_DURATION:-N/A} seconds"
-        echo "Container Build: ${CONTAINER_BUILD_DURATION:-N/A} seconds"
-        echo "Container Start: ${CONTAINER_START_DURATION:-N/A} seconds"
-        echo "Main App Publishing: ${PUBLISH_DURATION:-N/A} seconds"
-        echo "Test App Publishing: ${TEST_PUBLISH_DURATION:-N/A} seconds"
-        echo "Test Execution: ${TEST_DURATION:-N/A} seconds"
-        echo ""
-        echo "=== TOTAL DURATION ==="
-        echo "Total: $TOTAL_DURATION seconds"
-        echo ""
-        echo "=== BUILD ARTIFACTS ==="
-        if [ -n "$APP_COUNT" ]; then echo "Main Apps Compiled: $APP_COUNT"; fi
-        if [ -n "$TOTAL_APP_SIZE_KB" ]; then echo "Main App Size: $TOTAL_APP_SIZE_KB KB"; fi
-        if [ -n "$TEST_APP_COUNT" ]; then echo "Test Apps Compiled: $TEST_APP_COUNT"; fi
-        if [ -n "$TOTAL_TEST_SIZE_KB" ]; then echo "Test App Size: $TOTAL_TEST_SIZE_KB KB"; fi
+          echo "=== LINUX FULL BUILD & TEST PERFORMANCE SUMMARY ==="
+          echo "Build Start Time: $BUILD_START_TIME"
+          echo "Build End Time: $END_TIME"
+          echo ""
+          echo "=== DETAILED TIMINGS ==="
+          echo "Setup (.NET + AL tools): ${SETUP_DURATION:-N/A} seconds"
+          echo "Directory Creation: ${DIR_CREATION_DURATION:-N/A} seconds"
+          echo "System App Download: ${SYSTEM_DOWNLOAD_DURATION:-N/A} seconds"
+          echo "Total Dependencies: ${TOTAL_DEPENDENCY_DURATION:-N/A} seconds"
+          echo "Main App Compilation: ${COMPILE_DURATION:-N/A} seconds"
+          echo "Test App Compilation: ${TEST_COMPILE_DURATION:-N/A} seconds"
+          echo "Post-compile Analysis: ${POST_COMPILE_ANALYSIS_DURATION:-N/A} seconds"
+          echo "Docker Setup: ${DOCKER_SETUP_DURATION:-N/A} seconds"
+          echo "BCDevOnLinux Clone: ${BCDEV_CLONE_DURATION:-N/A} seconds"
+          echo "Base Image Pull: ${BASE_IMAGE_PULL_DURATION:-N/A} seconds"
+          echo "Container Build: ${CONTAINER_BUILD_DURATION:-N/A} seconds"
+          echo "Container Start: ${CONTAINER_START_DURATION:-N/A} seconds"
+          echo "Main App Publishing: ${PUBLISH_DURATION:-N/A} seconds"
+          echo "Test App Publishing: ${TEST_PUBLISH_DURATION:-N/A} seconds"
+          echo "Test Execution: ${TEST_DURATION:-N/A} seconds"
+          echo ""
+          echo "=== TOTAL DURATION ==="
+          echo "Total: $TOTAL_DURATION seconds"
+          echo ""
+          echo "=== BUILD ARTIFACTS ==="
+          if [ -n "$APP_COUNT" ]; then echo "Main Apps Compiled: $APP_COUNT"; fi
+          if [ -n "$TOTAL_APP_SIZE_KB" ]; then echo "Main App Size: $TOTAL_APP_SIZE_KB KB"; fi
+          if [ -n "$TEST_APP_COUNT" ]; then echo "Test Apps Compiled: $TEST_APP_COUNT"; fi
+          if [ -n "$TOTAL_TEST_SIZE_KB" ]; then echo "Test App Size: $TOTAL_TEST_SIZE_KB KB"; fi
 
-    - name: Display system information
-      run: |
-        echo "=== SYSTEM INFORMATION ==="
-        echo "OS: $(lsb_release -d | cut -f2)"
-        echo "Kernel: $(uname -r)"
-        echo "CPU: $(lscpu | grep 'Model name' | cut -d: -f2 | xargs)"
-        echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
-        echo "Disk Space: $(df -h / | tail -1 | awk '{print $4}' | xargs) available"
+      - name: Display system information
+        run: |
+          echo "=== SYSTEM INFORMATION ==="
+          echo "OS: $(lsb_release -d | cut -f2)"
+          echo "Kernel: $(uname -r)"
+          echo "CPU: $(lscpu | grep 'Model name' | cut -d: -f2 | xargs)"
+          echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
+          echo "Disk Space: $(df -h / | tail -1 | awk '{print $4}' | xargs) available"
