@@ -69,7 +69,8 @@ try {
     }
 
     if ($envContent.Count -gt 0) {
-        $envContent | Out-File -FilePath ".env" -Encoding utf8
+        # Write .env file using Set-Content for better cross-platform compatibility
+        Set-Content -Path ".env" -Value $envContent -Encoding utf8NoBOM -Force
         Write-Host "Created .env file with configuration:" -ForegroundColor Cyan
         foreach ($line in $envContent) {
             # Mask password in output
@@ -82,9 +83,9 @@ try {
         }
 
         # Verify .env file was created successfully
-        if (Test-Path ".env") {
-            $envFileSize = (Get-Item ".env").Length
-            Write-Host "✓ .env file created successfully ($envFileSize bytes)" -ForegroundColor Green
+        if (Test-Path -Path ".env" -PathType Leaf) {
+            $envFileInfo = Get-ChildItem ".env"
+            Write-Host "✓ .env file created successfully ($($envFileInfo.Length) bytes)" -ForegroundColor Green
         }
         else {
             Write-Host "⚠ Warning: .env file creation failed!" -ForegroundColor Yellow
