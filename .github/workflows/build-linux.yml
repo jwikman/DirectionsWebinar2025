@@ -56,6 +56,10 @@ jobs:
           pwsh ./scripts/linux/start-bc-container.ps1 \
             -MaxWaitSeconds 1200
 
+      - name: Import BC Test Toolkit
+        run: |
+          pwsh ./scripts/linux/import-test-toolkit.ps1
+
       - name: Create dependencies directory
         run: |
           mkdir -p .alpackages

@@ -73,9 +73,6 @@ try {
     # Create .env file with BC configuration
     $envContent = @()
 
-    # Always import test toolkit
-    $envContent += "IMPORT_TEST_TOOLKIT=true"
-
     if ($BCArtifactUrl) {
         Write-Host "Using BC Artifact URL: $BCArtifactUrl" -ForegroundColor Cyan
         $envContent += "BC_ARTIFACT_URL=$BCArtifactUrl"
