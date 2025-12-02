@@ -9,13 +9,18 @@
 .PARAMETER MaxWaitSeconds
     Maximum time to wait for container to become healthy in seconds (default: 1200 = 20 minutes)
 
+.PARAMETER IncludeSqlLogs
+    Include SQL Server logs in output (default: false). By default, only BC container logs are shown.
+
 .EXAMPLE
     ./start-bc-container.ps1
     ./start-bc-container.ps1 -MaxWaitSeconds 1200
+    ./start-bc-container.ps1 -IncludeSqlLogs
 #>
 
 param(
-    [int]$MaxWaitSeconds = 1200
+    [int]$MaxWaitSeconds = 1200,
+    [switch]$IncludeSqlLogs
 )
 
 $ErrorActionPreference = "Stop"
@@ -52,7 +57,12 @@ try {
         if ($healthStatus -eq "unhealthy" -and $prevHealthStatus -ne "unhealthy") {
             Write-Host "⚠ Container became unhealthy - printing logs for investigation:" -ForegroundColor Yellow
             docker compose ps
-            docker compose logs --tail=100
+            if ($IncludeSqlLogs) {
+                docker compose logs --tail=100
+            } else {
+                Write-Host "`nBC Container logs (use -IncludeSqlLogs to see SQL logs):" -ForegroundColor Cyan
+                docker compose logs --tail=100 bc
+            }
         }
 
         Write-Host "Container status: $healthStatus (waited ${elapsed}s / ${MaxWaitSeconds}s)" -ForegroundColor Gray
@@ -75,7 +85,12 @@ try {
         Write-Host "Final status: $healthStatus" -ForegroundColor Red
         Write-Host "Printing full container logs:" -ForegroundColor Yellow
         docker compose ps
-        docker compose logs
+        if ($IncludeSqlLogs) {
+            docker compose logs
+        } else {
+            Write-Host "`nBC Container logs (use -IncludeSqlLogs to see SQL logs):" -ForegroundColor Cyan
+            docker compose logs bc
+        }
         exit 1
     }
 
@@ -83,7 +98,12 @@ try {
     Write-Host "`nContainer status:" -ForegroundColor Cyan
     docker compose ps
     Write-Host "`nRecent container logs:" -ForegroundColor Cyan
-    docker compose logs --tail=20
+    if ($IncludeSqlLogs) {
+        docker compose logs --tail=20
+    } else {
+        Write-Host "BC Container logs (use -IncludeSqlLogs to see SQL logs):" -ForegroundColor Gray
+        docker compose logs --tail=20 bc
+    }
 }
 finally {
     Pop-Location
