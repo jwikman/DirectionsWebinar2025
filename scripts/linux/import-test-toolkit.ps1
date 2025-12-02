@@ -47,15 +47,12 @@ try {
     Write-Host "Using BC version: $bcVersion" -ForegroundColor Green
     Write-Host ""
 
-    # Create PowerShell script to run inside container
-    # Note: PowerShell Core runs directly in Linux, so we need Linux paths to the Wine prefix
-    # Wine maps /root/.local/share/wineprefixes/bc1/drive_c to C:\ when running under Wine,
-    # but pwsh running directly needs the Linux path
+    # Create PowerShell script to run inside container through Wine
+    # Note: This will run under Wine PowerShell, so we use Windows C:\ paths
     $containerScript = @"
 # Import BC Management module
 `$bcVersion = '$bcVersion'
-`$winePrefix = "`$env:HOME/.local/share/wineprefixes/bc1"
-`$modulePath = "`$winePrefix/drive_c/Program Files/Microsoft Dynamics NAV/`$bcVersion/Service/Microsoft.Dynamics.Nav.Management.dll"
+`$modulePath = "C:\Program Files\Microsoft Dynamics NAV\`$bcVersion\Service\Management\Microsoft.Dynamics.Nav.Management.dll"
 Write-Host "Loading NAV Management module from: `$modulePath"
 
 # Test if the module path exists
@@ -65,11 +62,11 @@ if (-not (Test-Path `$modulePath)) {
     
     # Try to find any BC version directory
     try {
-        `$navDir = "`$winePrefix/drive_c/Program Files/Microsoft Dynamics NAV"
+        `$navDir = "C:\Program Files\Microsoft Dynamics NAV"
         `$altPath = Get-ChildItem `$navDir -Attributes Directory -ErrorAction Stop | 
             Sort-Object Name -Descending | 
             Select-Object -First 1 | 
-            ForEach-Object { Join-Path `$_.FullName "Service/Microsoft.Dynamics.Nav.Management.dll" }
+            ForEach-Object { Join-Path `$_.FullName "Service\Management\Microsoft.Dynamics.Nav.Management.dll" }
         
         if (`$altPath -and (Test-Path `$altPath)) {
             Write-Host "Found alternative path: `$altPath"
@@ -199,8 +196,15 @@ if (`$installedCount -eq 0 -and `$alreadyInstalledCount -eq 0) {
     Write-Host "This may take several minutes depending on the number of apps..." -ForegroundColor Yellow
     Write-Host ""
 
-    # Execute the PowerShell script inside the container
-    $output = docker compose exec bc pwsh -Command $containerScript 2>&1
+    # Write script to a temporary file in the container and execute it through Wine PowerShell
+    # The NAV Management cmdlets must run under Wine because they call native Windows binaries
+    $tempScriptPath = "/tmp/import-test-toolkit-$([guid]::NewGuid().ToString()).ps1"
+    $output = docker compose exec bc bash -c "cat > '$tempScriptPath' << 'PSEOF'
+$containerScript
+PSEOF
+wine powershell -ExecutionPolicy Bypass -File 'Z:$tempScriptPath'
+rm -f '$tempScriptPath'
+" 2>&1
 
     Write-Host $output
     if ($LASTEXITCODE -eq 0) {
