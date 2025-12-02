@@ -54,7 +54,7 @@ Write-Host "Publishing app file: $($appFile.FullName)" -ForegroundColor Gray
 $uri = "$BaseUrl/BC/dev/apps?tenant=default&SchemaUpdateMode=synchronize&DependencyPublishingOption=default"
 $response = Invoke-WebRequest -Uri $uri -Method Post -Credential $credential `
     -InFile $appFile.FullName -ContentType "application/octet-stream" `
-    -UseBasicParsing
+    -UseBasicParsing -AllowUnencryptedAuthentication
 
 if ($response.StatusCode -ne 200 -and $response.StatusCode -ne 204) {
     Write-Host "ERROR: Failed to publish main app. Status: $($response.StatusCode)" -ForegroundColor Red
