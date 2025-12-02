@@ -62,25 +62,15 @@ if (-not $appFile) {
 
 Write-Host "Publishing app file: $($appFile.FullName)" -ForegroundColor Gray
 
-# Publish extension to BC container using API (using multipart/form-data like curl -F)
+# Publish extension to BC container using API
+# PowerShell 7+ supports -Form parameter which is equivalent to curl -F
 $uri = "$BaseUrl/dev/apps?tenant=default&SchemaUpdateMode=synchronize&DependencyPublishingOption=default"
-
-# Read file content
-$fileBytes = [System.IO.File]::ReadAllBytes($appFile.FullName)
-$boundary = [System.Guid]::NewGuid().ToString()
-
-# Create multipart/form-data body
-$LF = "`r`n"
-$bodyLines = (
-    "--$boundary",
-    "Content-Disposition: form-data; name=`"file`"; filename=`"$($appFile.Name)`"",
-    "Content-Type: application/octet-stream$LF",
-    [System.Text.Encoding]::GetEncoding("ISO-8859-1").GetString($fileBytes),
-    "--$boundary--$LF"
-) -join $LF
+$form = @{
+    file = Get-Item -Path $appFile.FullName
+}
 
 $response = Invoke-WebRequest -Uri $uri -Method Post -Headers $Headers `
-    -Body $bodyLines -ContentType "multipart/form-data; boundary=$boundary" `
+    -Form $form `
     -UseBasicParsing -AllowUnencryptedAuthentication
 
 if ($response.StatusCode -ne 200 -and $response.StatusCode -ne 204) {
@@ -103,23 +93,14 @@ if (-not $testAppFile) {
 
 Write-Host "Publishing test app file: $($testAppFile.FullName)" -ForegroundColor Gray
 
-# Publish extension to BC container using API (using multipart/form-data like curl -F)
-# Read file content
-$fileBytes = [System.IO.File]::ReadAllBytes($testAppFile.FullName)
-$boundary = [System.Guid]::NewGuid().ToString()
-
-# Create multipart/form-data body
-$LF = "`r`n"
-$bodyLines = (
-    "--$boundary",
-    "Content-Disposition: form-data; name=`"file`"; filename=`"$($testAppFile.Name)`"",
-    "Content-Type: application/octet-stream$LF",
-    [System.Text.Encoding]::GetEncoding("ISO-8859-1").GetString($fileBytes),
-    "--$boundary--$LF"
-) -join $LF
+# Publish extension to BC container using API
+# PowerShell 7+ supports -Form parameter which is equivalent to curl -F
+$form = @{
+    file = Get-Item -Path $testAppFile.FullName
+}
 
 $response = Invoke-WebRequest -Uri $uri -Method Post -Headers $Headers `
-    -Body $bodyLines -ContentType "multipart/form-data; boundary=$boundary" `
+    -Form $form `
     -UseBasicParsing -AllowUnencryptedAuthentication
 
 if ($response.StatusCode -ne 200 -and $response.StatusCode -ne 204) {
