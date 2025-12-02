@@ -49,7 +49,7 @@ try {
         $logJob = Start-Job -ScriptBlock {
             param($services)
             Push-Location $using:PWD
-            docker compose logs --follow $services
+            docker compose logs --follow --timestamps $services
             Pop-Location
         } -ArgumentList (,$services)
     }
@@ -116,10 +116,10 @@ try {
         # If we weren't showing incremental logs, show them now for debugging
         if ($Quiet) {
             Write-Host "`nBC Container logs:" -ForegroundColor Yellow
-            docker compose logs bc 2>$null
+            docker compose logs --timestamps bc 2>$null
             if ($IncludeSqlLogs) {
                 Write-Host "`nSQL Server logs:" -ForegroundColor Yellow
-                docker compose logs sql 2>$null
+                docker compose logs --timestamps sql 2>$null
             }
         }
         exit 1
