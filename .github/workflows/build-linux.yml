@@ -102,6 +102,7 @@ jobs:
 
       - name: Publish Apps to Container
         run: |
+          chmod +x ./scripts/linux/publish-apps-to-container.sh
           ./scripts/linux/publish-apps-to-container.sh "http://localhost:7049" "$BC_USERNAME" "$BC_PASSWORD"
 
       - name: Run AL Tests in Container via OData
