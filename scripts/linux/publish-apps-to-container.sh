@@ -23,9 +23,17 @@ fi
 echo "Publishing app file: $APP_FILE"
 
 # Publish extension to BC container using API
-curl -u "$USERNAME:$PASSWORD" \
+HTTP_CODE=$(curl -u "$USERNAME:$PASSWORD" \
      -F "file=@$APP_FILE" \
-     "$BASE_URL/BC/dev/apps?tenant=default&SchemaUpdateMode=synchronize&DependencyPublishingOption=default"
+     -w "%{http_code}" \
+     -o /tmp/publish_response.txt \
+     "$BASE_URL/BC/dev/apps?tenant=default&SchemaUpdateMode=synchronize&DependencyPublishingOption=default")
+
+if [ "$HTTP_CODE" -ge 400 ]; then
+    echo "ERROR: Failed to publish main app (HTTP $HTTP_CODE)"
+    cat /tmp/publish_response.txt
+    exit 1
+fi
 
 # Publish Test App
 echo "Publishing The Library Tester (test app) to BC container..."
@@ -40,8 +48,16 @@ fi
 echo "Publishing test app file: $TEST_APP_FILE"
 
 # Publish extension to BC container using API
-curl -u "$USERNAME:$PASSWORD" \
+HTTP_CODE=$(curl -u "$USERNAME:$PASSWORD" \
      -F "file=@$TEST_APP_FILE" \
-     "$BASE_URL/BC/dev/apps?tenant=default&SchemaUpdateMode=synchronize&DependencyPublishingOption=default"
+     -w "%{http_code}" \
+     -o /tmp/publish_response.txt \
+     "$BASE_URL/BC/dev/apps?tenant=default&SchemaUpdateMode=synchronize&DependencyPublishingOption=default")
+
+if [ "$HTTP_CODE" -ge 400 ]; then
+    echo "ERROR: Failed to publish test app (HTTP $HTTP_CODE)"
+    cat /tmp/publish_response.txt
+    exit 1
+fi
 
 echo "✓ All apps published successfully"
