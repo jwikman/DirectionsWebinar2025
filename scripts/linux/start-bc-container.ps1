@@ -34,10 +34,11 @@ Write-Host "Starting Business Central container..." -ForegroundColor Cyan
 Push-Location bcdev-temp
 
 try {
-    # Start the container
-    docker compose up -d
+    # Build and start the containers
+    # The --build flag ensures images are rebuilt if there are changes
+    docker compose up --build -d
 
-    # Wait for container to become healthy (can take up to 10 minutes)
+    # Wait for container to become healthy (can take up to 10 minutes)...
     Write-Host "Waiting for BC container to become healthy (this can take up to 10 minutes)..." -ForegroundColor Yellow
     $containerName = (docker compose ps -q | Select-Object -First 1)
     $elapsed = 0

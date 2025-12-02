@@ -39,7 +39,7 @@ docker --version
 docker compose version
 
 # Clone BCDevOnLinux repository
-Write-Host "Cloning BCDevOnLinux repository..." -ForegroundColor Yellow
+Write-Host "Cloning BCDevOnLinux repository, branch '$BCDevBranch'..." -ForegroundColor Yellow
 git clone --branch $BCDevBranch --depth 1 $BCDevRepo bcdev-temp
 
 # Pull BC Wine Base Image
@@ -48,8 +48,12 @@ docker pull stefanmaronbc/bc-wine-base:latest
 
 # Clean up any existing BC artifacts volume to force fresh download
 Write-Host "Cleaning up any existing BC artifacts volume..." -ForegroundColor Yellow
-docker volume rm bcdev-temp_bc_artifacts -f 2>$null
-Write-Host "✓ BC artifacts volume removed (will be recreated fresh)" -ForegroundColor Green
+$volumeRemovalOutput = docker volume rm bcdev-temp_bc_artifacts -f 2>&1
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "✓ BC artifacts volume 'bcdev-temp_bc_artifacts' removed (will be recreated fresh)" -ForegroundColor Green
+} else {
+    Write-Host "  Volume 'bcdev-temp_bc_artifacts' did not exist (clean state)" -ForegroundColor Gray
+}
 
 # Build BC Container with Docker Compose
 Write-Host "Building Business Central container..." -ForegroundColor Yellow
@@ -122,11 +126,10 @@ try {
             }
         }
     }
-
-    docker compose build
 }
 finally {
     Pop-Location
 }
 
 Write-Host "Business Central container setup completed successfully" -ForegroundColor Green
+Write-Host "Environment is ready. Use start-bc-container.ps1 to build and start the containers." -ForegroundColor Cyan
