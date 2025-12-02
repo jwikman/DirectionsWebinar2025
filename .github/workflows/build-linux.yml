@@ -12,7 +12,7 @@ env:
   AL_VERSION: "17.0.28.6483-beta"
   BCDEV_REPO: "https://github.com/jwikman/BCDevOnLinux.git"
   BCDEV_BRANCH: "CustomArtifactUrl"
-  BC_USERNAME: "admin"
+  BC_USERNAME: "admin" # This must not be changed, as BCDevOnLinux setup scripts expect this username
   BC_PASSWORD: "Admin123!"
   SA_PASSWORD: "P@ssw0rd123!"
 
@@ -42,6 +42,7 @@ jobs:
       - name: Setup BC Container
         env:
           SA_PASSWORD: ${{ env.SA_PASSWORD }}
+          BC_PASSWORD: ${{ env.BC_PASSWORD }}
         run: |
           pwsh ./scripts/linux/setup-bc-container.ps1 -BCDevRepo "$BCDEV_REPO" -BCDevBranch "$BCDEV_BRANCH" -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
 
