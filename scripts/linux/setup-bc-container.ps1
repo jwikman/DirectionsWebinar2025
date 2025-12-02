@@ -60,10 +60,36 @@ try {
 
     if ($BCArtifactUrl) {
         Write-Host "Using BC Artifact URL: $BCArtifactUrl" -ForegroundColor Cyan
-        $envContent += "BC_ARTIFACT_URL=$BCArtifactUrl"
+
+        # Parse the artifact URL to extract version and country
+        # Workaround: Extract and set legacy variables BC_VERSION, BC_COUNTRY, BC_TYPE
+        # URL format: https://bcartifacts.azureedge.net/<type>/<version>/<country>
+        if ($BCArtifactUrl -match '/(?<type>sandbox|onprem)/(?<version>[^/]+)/(?<country>[^/?]+)') {
+            $bcType = $matches['type']
+            $bcVersion = $matches['version']
+            $bcCountry = $matches['country']
+
+            # Capitalize first letter of type
+            $bcType = $bcType.Substring(0,1).ToUpper() + $bcType.Substring(1)
+
+            Write-Host "  Parsed - Type: $bcType, Version: $bcVersion, Country: $bcCountry" -ForegroundColor Gray
+
+            # Set legacy variables (workaround for jwikman/BCDevOnLinux cache-artifacts.ps1 bug)
+            $envContent += "BC_TYPE=$bcType"
+            $envContent += "BC_VERSION=$bcVersion"
+            $envContent += "BC_COUNTRY=$bcCountry"
+
+            # Also set BC_ARTIFACT_URL for potential future fix
+            $envContent += "BC_ARTIFACT_URL=$BCArtifactUrl"
+        }
+        else {
+            Write-Host "  Warning: Could not parse artifact URL format" -ForegroundColor Yellow
+            Write-Host "  Falling back to BC_ARTIFACT_URL only (may not work due to bug in cache-artifacts.ps1)" -ForegroundColor Yellow
+            $envContent += "BC_ARTIFACT_URL=$BCArtifactUrl"
+        }
     }
     else {
-        Write-Host "No BC artifact URL specified - using BCDevOnLinux defaults" -ForegroundColor Yellow
+        Write-Host "No BC artifact URL specified - using BCDevOnLinux defaults (BC 26 Sandbox W1)" -ForegroundColor Yellow
     }
 
     # Add SA_PASSWORD from environment if available
