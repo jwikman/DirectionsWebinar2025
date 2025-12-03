@@ -31,8 +31,8 @@ param(
     [string]$BCDevRepo,
     [Parameter(Mandatory = $true)]
     [string]$BCDevBranch,
-    [Parameter(Mandatory = $true)]
-    [string]$BCArtifactUrl
+    [Parameter(Mandatory = $false)]
+    [string]$BCArtifactUrl = ""
 )
 
 $ErrorActionPreference = "Stop"
