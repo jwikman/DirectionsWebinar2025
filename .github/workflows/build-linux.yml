@@ -34,9 +34,9 @@ jobs:
         id: get-bc-artifact
         run: |
           pwsh -Command "
-            Install-Module -Name BcContainerHelper -Force -AllowClobber -Scope CurrentUser
-            \$artifactUrl = Get-BcArtifactUrl -type Sandbox -country w1 -select Weekly
-            Write-Host \"Weekly BC Artifact URL: \$artifactUrl\"
+            # Install-Module -Name BcContainerHelper -Force -AllowClobber -Scope CurrentUser
+            # \$artifactUrl = Get-BcArtifactUrl -type Sandbox -country w1 -select Weekly
+            # Write-Host \"Weekly BC Artifact URL: \$artifactUrl\"
             echo \"artifact-url=\$artifactUrl\" >> \$env:GITHUB_OUTPUT
           "
 
