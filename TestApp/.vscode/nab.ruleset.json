@@ -10,6 +10,11 @@
             "id": "AA0218",
             "action": "None",
             "justification": "ToolTips not needed in test app"
+        },
+        {
+            "id": "AA0247",
+            "action": "None",
+            "justification": "Skip namespaces in test app."
         }
     ]
 }
