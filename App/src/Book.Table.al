@@ -118,6 +118,11 @@ table 70303 "LIB Book"
             Editable = false;
             AllowInCustomizations = Never;
         }
+        field(11; "Book Format"; Enum "LIB Book Format")
+        {
+            Caption = 'Book Format';
+            ToolTip = 'Specifies the format of the book.';
+        }
     }
 
     keys
