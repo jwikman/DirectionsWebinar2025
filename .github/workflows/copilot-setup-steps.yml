@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - .github/workflows/copilot-setup-steps.yml
-      - .github/initialize-coding-agent.ps1
+      - "scripts/**"
   pull_request:
     paths:
       - .github/workflows/copilot-setup-steps.yml
@@ -15,6 +15,15 @@ on:
 defaults:
   run:
     shell: pwsh
+
+env:
+  AL_VERSION: "17.0.28.6483-beta"
+  BCDEV_REPO: "https://github.com/jwikman/BCDevOnLinux.git"
+  BCDEV_BRANCH: "troubleshooting"
+  BC_USERNAME: "admin" # This must not be changed, as BCDevOnLinux setup scripts expect this username
+  BC_PASSWORD: "Admin123!"
+  SA_PASSWORD: "P@ssw0rd123!"
+
 
 jobs:
   # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
@@ -30,11 +39,99 @@ jobs:
     # You can define any steps you want, and they will run before the agent starts.
     # If you do not check out your code, Copilot will do this for you.
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Prepare Copilot Environment
-        continue-on-error: false
-        shell: pwsh
+      - name: Setup .NET 8.0 and AL Tools
         run: |
-          . (Join-Path ($pwd.path) '.github\initialize-coding-agent.ps1' -resolve)
+          pwsh ./scripts/linux/setup-dotnet-and-al.ps1 \
+            -ALVersion "$AL_VERSION"
+
+      - name: Get Weekly BC Artifact URL
+        id: get-bc-artifact
+        run: |
+          pwsh -Command "
+            Install-Module -Name BcContainerHelper -Force -AllowClobber -Scope CurrentUser
+            \$artifactUrl = Get-BcArtifactUrl -type Sandbox -country w1 -select Weekly
+            Write-Host \"Weekly BC Artifact URL: \$artifactUrl\"
+            echo \"artifact-url=\$artifactUrl\" >> \$env:GITHUB_OUTPUT
+          "
+
+      - name: Setup BC Container
+        env:
+          SA_PASSWORD: ${{ env.SA_PASSWORD }}
+          BC_USERNAME: ${{ env.BC_USERNAME }}
+          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+        run: |
+          pwsh ./scripts/linux/setup-bc-container.ps1 \
+            -BCDevRepo "$BCDEV_REPO" \
+            -BCDevBranch "$BCDEV_BRANCH" \
+            -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
+
+      - name: Start BC Container
+        run: |
+          pwsh ./scripts/linux/start-bc-container.ps1 \
+            -MaxWaitSeconds 1200
+
+      - name: Create dependencies directory
+        run: |
+          mkdir -p .alpackages
+
+      - name: Download BC Symbol Packages for Main App
+        env:
+          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+        run: |
+          pwsh ./scripts/linux/download-bc-symbols.ps1 \
+            -AppJsonPath "./App/app.json" \
+            -BaseUrl "http://localhost:7049/BC" \
+            -Tenant "default" \
+            -Username "$BC_USERNAME" \
+            -SymbolsFolder ".alpackages"
+
+      - name: Compile Main App
+        run: |
+          pwsh ./scripts/linux/compile-al-apps.ps1 \
+            -ProjectPath "./App"
+
+      - name: Download BC Symbol Packages for Test App
+        env:
+          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+        run: |
+          pwsh ./scripts/linux/download-bc-symbols.ps1 \
+            -AppJsonPath "./TestApp/app.json" \
+            -BaseUrl "http://localhost:7049/BC" \
+            -Tenant "default" \
+            -Username "$BC_USERNAME" \
+            -SymbolsFolder ".alpackages"
+
+      - name: Compile Test App
+        run: |
+          pwsh ./scripts/linux/compile-al-apps.ps1 \
+            -ProjectPath "./TestApp"
+
+      - name: Publish Apps to Container
+        env:
+          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+        run: |
+          pwsh ./scripts/linux/publish-apps-to-container.ps1 \
+            -BaseUrl "http://localhost:7049/BC" \
+            -Username "$BC_USERNAME"
+
+      - name: Run AL Tests in Container via OData
+        run: |
+          echo "Running AL tests in BC container via OData API..."
+          pwsh ./scripts/linux/run-tests-odata.ps1 \
+            -BaseUrl "http://localhost:7048/BC" \
+            -Tenant "default" \
+            -Username "$BC_USERNAME" \
+            -Password "$BC_PASSWORD" \
+            -CodeunitId 70454 \
+            -MaxWaitSeconds 300
+
+      - name: Build Summary
+        run: |
+          echo "=== BUILD SUMMARY ==="
+          echo "Build completed at: $(date -Iseconds)"
+          echo ""
+          echo "=== BUILD ARTIFACTS ==="
+          ls -lh App/*.app TestApp/*.app 2>/dev/null || echo "No .app files found"
