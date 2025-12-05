@@ -37,18 +37,16 @@ jobs:
         env:
           AL_VERSION: ${{ vars.AL_VERSION }}
         run: |
-          pwsh ./.github/scripts/setup-dotnet-and-al.ps1 \
+          ./.github/scripts/setup-dotnet-and-al.ps1 `
             -ALVersion "$env:AL_VERSION"
 
       - name: Get Weekly BC Artifact URL
         id: get-bc-artifact
         run: |
-          pwsh -Command "
-            Install-Module -Name BcContainerHelper -Force -AllowClobber -Scope CurrentUser
-            \$artifactUrl = Get-BcArtifactUrl -type Sandbox -country w1 -select Weekly
-            Write-Host \"Weekly BC Artifact URL: \$artifactUrl\"
-            echo \"artifact-url=\$artifactUrl\" >> \$env:GITHUB_OUTPUT
-          "
+          Install-Module -Name BcContainerHelper -Force -AllowClobber -Scope CurrentUser
+          $artifactUrl = Get-BcArtifactUrl -type Sandbox -country w1 -select Weekly
+          Write-Host "Weekly BC Artifact URL: $artifactUrl"
+          "artifact-url=$artifactUrl" >> $env:GITHUB_OUTPUT
 
       - name: Setup BC Container
         env:
@@ -58,35 +56,38 @@ jobs:
           BCDEV_REPO: ${{ vars.BCDEV_REPO }}
           BCDEV_BRANCH: ${{ vars.BCDEV_BRANCH }}
         run: |
-          pwsh ./.github/scripts/setup-bc-container.ps1 \
-            -BCDevRepo "$env:BCDEV_REPO" \
-            -BCDevBranch "$env:BCDEV_BRANCH" \
+          ./.github/scripts/setup-bc-container.ps1 `
+            -BCDevRepo "$env:BCDEV_REPO" `
+            -BCDevBranch "$env:BCDEV_BRANCH" `
             -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
 
       - name: Start BC Container
         run: |
-          pwsh ./.github/scripts/start-bc-container.ps1 \
+          ./.github/scripts/start-bc-container.ps1 `
             -MaxWaitSeconds 1200
 
       - name: Create dependencies directory
         run: |
-          mkdir -p .alpackages
+          New-Item `
+            -ItemType Directory `
+            -Force `
+            -Path .alpackages
 
       - name: Download BC Symbol Packages for Main App
         env:
           BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
           BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
-          pwsh ./.github/scripts/download-bc-symbols.ps1 \
-            -AppJsonPath "./App/app.json" \
-            -BaseUrl "http://localhost:7049/BC" \
-            -Tenant "default" \
-            -Username "$env:BC_USERNAME" \
+          ./.github/scripts/download-bc-symbols.ps1 `
+            -AppJsonPath "./App/app.json" `
+            -BaseUrl "http://localhost:7049/BC" `
+            -Tenant "default" `
+            -Username "$env:BC_USERNAME" `
             -SymbolsFolder ".alpackages"
 
       - name: Compile Main App
         run: |
-          pwsh ./.github/scripts/compile-al-apps.ps1 \
+          ./.github/scripts/compile-al-apps.ps1 `
             -ProjectPath "./App"
 
       - name: Download BC Symbol Packages for Test App
@@ -94,45 +95,44 @@ jobs:
           BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
           BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
-          pwsh ./.github/scripts/download-bc-symbols.ps1 \
-            -AppJsonPath "./TestApp/app.json" \
-            -BaseUrl "http://localhost:7049/BC" \
-            -Tenant "default" \
-            -Username "$env:BC_USERNAME" \
+          ./.github/scripts/download-bc-symbols.ps1 `
+            -AppJsonPath "./TestApp/app.json" `
+            -BaseUrl "http://localhost:7049/BC" `
+            -Tenant "default" `
+            -Username "$env:BC_USERNAME" `
             -SymbolsFolder ".alpackages"
 
       - name: Compile Test App
         run: |
-          pwsh ./.github/scripts/compile-al-apps.ps1 \
+          ./.github/scripts/compile-al-apps.ps1 `
             -ProjectPath "./TestApp"
+
       - name: Publish Apps to Container
         env:
           BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
           BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
-          pwsh ./.github/scripts/publish-apps-to-container.ps1 \
-            -BaseUrl "http://localhost:7049/BC" \
-            -Username "$env:BC_USERNAME"st:7049/BC" \
-            -Username "$BC_USERNAME"
+          ./.github/scripts/publish-apps-to-container.ps1 `
+            -BaseUrl "http://localhost:7049/BC" `
+            -Username "$env:BC_USERNAME"
       - name: Run AL Tests in Container via OData
         env:
           BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
           BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
-          echo "Running AL tests in BC container via OData API..."
-          pwsh ./.github/scripts/run-tests-odata.ps1 \
-            -BaseUrl "http://localhost:7048/BC" \
-            -Tenant "default" \
-            -Username "$env:BC_USERNAME" \
-            -Password "$env:BC_PASSWORD" \
-            -CodeunitId 70454 \
-            -MaxWaitSeconds 300
+          Write-Host "Running AL tests in BC container via OData API..."
+          ./.github/scripts/run-tests-odata.ps1 `
+            -BaseUrl "http://localhost:7048/BC" `
+            -Tenant "default" `
+            -Username "$env:BC_USERNAME" `
+            -Password "$env:BC_PASSWORD" `
+            -CodeunitId 70454 `
             -MaxWaitSeconds 300
 
       - name: Build Summary
         run: |
-          echo "=== BUILD SUMMARY ==="
-          echo "Build completed at: $(date -Iseconds)"
-          echo ""
-          echo "=== BUILD ARTIFACTS ==="
-          ls -lh App/*.app TestApp/*.app 2>/dev/null || echo "No .app files found"
+          Write-Host "=== BUILD SUMMARY ==="
+          Write-Host "Build completed at: $(Get-Date -Format o)"
+          Write-Host ""
+          Write-Host "=== BUILD ARTIFACTS ==="
+          Get-ChildItem -Path App/*.app, TestApp/*.app -ErrorAction SilentlyContinue | ForEach-Object { Write-Host $_.FullName }
