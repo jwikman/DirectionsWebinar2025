@@ -24,7 +24,7 @@ It should find the prompt file, switch to the BC Translator agent, and execute t
 
 ### Configure Copilot in the Repository settings
 
-Configure the NAB AL Tools MCP Server for the Copilot Coding Agent by using the following MCP Configuration in your repository settings on GitHub:
+Configure the MCP Servers for the Copilot Coding Agent by using the following MCP Configuration in your repository settings on GitHub:
 
 ```json
 {
@@ -32,13 +32,24 @@ Configure the NAB AL Tools MCP Server for the Copilot Coding Agent by using the 
     "nab-al-tools-mcp": {
       "type": "local",
       "command": "npx",
-            "args": [
-                "-y",
-                "@nabsolutions/nab-al-tools-mcp"
-            ],
-            "tools": [
-                "*"
-            ]
+      "args": [
+        "-y",
+        "@nabsolutions/nab-al-tools-mcp"
+      ],
+      "tools": [
+        "*"
+      ]
+    },
+    "al-test-runner": {
+      "type": "local",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@al-test-runner/mcp-server"
+      ],
+      "tools": [
+        "*"
+      ]
     }
   }
 }
