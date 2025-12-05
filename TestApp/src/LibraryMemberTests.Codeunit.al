@@ -90,6 +90,42 @@ codeunit 70450 "LIB Library Member Tests"
         Assert.AreEqual(MembershipType::Senior, LibraryMember."Membership Type", 'Should accept Senior');
     end;
 
+    [Test]
+    procedure TestLibraryMemberDeactivation()
+    var
+        LibraryMember: Record "LIB Library Member";
+    begin
+        // [GIVEN] An active Library Member
+        InitializeLibrarySetup();
+        LibraryMember.Init();
+        LibraryMember.Insert(true);
+        Assert.IsTrue(LibraryMember.Active, 'Member should be active by default');
+
+        // [WHEN] Deactivating the member
+        LibraryMember.Validate(Active, false);
+        LibraryMember.Modify(true);
+
+        // [THEN] Member is deactivated
+        Assert.IsFalse(LibraryMember.Active, 'Member should be inactive');
+    end;
+
+    [Test]
+    procedure TestLibraryMemberPhoneNumber()
+    var
+        LibraryMember: Record "LIB Library Member";
+    begin
+        // [GIVEN] A Library Member
+        InitializeLibrarySetup();
+        LibraryMember.Init();
+        LibraryMember.Insert(true);
+
+        // [WHEN] Setting a phone number
+        LibraryMember.Validate("Phone No.", '+1-555-0123');
+
+        // [THEN] Phone number is accepted
+        Assert.AreEqual('+1-555-0123', LibraryMember."Phone No.", 'Phone number should be set');
+    end;
+
     local procedure InitializeLibrarySetup()
     var
         LibrarySetup: Record "LIB Library Setup";

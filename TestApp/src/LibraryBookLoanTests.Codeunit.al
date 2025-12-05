@@ -125,6 +125,54 @@ codeunit 70453 "LIB Library Book Loan Tests"
         Assert.ExpectedError('There are no lines to post');
     end;
 
+    [Test]
+    procedure TestBookLoanLineQuantityValidation()
+    var
+        BookLoanHeader: Record "LIB Book Loan Header";
+        BookLoanLine: Record "LIB Book Loan Line";
+        Book: Record "LIB Book";
+    begin
+        // [GIVEN] A Book Loan and a Book
+        InitializeLibrarySetup();
+        CreateBook(Book);
+
+        BookLoanHeader.Init();
+        BookLoanHeader.Insert(true);
+
+        // [WHEN] Creating a loan line with quantity of 1
+        BookLoanLine.Init();
+        BookLoanLine."Document No." := BookLoanHeader."No.";
+        BookLoanLine."Line No." := 10000;
+        BookLoanLine.Validate("Book No.", Book."No.");
+        BookLoanLine.Validate(Quantity, 1);
+        BookLoanLine.Insert(true);
+
+        // [THEN] Line is created successfully
+        Assert.AreEqual(1, BookLoanLine.Quantity, 'Quantity should be 1');
+        Assert.AreEqual(Book."No.", BookLoanLine."Book No.", 'Book No. should match');
+    end;
+
+    [Test]
+    procedure TestBookLoanStatusProgression()
+    var
+        BookLoanHeader: Record "LIB Book Loan Header";
+    begin
+        // [GIVEN] A new Book Loan
+        InitializeLibrarySetup();
+        BookLoanHeader.Init();
+        BookLoanHeader.Insert(true);
+
+        // [THEN] Status is Open by default
+        Assert.AreEqual(BookLoanHeader.Status::Open, BookLoanHeader.Status, 'Status should be Open');
+
+        // [WHEN] Changing status to Posted
+        BookLoanHeader.Status := BookLoanHeader.Status::Posted;
+        BookLoanHeader.Modify();
+
+        // [THEN] Status is Posted
+        Assert.AreEqual(BookLoanHeader.Status::Posted, BookLoanHeader.Status, 'Status should be Posted');
+    end;
+
     local procedure InitializeLibrarySetup()
     var
         LibrarySetup: Record "LIB Library Setup";
@@ -185,5 +233,24 @@ codeunit 70453 "LIB Library Book Loan Tests"
         LibraryMember.Insert(true);
         LibraryMember.Validate(Name, 'Test Member');
         LibraryMember.Modify(true);
+    end;
+
+    local procedure CreateBook(var Book: Record "LIB Book")
+    var
+        LibrarySetup: Record "LIB Library Setup";
+        NoSeries: Record "No. Series";
+    begin
+        LibrarySetup.Get();
+        if LibrarySetup."Book Nos." = '' then begin
+            CreateNumberSeries('BOOK', NoSeries);
+            LibrarySetup."Book Nos." := NoSeries.Code;
+            LibrarySetup.Modify();
+        end;
+
+        Book.Init();
+        Book.Insert(true);
+        Book.Validate(Title, 'Test Book');
+        Book.Validate(Quantity, 5);
+        Book.Modify(true);
     end;
 }

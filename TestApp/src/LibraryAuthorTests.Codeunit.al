@@ -94,6 +94,50 @@ codeunit 70451 "LIB Library Author Tests"
         asserterror Author.Validate(ORCID, '0000-0002-1825');
     end;
 
+    [Test]
+    procedure TestAuthorNameRequired()
+    var
+        Author: Record "LIB Author";
+    begin
+        // [GIVEN] Library Setup with Author Number Series
+        InitializeLibrarySetup();
+
+        // [WHEN] Creating an author with a name
+        Author.Init();
+        Author.Insert(true);
+        Author.Validate(Name, 'John Smith');
+        Author.Modify(true);
+
+        // [THEN] Author name is set correctly
+        Assert.AreEqual('John Smith', Author.Name, 'Author name should be set');
+    end;
+
+    [Test]
+    procedure TestMultipleAuthorsCreation()
+    var
+        Author1: Record "LIB Author";
+        Author2: Record "LIB Author";
+    begin
+        // [GIVEN] Library Setup with Author Number Series
+        InitializeLibrarySetup();
+
+        // [WHEN] Creating multiple authors
+        Author1.Init();
+        Author1.Insert(true);
+        Author1.Validate(Name, 'Author One');
+        Author1.Modify(true);
+
+        Author2.Init();
+        Author2.Insert(true);
+        Author2.Validate(Name, 'Author Two');
+        Author2.Modify(true);
+
+        // [THEN] Both authors have unique numbers
+        Assert.AreNotEqual(Author1."No.", Author2."No.", 'Authors should have unique numbers');
+        Assert.AreNotEqual('', Author1."No.", 'First author should have a number');
+        Assert.AreNotEqual('', Author2."No.", 'Second author should have a number');
+    end;
+
     local procedure InitializeLibrarySetup()
     var
         LibrarySetup: Record "LIB Library Setup";

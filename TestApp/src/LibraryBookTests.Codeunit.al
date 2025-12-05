@@ -127,6 +127,44 @@ codeunit 70452 "LIB Library Book Tests"
         Assert.ExpectedError('Quantity cannot be negative.');
     end;
 
+    [Test]
+    procedure TestBookTitleRequired()
+    var
+        Book: Record "LIB Book";
+    begin
+        // [GIVEN] Library Setup with Book Number Series
+        InitializeLibrarySetup();
+
+        // [WHEN] Creating a book with a title
+        Book.Init();
+        Book.Insert(true);
+        Book.Validate(Title, 'The Great Book');
+        Book.Modify(true);
+
+        // [THEN] Book title is set correctly
+        Assert.AreEqual('The Great Book', Book.Title, 'Book title should be set');
+    end;
+
+    [Test]
+    procedure TestBookAvailableQuantityCalculation()
+    var
+        Book: Record "LIB Book";
+    begin
+        // [GIVEN] A Book with quantity
+        InitializeLibrarySetup();
+        Book.Init();
+        Book.Insert(true);
+        Book.Validate(Quantity, 5);
+        Book.Modify(true);
+
+        // [WHEN] Calculating available quantity with no loans
+        Book.CalcFields("Available Quantity");
+
+        // [THEN] Total quantity is set
+        Assert.AreEqual(5, Book.Quantity, 'Total quantity should be 5');
+        Assert.AreEqual(0, Book."Available Quantity", 'Available quantity should be 0 initially (no loans)');
+    end;
+
     local procedure InitializeLibrarySetup()
     var
         LibrarySetup: Record "LIB Library Setup";
