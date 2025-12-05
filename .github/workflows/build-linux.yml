@@ -27,7 +27,7 @@ jobs:
 
       - name: Setup .NET 8.0 and AL Tools
         run: |
-          pwsh ./scripts/linux/setup-dotnet-and-al.ps1 \
+          pwsh ./.github/scripts/setup-dotnet-and-al.ps1 \
             -ALVersion "$AL_VERSION"
 
       - name: Get Weekly BC Artifact URL
@@ -46,14 +46,14 @@ jobs:
           BC_USERNAME: ${{ env.BC_USERNAME }}
           BC_PASSWORD: ${{ env.BC_PASSWORD }}
         run: |
-          pwsh ./scripts/linux/setup-bc-container.ps1 \
+          pwsh ./.github/scripts/setup-bc-container.ps1 \
             -BCDevRepo "$BCDEV_REPO" \
             -BCDevBranch "$BCDEV_BRANCH" \
             -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
 
       - name: Start BC Container
         run: |
-          pwsh ./scripts/linux/start-bc-container.ps1 \
+          pwsh ./.github/scripts/start-bc-container.ps1 \
             -MaxWaitSeconds 1200
 
       - name: Create dependencies directory
@@ -64,7 +64,7 @@ jobs:
         env:
           BC_PASSWORD: ${{ env.BC_PASSWORD }}
         run: |
-          pwsh ./scripts/linux/download-bc-symbols.ps1 \
+          pwsh ./.github/scripts/download-bc-symbols.ps1 \
             -AppJsonPath "./App/app.json" \
             -BaseUrl "http://localhost:7049/BC" \
             -Tenant "default" \
@@ -73,14 +73,14 @@ jobs:
 
       - name: Compile Main App
         run: |
-          pwsh ./scripts/linux/compile-al-apps.ps1 \
+          pwsh ./.github/scripts/compile-al-apps.ps1 \
             -ProjectPath "./App"
 
       - name: Download BC Symbol Packages for Test App
         env:
           BC_PASSWORD: ${{ env.BC_PASSWORD }}
         run: |
-          pwsh ./scripts/linux/download-bc-symbols.ps1 \
+          pwsh ./.github/scripts/download-bc-symbols.ps1 \
             -AppJsonPath "./TestApp/app.json" \
             -BaseUrl "http://localhost:7049/BC" \
             -Tenant "default" \
@@ -89,21 +89,21 @@ jobs:
 
       - name: Compile Test App
         run: |
-          pwsh ./scripts/linux/compile-al-apps.ps1 \
+          pwsh ./.github/scripts/compile-al-apps.ps1 \
             -ProjectPath "./TestApp"
 
       - name: Publish Apps to Container
         env:
           BC_PASSWORD: ${{ env.BC_PASSWORD }}
         run: |
-          pwsh ./scripts/linux/publish-apps-to-container.ps1 \
+          pwsh ./.github/scripts/publish-apps-to-container.ps1 \
             -BaseUrl "http://localhost:7049/BC" \
             -Username "$BC_USERNAME"
 
       - name: Run AL Tests in Container via OData
         run: |
           echo "Running AL tests in BC container via OData API..."
-          pwsh ./scripts/linux/run-tests-odata.ps1 \
+          pwsh ./.github/scripts/run-tests-odata.ps1 \
             -BaseUrl "http://localhost:7048/BC" \
             -Tenant "default" \
             -Username "$BC_USERNAME" \
