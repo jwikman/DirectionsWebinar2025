@@ -24,6 +24,24 @@ It should find the prompt file, switch to the BC Translator agent, and execute t
 
 ### Configure Copilot in the Repository settings
 
+#### Environment Variables
+
+Environment variables for GitHub Copilot Coding Agent must be configured in the **Copilot environment** in your repository settings:
+
+1. Navigate to **Settings** → **Environments** in your repository
+2. Create or select the `copilot` environment
+3. Add the following as **Environment variables** (non-sensitive) or **Environment secrets** (sensitive):
+   - `AL_VERSION`: `17.0.28.6483-beta`
+   - `BCDEV_REPO`: `https://github.com/StefanMaron/BCDevOnLinux.git`
+   - `BCDEV_BRANCH`: `main`
+   - `BC_USERNAME`: `admin` (or as secret)
+   - `BC_PASSWORD`: `Admin123!` (add as secret)
+   - `SA_PASSWORD`: `P@ssw0rd123!` (add as secret)
+
+**Note**: Environment variables set in the Copilot environment are automatically available to the Copilot Coding Agent during execution. For MCP servers, only secrets with names prefixed with `COPILOT_MCP_` are accessible.
+
+#### MCP Server Configuration
+
 Configure the MCP Servers for the Copilot Coding Agent by using the following MCP Configuration in your repository settings on GitHub:
 
 ```json

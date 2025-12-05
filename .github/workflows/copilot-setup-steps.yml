@@ -34,9 +34,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup .NET 8.0 and AL Tools
+        env:
+          AL_VERSION: ${{ vars.AL_VERSION }}
         run: |
           pwsh ./.github/scripts/setup-dotnet-and-al.ps1 \
-            -ALVersion "$AL_VERSION"
+            -ALVersion "$env:AL_VERSION"
 
       - name: Get Weekly BC Artifact URL
         id: get-bc-artifact
@@ -50,13 +52,15 @@ jobs:
 
       - name: Setup BC Container
         env:
-          SA_PASSWORD: ${{ env.SA_PASSWORD }}
-          BC_USERNAME: ${{ env.BC_USERNAME }}
-          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+          SA_PASSWORD: ${{ secrets.SA_PASSWORD }}
+          BC_USERNAME: ${{ vars.BC_USERNAME }}
+          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
+          BCDEV_REPO: ${{ vars.BCDEV_REPO }}
+          BCDEV_BRANCH: ${{ vars.BCDEV_BRANCH }}
         run: |
           pwsh ./.github/scripts/setup-bc-container.ps1 \
-            -BCDevRepo "$BCDEV_REPO" \
-            -BCDevBranch "$BCDEV_BRANCH" \
+            -BCDevRepo "$env:BCDEV_REPO" \
+            -BCDevBranch "$env:BCDEV_BRANCH" \
             -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
 
       - name: Start BC Container
@@ -70,13 +74,14 @@ jobs:
 
       - name: Download BC Symbol Packages for Main App
         env:
-          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
+          BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
           pwsh ./.github/scripts/download-bc-symbols.ps1 \
             -AppJsonPath "./App/app.json" \
             -BaseUrl "http://localhost:7049/BC" \
             -Tenant "default" \
-            -Username "$BC_USERNAME" \
+            -Username "$env:BC_USERNAME" \
             -SymbolsFolder ".alpackages"
 
       - name: Compile Main App
@@ -86,37 +91,42 @@ jobs:
 
       - name: Download BC Symbol Packages for Test App
         env:
-          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
+          BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
           pwsh ./.github/scripts/download-bc-symbols.ps1 \
             -AppJsonPath "./TestApp/app.json" \
             -BaseUrl "http://localhost:7049/BC" \
             -Tenant "default" \
-            -Username "$BC_USERNAME" \
+            -Username "$env:BC_USERNAME" \
             -SymbolsFolder ".alpackages"
 
       - name: Compile Test App
         run: |
           pwsh ./.github/scripts/compile-al-apps.ps1 \
             -ProjectPath "./TestApp"
-
       - name: Publish Apps to Container
         env:
-          BC_PASSWORD: ${{ env.BC_PASSWORD }}
+          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
+          BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
           pwsh ./.github/scripts/publish-apps-to-container.ps1 \
             -BaseUrl "http://localhost:7049/BC" \
+            -Username "$env:BC_USERNAME"st:7049/BC" \
             -Username "$BC_USERNAME"
-
       - name: Run AL Tests in Container via OData
+        env:
+          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
+          BC_USERNAME: ${{ vars.BC_USERNAME }}
         run: |
           echo "Running AL tests in BC container via OData API..."
           pwsh ./.github/scripts/run-tests-odata.ps1 \
             -BaseUrl "http://localhost:7048/BC" \
             -Tenant "default" \
-            -Username "$BC_USERNAME" \
-            -Password "$BC_PASSWORD" \
+            -Username "$env:BC_USERNAME" \
+            -Password "$env:BC_PASSWORD" \
             -CodeunitId 70454 \
+            -MaxWaitSeconds 300
             -MaxWaitSeconds 300
 
       - name: Build Summary
