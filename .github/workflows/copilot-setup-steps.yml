@@ -32,11 +32,8 @@ jobs:
 
       - name: Setup .NET 8.0 and AL Tools
         shell: pwsh
-        env:
-          AL_VERSION: ${{ vars.AL_VERSION }}
         run: |
-          ./.github/scripts/setup-dotnet-and-al.ps1 `
-            -ALVersion "$env:AL_VERSION"
+          ./.github/scripts/setup-dotnet-and-al.ps1
 
       - name: Get Weekly BC Artifact URL
         shell: pwsh
