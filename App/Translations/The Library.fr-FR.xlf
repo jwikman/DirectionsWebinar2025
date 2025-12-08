@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="fr-FR" original="The Library.g.xlf">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 683393782 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Author</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1791119963 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies a brief biography of the author.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Biography - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1791119963 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Biography</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Biography - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1856816140 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the country of the author.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Country - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1856816140 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Country</source>
+          <target state="translated" state-qualifier="exact-match">Pays</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Country - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 349316295 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the International Standard Name Identifier (16 digits).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ISNI - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 349316295 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ISNI</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ISNI - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 349316295 - Method 2126772001 - NamedType 2347388694" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ISNI must be exactly 16 digits.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ISNI - Method OnValidate - NamedType InvalidISNIFormatErr</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the author.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="translated" state-qualifier="exact-match">Nom</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the unique identifier for the author.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <target state="translated" state-qualifier="exact-match">N°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series from which the author number was assigned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. Series - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Series</source>
+          <target state="translated" state-qualifier="exact-match">Souches de n°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field No. Series - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1775251981 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Open Researcher and Contributor ID in format: 0000-0000-0000-0000.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ORCID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1775251981 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ORCID</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ORCID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1775251981 - Method 2126772001 - NamedType 411844913" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ORCID must be in format: 0000-0000-0000-0000 (four groups of four digits separated by hyphens).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field ORCID - Method OnValidate - NamedType InvalidFormatErr</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1243607311 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Virtual International Authority File identifier.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field VIAF ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 683393782 - Field 1243607311 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VIAF ID</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Author - Field VIAF ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 973451814 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the author of the book.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Author No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 973451814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Author No.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Author No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 621504254 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of copies currently available for loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Available Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 621504254 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Available Quantity</source>
+          <target state="translated" state-qualifier="exact-match">Quantité disponible</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Available Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies a description of the book.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target state="translated" state-qualifier="exact-match">Description</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1436567594 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the genre of the book.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Genre Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1436567594 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Genre Code</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Genre Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1328823306 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the International Standard Book Number.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field ISBN - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1328823306 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ISBN</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field ISBN - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1328823306 - Method 2126772001 - NamedType 2145184619" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ISBN must contain only numbers and hyphens.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field ISBN - Method OnValidate - NamedType InvalidISBNFormatErr</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the unique identifier for the book.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <target state="translated" state-qualifier="exact-match">N°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series from which the book number was assigned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. Series - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Series</source>
+          <target state="translated" state-qualifier="exact-match">Souches de n°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field No. Series - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1436795429 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the year the book was published.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Publication Year - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1436795429 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publication Year</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Publication Year - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 1436795429 - Method 2126772001 - NamedType 360477877" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publication year must be between 1 and %1.</source>
+          <target state="needs-translation" />
+          <note from="Developer" annotates="general" priority="2">%1 = current year</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Publication Year - Method OnValidate - NamedType InvalidYearErr</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the total number of copies owned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <target state="translated" state-qualifier="exact-match">Quantité</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 2704404533 - Method 2126772001 - NamedType 1391271839" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity cannot be negative.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Quantity - Method OnValidate - NamedType NegativeQuantityErr</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 329424276 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the title of the book.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Title - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2816253730 - Field 329424276 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Title</source>
+          <target state="translated" state-qualifier="exact-match">Titre</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book - Field Title - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan Header</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Method 3152277940 - NamedType 2949715000" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cannot delete a posted book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Method OnDelete - NamedType CannotDeletePostedErr</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 2443976460 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the expected return date for the loaned books.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Expected Return Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 2443976460 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Expected Return Date</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Expected Return Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 2443976460 - Method 2126772001 - NamedType 1432801292" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Expected return date must be after loan date.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Expected Return Date - Method OnValidate - NamedType InvalidDateErr</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 208718844 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the date when the books are loaned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Loan Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 208718844 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Loan Date</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Loan Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 3178072769 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 3178072769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member Name</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 1364069073 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the library member borrowing the books.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 1364069073 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member No.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Member No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the unique identifier for the book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <target state="translated" state-qualifier="exact-match">N°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 950508093 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of lines in the book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. of Lines - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 950508093 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Lines</source>
+          <target state="translated" state-qualifier="exact-match">Nbre de lignes</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. of Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series from which the loan number was assigned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. Series - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Series</source>
+          <target state="translated" state-qualifier="exact-match">Souches de n°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field No. Series - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the status of the book loan (Open or Posted).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Status - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3681528399 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <target state="translated" state-qualifier="exact-match">Statut</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Header - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan Ledger Entry</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 4205704274 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the book number.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Book No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 4205704274 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book No.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Book No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the document number.</source>
+          <target state="translated" state-qualifier="exact-match">Spécifie le numéro du document.</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target state="translated" state-qualifier="exact-match">N° document</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 4085727052 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the book should be returned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Due Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 4085727052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date</source>
+          <target state="translated" state-qualifier="exact-match">Date d'échéance</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Due Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the entry number.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target state="translated" state-qualifier="exact-match">N° séquence</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 149522872 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the entry type (Loan or Return).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 149522872 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry Type</source>
+          <target state="translated" state-qualifier="exact-match">Type écriture</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Entry Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 208718844 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the book was loaned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Loan Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 208718844 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Loan Date</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Loan Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 1364069073 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the member number.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Member No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 1364069073 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member No.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Member No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 3710982960 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the posting date.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Posting Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 3710982960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target state="translated" state-qualifier="exact-match">Date comptabilisation</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Posting Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the quantity (positive for loan, negative for return).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <target state="translated" state-qualifier="exact-match">Quantité</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 935961474 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the book was actually returned (for Return entries).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Return Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2755938237 - Field 935961474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return Date</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Ledger Entry - Field Return Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan Line</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 4205704274 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the book being loaned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 4205704274 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book No.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 245842227 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the title of the book.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book Title - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 245842227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Title</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Book Title - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the document number of the book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target state="translated" state-qualifier="exact-match">N° document</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 4085727052 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the book should be returned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Due Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 4085727052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date</source>
+          <target state="translated" state-qualifier="exact-match">Date d'échéance</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Due Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 3320823955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the line number.</source>
+          <target state="translated" state-qualifier="exact-match">Spécifie le numéro de ligne.</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Line No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <target state="translated" state-qualifier="exact-match">N° ligne</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the quantity (must be 1).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <target state="translated" state-qualifier="exact-match">Quantité</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 130980424 - Field 2704404533 - Method 2126772001 - NamedType 822536433" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity must be exactly 1 for book loans.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Book Loan Line - Field Quantity - Method OnValidate - NamedType InvalidQuantityErr</note>
+        </trans-unit>
+        <trans-unit id="Table 488128176 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Genre</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 488128176 - Field 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the unique code for the genre.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 488128176 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <target state="translated" state-qualifier="exact-match">Code</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 488128176 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the description of the genre.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 488128176 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target state="translated" state-qualifier="exact-match">Description</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Genre - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Library Member</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1090351696 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether the library member is active.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Active - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1090351696 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Active</source>
+          <target state="translated" state-qualifier="exact-match">Active</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Active - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 3168444338 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the address of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Address - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <target state="translated" state-qualifier="exact-match">Adresse</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Address - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 714791889 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the city of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field City - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 714791889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>City</source>
+          <target state="translated" state-qualifier="exact-match">Ville</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field City - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1285973296 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the email address of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Email - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1285973296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="translated" state-qualifier="exact-match">Adresse e-mail</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Email - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1285973296 - Method 2126772001 - NamedType 2611134452" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The email address is not valid.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Email - Method OnValidate - NamedType InvalidEmailErr</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 2002717086 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the date when the member joined the library.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Member Since - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 2002717086 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member Since</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Member Since - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1555633982 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the type of membership (Regular, Student, or Senior).</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Membership Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1555633982 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Membership Type</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Membership Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="translated" state-qualifier="exact-match">Nom</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the unique identifier for the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <target state="translated" state-qualifier="exact-match">N°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series from which the member number was assigned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. Series - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Series</source>
+          <target state="translated" state-qualifier="exact-match">Souches de n°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field No. Series - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 3986423421 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the phone number of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Phone No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 3986423421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone No.</source>
+          <target state="translated" state-qualifier="exact-match">N° téléphone</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Phone No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 3660300303 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the postal code of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Post Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1686036404 - Field 3660300303 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Code</source>
+          <target state="translated" state-qualifier="exact-match">Code postal</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Member - Field Post Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Library Setup</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 1760076907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series code used for assigning numbers to authors.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Author Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 1760076907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Author Nos.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Author Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 1785698507 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series code used for assigning numbers to book loans.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Loan Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 1785698507 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan Nos.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Loan Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 3748887319 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series code used for assigning numbers to books.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 3748887319 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Nos.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Book Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 2006390016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series code used for assigning numbers to library members.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Member Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 2006390016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member Nos.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Member Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 3743986908 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series code used for assigning numbers to posted book loans.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Posted Book Loan Nos. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 3743986908 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Book Loan Nos.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Posted Book Loan Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2752457625 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target state="translated" state-qualifier="exact-match">Clé primaire</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Library Setup - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Book Loan Header</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 2443976460 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the expected return date for the loaned books.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Expected Return Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 2443976460 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Expected Return Date</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Expected Return Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 208718844 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the date when the books were loaned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Loan Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 208718844 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Loan Date</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Loan Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 3178072769 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the library member.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 3178072769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member Name</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 1364069073 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the library member who borrowed the books.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 1364069073 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member No.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Member No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the unique identifier for the posted book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <target state="translated" state-qualifier="exact-match">N°</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 950508093 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of lines in the posted book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. of Lines - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 950508093 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Lines</source>
+          <target state="translated" state-qualifier="exact-match">Nbre de lignes</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field No. of Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 3710982960 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the posting date of the book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Posting Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2006060024 - Field 3710982960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target state="translated" state-qualifier="exact-match">Date comptabilisation</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Header - Field Posting Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Book Loan Line</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 4205704274 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the book that was loaned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 4205704274 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book No.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 245842227 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the title of the book.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book Title - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 245842227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Title</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Book Title - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 486908828 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the document number of the posted book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Document No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target state="translated" state-qualifier="exact-match">N° document</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 4085727052 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the book should be returned.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Due Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 4085727052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date</source>
+          <target state="translated" state-qualifier="exact-match">Date d'échéance</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Due Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 3320823955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the line number.</source>
+          <target state="translated" state-qualifier="exact-match">Spécifie le numéro de ligne.</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Line No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <target state="translated" state-qualifier="exact-match">N° ligne</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the quantity.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 766761791 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <target state="translated" state-qualifier="exact-match">Quantité</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Table LIB Posted Book Loan Line - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 487475185 - NamedType 1746037662" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan %1 has already been posted.</source>
+          <target state="needs-translation" />
+          <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post - NamedType AlreadyPostedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 487475185 - NamedType 3359697259" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There are no lines to post for Book Loan %1.</source>
+          <target state="needs-translation" />
+          <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post - NamedType NoLinesErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 487475185 - NamedType 1446295496" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Member No. must have a value in Book Loan Header: No.=%1. It cannot be zero or empty.</source>
+          <target state="needs-translation" />
+          <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post - NamedType NoMemberErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3201229417 - NamedType 2712918880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to post the book loan?</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Loan-Post (Yes/No) - NamedType ConfirmPostQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4024492451 - NamedType 875579050" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to process the return of the loaned books?</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LIB Book Return-Post (Yes/No) - NamedType ConfirmReturnQst</note>
+        </trans-unit>
+        <trans-unit id="Page 3034983090 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Author Card</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3034983090 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="translated" state-qualifier="exact-match">Général</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author Card - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3034983090 - Control 3076206668 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Identifiers</source>
+          <target state="translated" state-qualifier="exact-match">Identifiants</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author Card - Control Identifiers - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2908121524 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Authors</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Author List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1224753382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Card</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1224753382 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="translated" state-qualifier="exact-match">Général</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Card - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1224753382 - Control 2105307182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Inventory</source>
+          <target state="translated" state-qualifier="exact-match">Stocks</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Card - Control Inventory - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 865022784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Books</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3467809054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3467809054 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="translated" state-qualifier="exact-match">Général</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3467809054 - Action 2282416948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post the book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Action Post - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3467809054 - Action 2282416948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post</source>
+          <target state="translated" state-qualifier="exact-match">Valider</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan - Action Post - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3902466639 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan Ledger Entries</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan Ledger Entries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232036316 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loans</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232036316 - Action 2282416948 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post the book loan.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan List - Action Post - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2232036316 - Action 2282416948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post</source>
+          <target state="translated" state-qualifier="exact-match">Valider</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan List - Action Post - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1031349775 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lines</source>
+          <target state="translated" state-qualifier="exact-match">Lignes</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Book Loan Subpage - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1768187042 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Genres</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Genre List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4257259968 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Library Member Card</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4257259968 - Control 3993128796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact</source>
+          <target state="translated" state-qualifier="exact-match">Contact</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member Card - Control Contact - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4257259968 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="translated" state-qualifier="exact-match">Général</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member Card - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 347453126 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Library Members</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Member List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2752457625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Library Setup</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2752457625 - Control 1532816877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Numbering</source>
+          <target state="translated" state-qualifier="exact-match">Numérotation</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Library Setup - Control Numbering - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1827842241 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Book Loan</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1827842241 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="translated" state-qualifier="exact-match">Général</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1827842241 - Action 3223440110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process the return of the loaned books.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Action Return - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1827842241 - Action 3223440110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Card - Action Return - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1313869907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Book Loans</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1313869907 - Action 3223440110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process the return of the loaned books.</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan List - Action Return - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1313869907 - Action 3223440110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan List - Action Return - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1548040075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lines</source>
+          <target state="translated" state-qualifier="exact-match">Lignes</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LIB Posted Book Loan Subp. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2283397866 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan Entry Type</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Entry Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2283397866 - EnumValue 2179104272 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Loan</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Entry Type - EnumValue Loan - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2283397866 - EnumValue 3223440110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Entry Type - EnumValue Return - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3390048234 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Loan Status</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3390048234 - EnumValue 4259830144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open</source>
+          <target state="translated" state-qualifier="exact-match">Ouvert</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Status - EnumValue Open - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3390048234 - EnumValue 35450067 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted</source>
+          <target state="translated" state-qualifier="exact-match">Validé</target>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Book Loan Status - EnumValue Posted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3153202263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Membership Type</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3153202263 - EnumValue 244194350 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Regular</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - EnumValue Regular - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3153202263 - EnumValue 3556667656 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Senior</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - EnumValue Senior - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3153202263 - EnumValue 1418429579 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Student</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">Enum LIB Membership Type - EnumValue Student - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 52954276 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Library Admin</source>
+          <target state="needs-translation" />
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet LIB Admin - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
