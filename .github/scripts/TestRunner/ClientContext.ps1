@@ -1,0 +1,584 @@
+#requires -Version 5.0
+using namespace Microsoft.Dynamics.Framework.UI.Client
+using namespace Microsoft.Dynamics.Framework.UI.Client.Interactions
+
+class ClientContext {
+
+    $events = @()
+    $clientSession = $null
+    $culture = ""
+    $caughtForm = $null
+    $IgnoreErrors = $true
+
+    ClientContext([string] $serviceUrl, [pscredential] $credential, [timespan] $interactionTimeout, [string] $culture) 
+    {
+        $this.Initialize($serviceUrl, ([AuthenticationScheme]::UserNamePassword), (New-Object System.Net.NetworkCredential -ArgumentList $credential.UserName, $credential.Password), $interactionTimeout, $culture)
+    }
+
+    ClientContext([string] $serviceUrl, [pscredential] $credential) 
+    {
+        $this.Initialize($serviceUrl, ([AuthenticationScheme]::UserNamePassword), (New-Object System.Net.NetworkCredential -ArgumentList $credential.UserName, $credential.Password), ([timespan]::FromHours(12)), 'en-US')
+    }
+
+    ClientContext([string] $serviceUrl, [timespan] $interactionTimeout, [string] $culture) 
+    {
+        $this.Initialize($serviceUrl, ([AuthenticationScheme]::Windows), $null, $interactionTimeout, $culture)
+    }
+    
+    ClientContext([string] $serviceUrl) 
+    {
+        $this.Initialize($serviceUrl, ([AuthenticationScheme]::Windows), $null, ([timespan]::FromHours(12)), 'en-US')
+    }
+
+    ClientContext([string] $serviceUrl, [Microsoft.Dynamics.Framework.UI.Client.tokenCredential] $tokenCredential, [timespan] $interactionTimeout = ([timespan]::FromHours(12)), [string] $culture = 'en-US')
+    {
+        $this.Initialize($serviceUrl, ([AuthenticationScheme]::AzureActiveDirectory), $tokenCredential, $interactionTimeout, $culture)
+    }
+    
+    Initialize([string] $serviceUrl, [AuthenticationScheme] $authenticationScheme, [System.Net.ICredentials] $credential, [timespan] $interactionTimeout, [string] $culture) {
+                  
+        $clientServicesUrl = $serviceUrl
+        if(-not $clientServicesUrl.Contains("/cs/"))
+        {
+            if($clientServicesUrl.Contains("?"))
+            {
+                $clientServicesUrl = $clientServicesUrl.Insert($clientServicesUrl.LastIndexOf("?"),"cs/")
+            }
+            else
+            {
+                $clientServicesUrl = $clientServicesUrl.TrimEnd("/")
+                $clientServicesUrl = $clientServicesUrl + "/cs/"
+            }
+        }
+        $addressUri = New-Object System.Uri -ArgumentList $clientServicesUrl
+        $jsonClient = New-Object JsonHttpClient -ArgumentList $addressUri, $credential, $authenticationScheme
+        $httpClient = ($jsonClient.GetType().GetField("httpClient", [Reflection.BindingFlags]::NonPublic -bor [Reflection.BindingFlags]::Instance)).GetValue($jsonClient)
+        $httpClient.Timeout = $interactionTimeout
+        $this.clientSession = New-Object ClientSession -ArgumentList $jsonClient, (New-Object NonDispatcher), (New-Object 'TimerFactory[TaskTimer]')
+        $this.culture = $culture
+        $this.OpenSession()
+    }
+
+    OpenSession() {
+        $clientSessionParameters = New-Object ClientSessionParameters
+        $clientSessionParameters.CultureId = $this.culture
+        $clientSessionParameters.UICultureId = $this.culture
+        $clientSessionParameters.AdditionalSettings.Add("IncludeControlIdentifier", $true)        
+    
+        $this.events += @(Register-ObjectEvent -InputObject $this.clientSession -EventName MessageToShow -Action {
+            Write-Host -ForegroundColor Yellow "Message : $($EventArgs.Message)"
+        })
+        $this.events += @(Register-ObjectEvent -InputObject $this.clientSession -EventName CommunicationError -Action {
+            HandleError -ErrorMessage "CommunicationError : $($EventArgs.Exception.Message)"
+        })
+        $this.events += @(Register-ObjectEvent -InputObject $this.clientSession -EventName UnhandledException -Action {
+            HandleError -ErrorMessage "UnhandledException : $($EventArgs.Exception.Message)"
+        })
+        $this.events += @(Register-ObjectEvent -InputObject $this.clientSession -EventName InvalidCredentialsError -Action {
+            HandleError -ErrorMessage "InvalidCredentialsError"
+        })
+        $this.events += @(Register-ObjectEvent -InputObject $this.clientSession -EventName UriToShow -Action {
+            Write-Host -ForegroundColor Yellow "UriToShow : $($EventArgs.UriToShow)"
+        })
+        $this.events += @(Register-ObjectEvent -InputObject $this.clientSession -EventName DialogToShow -Action {
+            $form = $EventArgs.DialogToShow
+            if ( $form.ControlIdentifier -eq "00000000-0000-0000-0800-0000836bd2d2" ) {
+                $errorControl = $form.ContainedControls | Where-Object { $_ -is [ClientStaticStringControl] } | Select-Object -First 1                
+                HandleError -ErrorMessage "ERROR: $($errorControl.StringValue)"
+            } elseif ( $form.ControlIdentifier -eq "00000000-0000-0000-0300-0000836bd2d2" ) {
+                $errorControl = $form.ContainedControls | Where-Object { $_ -is [ClientStaticStringControl] } | Select-Object -First 1                
+                Write-Host -ForegroundColor Yellow "WARNING: $($errorControl.StringValue)"
+            } elseif ( $form.MappingHint -eq "InfoDialog" ) {
+                $errorControl = $form.ContainedControls | Where-Object { $_ -is [ClientStaticStringControl] } | Select-Object -First 1                
+                Write-Host -ForegroundColor Yellow "INFO: $($errorControl.StringValue)"
+            }
+        })
+    
+        $this.clientSession.OpenSessionAsync($clientSessionParameters)
+        $this.AwaitState([ClientSessionState]::Ready)
+    }
+
+    SetIgnoreServerErrors([bool] $IgnoreServerErrors) {
+        $this.IgnoreErrors = $IgnoreServerErrors
+    }
+
+   HandleError([string] $ErrorMessage) {
+        Remove-ClientSession
+        if ($this.IgnoreErrors) {
+            Write-Host -ForegroundColor Red $ErrorMessage
+        } else {
+            throw $ErrorMessage
+        }
+   }   
+
+    Dispose() {
+        $this.events | % { Unregister-Event $_.Name }
+        $this.events = @()
+    
+        try {
+            if ($this.clientSession -and ($this.clientSession.State -ne ([ClientSessionState]::Closed))) {
+                $this.clientSession.CloseSessionAsync()
+                $this.AwaitState([ClientSessionState]::Closed)
+            }
+        }
+        catch {
+        }
+    }
+    
+    AwaitState([ClientSessionState] $state) {
+        While ($this.clientSession.State -ne $state) {
+            Start-Sleep -Milliseconds 100
+            if ($this.clientSession.State -eq [ClientSessionState]::InError) {
+                if ($this.clientSession.LastException) {
+                    Write-Host -ForegroundColor Red "ClientSession in Error. LastException: $($this.clientSession.LastException.Message)"
+                    Write-Host -ForegroundColor Red "StackTrace: $($this.clientSession.LastException.StackTrace)"
+                }
+                throw "ClientSession in Error"
+            }
+            if ($this.clientSession.State -eq [ClientSessionState]::TimedOut) {
+                throw "ClientSession timed out"
+            }
+            if ($this.clientSession.State -eq [ClientSessionState]::Uninitialized) {
+                throw "ClientSession is Uninitialized"
+            }
+        }
+    }
+    
+    InvokeInteraction([ClientInteraction] $interaction) {
+        $this.clientSession.InvokeInteractionAsync($interaction)
+        $this.AwaitState([ClientSessionState]::Ready)
+    }
+    
+    [ClientLogicalForm] InvokeInteractionAndCatchForm([ClientInteraction] $interaction) {
+        $Global:PsTestRunnerCaughtForm = $null
+        $formToShowEvent = Register-ObjectEvent -InputObject $this.clientSession -EventName FormToShow -Action { 
+            $Global:PsTestRunnerCaughtForm = $EventArgs.FormToShow
+        }
+        try {
+            $this.InvokeInteraction($interaction)
+            if (!($Global:PsTestRunnerCaughtForm)) {
+                $this.CloseAllWarningOrInfoForms()
+            }
+        }
+        catch
+        {
+            $ErrorMessage = $_.Exception.Message
+            $FailedItem = $_.Exception.ItemName
+            Write-Host "Error:" $ErrorMessage "Item: " $FailedItem
+        }
+        finally {
+            Unregister-Event -SourceIdentifier $formToShowEvent.Name
+        }
+        $form = $Global:PsTestRunnerCaughtForm
+        Remove-Variable PsTestRunnerCaughtForm -Scope Global
+        return $form
+    }
+    
+    [ClientLogicalForm] OpenForm([int] $page) {
+        $interaction = New-Object OpenFormInteraction
+        $interaction.Page = $page
+        return $this.InvokeInteractionAndCatchForm($interaction)
+    }
+    
+    CloseForm([ClientLogicalForm] $form) {
+        $this.InvokeInteraction((New-Object CloseFormInteraction -ArgumentList $form))
+    }
+    
+    [ClientLogicalForm[]]GetAllForms() {
+        $forms = @()
+        foreach ($form in $this.clientSession.OpenedForms) {
+            $forms += $form
+        }
+        return $forms
+    }
+    
+    [string]GetErrorFromErrorForm() {
+        $errorText = ""
+        $this.GetAllForms() | % {
+            $form = $_
+            if ( $form.ControlIdentifier -eq "00000000-0000-0000-0800-0000836bd2d2" ) {
+                $form.ContainedControls | Where-Object { $_ -is [ClientStaticStringControl] } | % {
+                    $errorText = $_.StringValue
+                }
+            }
+        }
+        return $errorText
+    }
+    
+    [string]GetWarningFromWarningForm() {
+        $warningText = ""
+        $this.GetAllForms() | % {
+            $form = $_
+            if ( $form.ControlIdentifier -eq "00000000-0000-0000-0300-0000836bd2d2" ) {
+                $form.ContainedControls | Where-Object { $_ -is [ClientStaticStringControl] } | % {
+                    $warningText = $_.StringValue
+                }
+            }
+        }
+        return $warningText
+    }
+
+    [Hashtable]GetFormInfo([ClientLogicalForm] $form) {
+    
+        function Dump-RowControl {
+            Param(
+                [ClientLogicalControl] $control
+            )
+            @{
+                "$($control.Name)" = $control.ObjectValue
+            }
+        }
+    
+        function Dump-Control {
+            Param(
+                [ClientLogicalControl] $control,
+                [int] $indent
+            )
+    
+            $output = @{
+                "name" = $control.Name
+                "type" = $control.GetType().Name
+            }
+            if ($control -is [ClientGroupControl]) {
+                $output += @{
+                    "caption" = $control.Caption
+                    "mappingHint" = $control.MappingHint
+                }
+            } elseif ($control -is [ClientStaticStringControl]) {
+                $output += @{
+                    "value" = $control.StringValue
+                }
+            } elseif ($control -is [ClientInt32Control]) {
+                $output += @{
+                    "value" = $control.ObjectValue
+                }
+            } elseif ($control -is [ClientStringControl]) {
+                $output += @{
+                    "value" = $control.stringValue
+                }
+            } elseif ($control -is [ClientActionControl]) {
+                $output += @{
+                    "caption" = $control.Caption
+                }
+            } elseif ($control -is [ClientFilterLogicalControl]) {
+            } elseif ($control -is [ClientRepeaterControl]) {
+                $output += @{
+                    "$($control.name)" = @()
+                }
+                $index = 0
+                while ($true) {
+                    if ($index -ge ($control.Offset + $control.DefaultViewport.Count)) {
+                        $this.ScrollRepeater($control, 1)
+                    }
+                    $rowIndex = $index - $control.Offset
+                    if ($rowIndex -ge $control.DefaultViewport.Count) {
+                        break 
+                    }
+                    $row = $control.DefaultViewport[$rowIndex]
+                    $rowoutput = @{}
+                    $row.Children | % { $rowoutput += Dump-RowControl -control $_ }
+                    $output[$control.name] += $rowoutput
+                    $index++
+                }
+            }
+            else {
+            }
+            $output
+        }
+    
+        return @{
+            "title" = "$($form.Name) $($form.Caption)"
+            "controls" = $form.Children | % { Dump-Control -output $output -control $_ -indent 1 }
+        }
+    }
+    
+    CloseAllForms() {
+        $this.GetAllForms() | % { $this.CloseForm($_) }
+    }
+
+    CloseAllErrorForms() {
+        $this.GetAllForms() | % {
+            if ($_.ControlIdentifier -eq "00000000-0000-0000-0800-0000836bd2d2") {
+                $this.CloseForm($_)
+            }
+        }
+    }
+
+    CloseAllWarningOrInfoForms() {
+        while ($this.HasWarningOrInfoForms()) {
+            $form = $this.clientSession.TopMostInteractiveForm;
+            $this.CloseForm($form)
+            $this.AwaitState([ClientSessionState]::Ready)
+        }
+    }
+
+    [bool]HasWarningOrInfoForms() {
+        $form = $this.clientSession.TopMostInteractiveForm;
+        if($form -eq $null) {
+            return $false
+        }
+
+        if ($form.ControlIdentifier -eq "00000000-0000-0000-0300-0000836bd2d2" -or $form.MappingHint -eq "InfoDialog") {
+            return $true
+        }
+        return $false
+    }
+    
+    [ClientLogicalControl]GetControlByCaption([ClientLogicalControl] $control, [string] $caption) {
+        return $control.ContainedControls | Where-Object { $_.Caption.Replace("&","") -eq $caption } | Select-Object -First 1
+    }
+    
+    [ClientLogicalControl]GetControlByName([ClientLogicalControl] $control, [string] $name) {
+        return $control.ContainedControls | Where-Object { $_.Name -eq $name } | Select-Object -First 1
+    }
+    
+    [ClientLogicalControl]GetControlByType([ClientLogicalControl] $control, [Type] $type) {
+        return $control.ContainedControls | Where-Object { $_ -is $type } | Select-Object -First 1
+    }
+    
+    SaveValue([ClientLogicalControl] $control, [string] $newValue) {
+        $this.InvokeInteraction((New-Object SaveValueInteraction -ArgumentList $control, $newValue))
+    }
+    
+    ScrollRepeater([ClientRepeaterControl] $repeater, [int] $by) {
+        $this.InvokeInteraction((New-Object ScrollRepeaterInteraction -ArgumentList $repeater, $by))
+    }
+    
+    ActivateControl([ClientLogicalControl] $control) {
+        $this.InvokeInteraction((New-Object ActivateControlInteraction -ArgumentList $control))
+    }
+    
+    [ClientActionControl]GetActionByCaption([ClientLogicalControl] $control, [string] $caption) {
+        return $control.ContainedControls | Where-Object { ($_ -is [ClientActionControl]) -and ($_.Caption.Replace("&","") -eq $caption) } | Select-Object -First 1
+    }
+    
+    [ClientActionControl]GetActionByName([ClientLogicalControl] $control, [string] $name) {
+        return $control.ContainedControls | Where-Object { ($_ -is [ClientActionControl]) -and ($_.Name -eq $name) } | Select-Object -First 1
+    }
+    
+    InvokeAction([ClientActionControl] $action) {
+        $this.InvokeInteraction((New-Object InvokeActionInteraction -ArgumentList $action))
+        $this.CloseAllWarningOrInfoForms()
+    }
+    
+    [ClientLogicalForm]InvokeActionAndCatchForm([ClientActionControl] $action) {
+        return $this.InvokeInteractionAndCatchForm((New-Object InvokeActionInteraction -ArgumentList $action))
+    }
+}
+# SIG # Begin signature block
+# MIIoHgYJKoZIhvcNAQcCoIIoDzCCKAsCAQExDzANBglghkgBZQMEAgEFADB5Bgor
+# BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCBqluPnVwQ2SdQV
+# SqBDLSjL8y+ZixEVs8IGV+27+kBAXaCCDYUwggYDMIID66ADAgECAhMzAAAEhJji
+# EuB4ozFdAAAAAASEMA0GCSqGSIb3DQEBCwUAMH4xCzAJBgNVBAYTAlVTMRMwEQYD
+# VQQIEwpXYXNoaW5ndG9uMRAwDgYDVQQHEwdSZWRtb25kMR4wHAYDVQQKExVNaWNy
+# b3NvZnQgQ29ycG9yYXRpb24xKDAmBgNVBAMTH01pY3Jvc29mdCBDb2RlIFNpZ25p
+# bmcgUENBIDIwMTEwHhcNMjUwNjE5MTgyMTM1WhcNMjYwNjE3MTgyMTM1WjB0MQsw
+# CQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9u
+# ZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMR4wHAYDVQQDExVNaWNy
+# b3NvZnQgQ29ycG9yYXRpb24wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB
+# AQDtekqMKDnzfsyc1T1QpHfFtr+rkir8ldzLPKmMXbRDouVXAsvBfd6E82tPj4Yz
+# aSluGDQoX3NpMKooKeVFjjNRq37yyT/h1QTLMB8dpmsZ/70UM+U/sYxvt1PWWxLj
+# MNIXqzB8PjG6i7H2YFgk4YOhfGSekvnzW13dLAtfjD0wiwREPvCNlilRz7XoFde5
+# KO01eFiWeteh48qUOqUaAkIznC4XB3sFd1LWUmupXHK05QfJSmnei9qZJBYTt8Zh
+# ArGDh7nQn+Y1jOA3oBiCUJ4n1CMaWdDhrgdMuu026oWAbfC3prqkUn8LWp28H+2S
+# LetNG5KQZZwvy3Zcn7+PQGl5AgMBAAGjggGCMIIBfjAfBgNVHSUEGDAWBgorBgEE
+# AYI3TAgBBggrBgEFBQcDAzAdBgNVHQ4EFgQUBN/0b6Fh6nMdE4FAxYG9kWCpbYUw
+# VAYDVR0RBE0wS6RJMEcxLTArBgNVBAsTJE1pY3Jvc29mdCBJcmVsYW5kIE9wZXJh
+# dGlvbnMgTGltaXRlZDEWMBQGA1UEBRMNMjMwMDEyKzUwNTM2MjAfBgNVHSMEGDAW
+# gBRIbmTlUAXTgqoXNzcitW2oynUClTBUBgNVHR8ETTBLMEmgR6BFhkNodHRwOi8v
+# d3d3Lm1pY3Jvc29mdC5jb20vcGtpb3BzL2NybC9NaWNDb2RTaWdQQ0EyMDExXzIw
+# MTEtMDctMDguY3JsMGEGCCsGAQUFBwEBBFUwUzBRBggrBgEFBQcwAoZFaHR0cDov
+# L3d3dy5taWNyb3NvZnQuY29tL3BraW9wcy9jZXJ0cy9NaWNDb2RTaWdQQ0EyMDEx
+# XzIwMTEtMDctMDguY3J0MAwGA1UdEwEB/wQCMAAwDQYJKoZIhvcNAQELBQADggIB
+# AGLQps1XU4RTcoDIDLP6QG3NnRE3p/WSMp61Cs8Z+JUv3xJWGtBzYmCINmHVFv6i
+# 8pYF/e79FNK6P1oKjduxqHSicBdg8Mj0k8kDFA/0eU26bPBRQUIaiWrhsDOrXWdL
+# m7Zmu516oQoUWcINs4jBfjDEVV4bmgQYfe+4/MUJwQJ9h6mfE+kcCP4HlP4ChIQB
+# UHoSymakcTBvZw+Qst7sbdt5KnQKkSEN01CzPG1awClCI6zLKf/vKIwnqHw/+Wvc
+# Ar7gwKlWNmLwTNi807r9rWsXQep1Q8YMkIuGmZ0a1qCd3GuOkSRznz2/0ojeZVYh
+# ZyohCQi1Bs+xfRkv/fy0HfV3mNyO22dFUvHzBZgqE5FbGjmUnrSr1x8lCrK+s4A+
+# bOGp2IejOphWoZEPGOco/HEznZ5Lk6w6W+E2Jy3PHoFE0Y8TtkSE4/80Y2lBJhLj
+# 27d8ueJ8IdQhSpL/WzTjjnuYH7Dx5o9pWdIGSaFNYuSqOYxrVW7N4AEQVRDZeqDc
+# fqPG3O6r5SNsxXbd71DCIQURtUKss53ON+vrlV0rjiKBIdwvMNLQ9zK0jy77owDy
+# XXoYkQxakN2uFIBO1UNAvCYXjs4rw3SRmBX9qiZ5ENxcn/pLMkiyb68QdwHUXz+1
+# fI6ea3/jjpNPz6Dlc/RMcXIWeMMkhup/XEbwu73U+uz/MIIHejCCBWKgAwIBAgIK
+# YQ6Q0gAAAAAAAzANBgkqhkiG9w0BAQsFADCBiDELMAkGA1UEBhMCVVMxEzARBgNV
+# BAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jv
+# c29mdCBDb3Jwb3JhdGlvbjEyMDAGA1UEAxMpTWljcm9zb2Z0IFJvb3QgQ2VydGlm
+# aWNhdGUgQXV0aG9yaXR5IDIwMTEwHhcNMTEwNzA4MjA1OTA5WhcNMjYwNzA4MjEw
+# OTA5WjB+MQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UE
+# BxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSgwJgYD
+# VQQDEx9NaWNyb3NvZnQgQ29kZSBTaWduaW5nIFBDQSAyMDExMIICIjANBgkqhkiG
+# 9w0BAQEFAAOCAg8AMIICCgKCAgEAq/D6chAcLq3YbqqCEE00uvK2WCGfQhsqa+la
+# UKq4BjgaBEm6f8MMHt03a8YS2AvwOMKZBrDIOdUBFDFC04kNeWSHfpRgJGyvnkmc
+# 6Whe0t+bU7IKLMOv2akrrnoJr9eWWcpgGgXpZnboMlImEi/nqwhQz7NEt13YxC4D
+# dato88tt8zpcoRb0RrrgOGSsbmQ1eKagYw8t00CT+OPeBw3VXHmlSSnnDb6gE3e+
+# lD3v++MrWhAfTVYoonpy4BI6t0le2O3tQ5GD2Xuye4Yb2T6xjF3oiU+EGvKhL1nk
+# kDstrjNYxbc+/jLTswM9sbKvkjh+0p2ALPVOVpEhNSXDOW5kf1O6nA+tGSOEy/S6
+# A4aN91/w0FK/jJSHvMAhdCVfGCi2zCcoOCWYOUo2z3yxkq4cI6epZuxhH2rhKEmd
+# X4jiJV3TIUs+UsS1Vz8kA/DRelsv1SPjcF0PUUZ3s/gA4bysAoJf28AVs70b1FVL
+# 5zmhD+kjSbwYuER8ReTBw3J64HLnJN+/RpnF78IcV9uDjexNSTCnq47f7Fufr/zd
+# sGbiwZeBe+3W7UvnSSmnEyimp31ngOaKYnhfsi+E11ecXL93KCjx7W3DKI8sj0A3
+# T8HhhUSJxAlMxdSlQy90lfdu+HggWCwTXWCVmj5PM4TasIgX3p5O9JawvEagbJjS
+# 4NaIjAsCAwEAAaOCAe0wggHpMBAGCSsGAQQBgjcVAQQDAgEAMB0GA1UdDgQWBBRI
+# bmTlUAXTgqoXNzcitW2oynUClTAZBgkrBgEEAYI3FAIEDB4KAFMAdQBiAEMAQTAL
+# BgNVHQ8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAfBgNVHSMEGDAWgBRyLToCMZBD
+# uRQFTuHqp8cx0SOJNDBaBgNVHR8EUzBRME+gTaBLhklodHRwOi8vY3JsLm1pY3Jv
+# c29mdC5jb20vcGtpL2NybC9wcm9kdWN0cy9NaWNSb29DZXJBdXQyMDExXzIwMTFf
+# MDNfMjIuY3JsMF4GCCsGAQUFBwEBBFIwUDBOBggrBgEFBQcwAoZCaHR0cDovL3d3
+# dy5taWNyb3NvZnQuY29tL3BraS9jZXJ0cy9NaWNSb29DZXJBdXQyMDExXzIwMTFf
+# MDNfMjIuY3J0MIGfBgNVHSAEgZcwgZQwgZEGCSsGAQQBgjcuAzCBgzA/BggrBgEF
+# BQcCARYzaHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3BraW9wcy9kb2NzL3ByaW1h
+# cnljcHMuaHRtMEAGCCsGAQUFBwICMDQeMiAdAEwAZQBnAGEAbABfAHAAbwBsAGkA
+# YwB5AF8AcwB0AGEAdABlAG0AZQBuAHQALiAdMA0GCSqGSIb3DQEBCwUAA4ICAQBn
+# 8oalmOBUeRou09h0ZyKbC5YR4WOSmUKWfdJ5DJDBZV8uLD74w3LRbYP+vj/oCso7
+# v0epo/Np22O/IjWll11lhJB9i0ZQVdgMknzSGksc8zxCi1LQsP1r4z4HLimb5j0b
+# pdS1HXeUOeLpZMlEPXh6I/MTfaaQdION9MsmAkYqwooQu6SpBQyb7Wj6aC6VoCo/
+# KmtYSWMfCWluWpiW5IP0wI/zRive/DvQvTXvbiWu5a8n7dDd8w6vmSiXmE0OPQvy
+# CInWH8MyGOLwxS3OW560STkKxgrCxq2u5bLZ2xWIUUVYODJxJxp/sfQn+N4sOiBp
+# mLJZiWhub6e3dMNABQamASooPoI/E01mC8CzTfXhj38cbxV9Rad25UAqZaPDXVJi
+# hsMdYzaXht/a8/jyFqGaJ+HNpZfQ7l1jQeNbB5yHPgZ3BtEGsXUfFL5hYbXw3MYb
+# BL7fQccOKO7eZS/sl/ahXJbYANahRr1Z85elCUtIEJmAH9AAKcWxm6U/RXceNcbS
+# oqKfenoi+kiVH6v7RyOA9Z74v2u3S5fi63V4GuzqN5l5GEv/1rMjaHXmr/r8i+sL
+# gOppO6/8MO0ETI7f33VtY5E90Z1WTk+/gFcioXgRMiF670EKsT/7qMykXcGhiJtX
+# cVZOSEXAQsmbdlsKgEhr/Xmfwb1tbWrJUnMTDXpQzTGCGe8wghnrAgEBMIGVMH4x
+# CzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9uMRAwDgYDVQQHEwdSZWRt
+# b25kMR4wHAYDVQQKExVNaWNyb3NvZnQgQ29ycG9yYXRpb24xKDAmBgNVBAMTH01p
+# Y3Jvc29mdCBDb2RlIFNpZ25pbmcgUENBIDIwMTECEzMAAASEmOIS4HijMV0AAAAA
+# BIQwDQYJYIZIAWUDBAIBBQCggZAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQw
+# LwYJKoZIhvcNAQkEMSIEIJ7kjQyHWTdKQSkeSnxiqmzgihTU9T1TWtWlVN0QOBjT
+# MEIGCisGAQQBgjcCAQwxNDAyoBSAEgBNAGkAYwByAG8AcwBvAGYAdKEagBhodHRw
+# Oi8vd3d3Lm1pY3Jvc29mdC5jb20wDQYJKoZIhvcNAQEBBQAEggEAxFIyxP+VXTd4
+# UC4lPbVqnR4xXUfiEl9yA5Px6qemCob7kT4ipU0au5ot8NZuQLxeeSjI+TtVIhSe
+# bUqxldV308AidVEIba9wTki+HDNE7Uh3On50tjKUFFi2SeHJ0RHWILz/NzV2vHCN
+# kxMGcvw+NrCwV6vX7zEJzwVNQ+Q6Zk8HgfiSRg109cEs1kaGdUZal18y6Rr/Vfn2
+# 55/RpOZREmC973E73Eel2XUhwbDASNi/DQBC7vOZOVh86bAKYnV2EQZx+nP3t7sj
+# yYIlWUjp2h4c3cWSXVh63+4/x+cZvcdxDs2GcyJu+vu6Fyl+p6uSvCKdUh0kC8ws
+# L8EtYUM9gqGCF5cwgheTBgorBgEEAYI3AwMBMYIXgzCCF38GCSqGSIb3DQEHAqCC
+# F3AwghdsAgEDMQ8wDQYJYIZIAWUDBAIBBQAwggFSBgsqhkiG9w0BCRABBKCCAUEE
+# ggE9MIIBOQIBAQYKKwYBBAGEWQoDATAxMA0GCWCGSAFlAwQCAQUABCCABc+cVlyA
+# V0JIU6eq7SETCCYSidcbv6hxjt3DIJ7FMAIGaMmG+w8DGBMyMDI1MTAxMzE3MTI0
+# MC44MjVaMASAAgH0oIHRpIHOMIHLMQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2Fz
+# aGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENv
+# cnBvcmF0aW9uMSUwIwYDVQQLExxNaWNyb3NvZnQgQW1lcmljYSBPcGVyYXRpb25z
+# MScwJQYDVQQLEx5uU2hpZWxkIFRTUyBFU046ODYwMy0wNUUwLUQ5NDcxJTAjBgNV
+# BAMTHE1pY3Jvc29mdCBUaW1lLVN0YW1wIFNlcnZpY2WgghHtMIIHIDCCBQigAwIB
+# AgITMwAAAgcsETmJzYX7xQABAAACBzANBgkqhkiG9w0BAQsFADB8MQswCQYDVQQG
+# EwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwG
+# A1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSYwJAYDVQQDEx1NaWNyb3NvZnQg
+# VGltZS1TdGFtcCBQQ0EgMjAxMDAeFw0yNTAxMzAxOTQyNTJaFw0yNjA0MjIxOTQy
+# NTJaMIHLMQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UE
+# BxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSUwIwYD
+# VQQLExxNaWNyb3NvZnQgQW1lcmljYSBPcGVyYXRpb25zMScwJQYDVQQLEx5uU2hp
+# ZWxkIFRTUyBFU046ODYwMy0wNUUwLUQ5NDcxJTAjBgNVBAMTHE1pY3Jvc29mdCBU
+# aW1lLVN0YW1wIFNlcnZpY2UwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC
+# AQDFP/96dPmcfgODe3/nuFveuBst/JmSxSkOn89ZFytHQm344iLoPqkVws+CiUej
+# QabKf+/c7KU1nqwAmmtiPnG8zm4Sl9+RJZaQ4Dx3qtA9mdQdS7Chf6YUbP4Z++8l
+# aNbTQigJoXCmzlV34vmC4zpFrET4KAATjXSPK0sQuFhKr7ltNaMFGclXSnIhcnSc
+# j9QUDVLQpAsJtsKHyHN7cN74aEXLpFGc1I+WYFRxaTgqSPqGRfEfuQ2yGrAbWjJY
+# OXueeTA1MVKhW8zzSEpfjKeK/t2XuKykpCUaKn5s8sqNbI3bHt/rE/pNzwWnAKz+
+# POBRbJxIkmL+n/EMVir5u8uyWPl1t88MK551AGVh+2H4ziR14YDxzyCG924gaonK
+# jicYnWUBOtXrnPK6AS/LN6Y+8Kxh26a6vKbFbzaqWXAjzEiQ8EY9K9pYI/KCygix
+# jDwHfUgVSWCyT8Kw7mGByUZmRPPxXONluMe/P8CtBJMpuh8CBWyjvFfFmOSNRK8E
+# TkUmlTUAR1CIOaeBqLGwscShFfyvDQrbChmhXib4nRMX5U9Yr9d7VcYHn6eZJsgy
+# zh5QKlIbCQC/YvhFK42ceCBDMbc+Ot5R6T/Mwce5jVyVCmqXVxWOaQc4rA2nV7on
+# MOZC6UvCG8LGFSZBnj1loDDLWo/I+RuRok2j/Q4zcMnwkQIDAQABo4IBSTCCAUUw
+# HQYDVR0OBBYEFHK1UmLCvXrQCvR98JBq18/4zo0eMB8GA1UdIwQYMBaAFJ+nFV0A
+# XmJdg/Tl0mWnG1M1GelyMF8GA1UdHwRYMFYwVKBSoFCGTmh0dHA6Ly93d3cubWlj
+# cm9zb2Z0LmNvbS9wa2lvcHMvY3JsL01pY3Jvc29mdCUyMFRpbWUtU3RhbXAlMjBQ
+# Q0ElMjAyMDEwKDEpLmNybDBsBggrBgEFBQcBAQRgMF4wXAYIKwYBBQUHMAKGUGh0
+# dHA6Ly93d3cubWljcm9zb2Z0LmNvbS9wa2lvcHMvY2VydHMvTWljcm9zb2Z0JTIw
+# VGltZS1TdGFtcCUyMFBDQSUyMDIwMTAoMSkuY3J0MAwGA1UdEwEB/wQCMAAwFgYD
+# VR0lAQH/BAwwCgYIKwYBBQUHAwgwDgYDVR0PAQH/BAQDAgeAMA0GCSqGSIb3DQEB
+# CwUAA4ICAQDju0quPbnix0slEjD7j2224pYOPGTmdDvO0+bNRCNkZqUv07P04nf1
+# If3Y/iJEmUaU7w12Fm582ImpD/Kw2ClXrNKLPTBO6nfxvOPGtalpAl4wqoGgZxvp
+# xb2yEunG4yZQ6EQOpg1dE9uOXoze3gD4Hjtcc75kca8yivowEI+rhXuVUWB7vog4
+# TGUxKdnDvpk5GSGXnOhPDhdId+g6hRyXdZiwgEa+q9M9Xctz4TGhDgOKFsYxFhXN
+# JZo9KRuGq6evhtyNduYrkzjDtWS6gW8akR59UhuLGsVq+4AgqEY8WlXjQGM2OTky
+# BnlQLpB8qD7x9jRpY2Cq0OWWlK0wfH/1zefrWN5+be87Sw2TPcIudIJn39bbDG7a
+# wKMVYDHfsPJ8ZvxgWkZuf6ZZAkph0eYGh3IV845taLkdLOCvw49Wxqha5Dmi2Ojh
+# 8Gja5v9kyY3KTFyX3T4C2scxfgp/6xRd+DGOhNVPvVPa/3yRUqY5s5UYpy8Dnbpp
+# V7nQO2se3HvCSbrb+yPyeob1kUfMYa9fE2bEsoMbOaHRgGji8ZPt/Jd2bPfdQoBH
+# cUOqPwjHBUIcSc7xdJZYjRb4m81qxjma3DLjuOFljMZTYovRiGvEML9xZj2pHRUy
+# v+s5v7VGwcM6rjNYM4qzZQM6A2RGYJGU780GQG0QO98w+sucuTVrfTCCB3EwggVZ
+# oAMCAQICEzMAAAAVxedrngKbSZkAAAAAABUwDQYJKoZIhvcNAQELBQAwgYgxCzAJ
+# BgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9uMRAwDgYDVQQHEwdSZWRtb25k
+# MR4wHAYDVQQKExVNaWNyb3NvZnQgQ29ycG9yYXRpb24xMjAwBgNVBAMTKU1pY3Jv
+# c29mdCBSb290IENlcnRpZmljYXRlIEF1dGhvcml0eSAyMDEwMB4XDTIxMDkzMDE4
+# MjIyNVoXDTMwMDkzMDE4MzIyNVowfDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldh
+# c2hpbmd0b24xEDAOBgNVBAcTB1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBD
+# b3Jwb3JhdGlvbjEmMCQGA1UEAxMdTWljcm9zb2Z0IFRpbWUtU3RhbXAgUENBIDIw
+# MTAwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDk4aZM57RyIQt5osvX
+# JHm9DtWC0/3unAcH0qlsTnXIyjVX9gF/bErg4r25PhdgM/9cT8dm95VTcVrifkpa
+# /rg2Z4VGIwy1jRPPdzLAEBjoYH1qUoNEt6aORmsHFPPFdvWGUNzBRMhxXFExN6AK
+# OG6N7dcP2CZTfDlhAnrEqv1yaa8dq6z2Nr41JmTamDu6GnszrYBbfowQHJ1S/rbo
+# YiXcag/PXfT+jlPP1uyFVk3v3byNpOORj7I5LFGc6XBpDco2LXCOMcg1KL3jtIck
+# w+DJj361VI/c+gVVmG1oO5pGve2krnopN6zL64NF50ZuyjLVwIYwXE8s4mKyzbni
+# jYjklqwBSru+cakXW2dg3viSkR4dPf0gz3N9QZpGdc3EXzTdEonW/aUgfX782Z5F
+# 37ZyL9t9X4C626p+Nuw2TPYrbqgSUei/BQOj0XOmTTd0lBw0gg/wEPK3Rxjtp+iZ
+# fD9M269ewvPV2HM9Q07BMzlMjgK8QmguEOqEUUbi0b1qGFphAXPKZ6Je1yh2AuIz
+# GHLXpyDwwvoSCtdjbwzJNmSLW6CmgyFdXzB0kZSU2LlQ+QuJYfM2BjUYhEfb3BvR
+# /bLUHMVr9lxSUV0S2yW6r1AFemzFER1y7435UsSFF5PAPBXbGjfHCBUYP3irRbb1
+# Hode2o+eFnJpxq57t7c+auIurQIDAQABo4IB3TCCAdkwEgYJKwYBBAGCNxUBBAUC
+# AwEAATAjBgkrBgEEAYI3FQIEFgQUKqdS/mTEmr6CkTxGNSnPEP8vBO4wHQYDVR0O
+# BBYEFJ+nFV0AXmJdg/Tl0mWnG1M1GelyMFwGA1UdIARVMFMwUQYMKwYBBAGCN0yD
+# fQEBMEEwPwYIKwYBBQUHAgEWM2h0dHA6Ly93d3cubWljcm9zb2Z0LmNvbS9wa2lv
+# cHMvRG9jcy9SZXBvc2l0b3J5Lmh0bTATBgNVHSUEDDAKBggrBgEFBQcDCDAZBgkr
+# BgEEAYI3FAIEDB4KAFMAdQBiAEMAQTALBgNVHQ8EBAMCAYYwDwYDVR0TAQH/BAUw
+# AwEB/zAfBgNVHSMEGDAWgBTV9lbLj+iiXGJo0T2UkFvXzpoYxDBWBgNVHR8ETzBN
+# MEugSaBHhkVodHRwOi8vY3JsLm1pY3Jvc29mdC5jb20vcGtpL2NybC9wcm9kdWN0
+# cy9NaWNSb29DZXJBdXRfMjAxMC0wNi0yMy5jcmwwWgYIKwYBBQUHAQEETjBMMEoG
+# CCsGAQUFBzAChj5odHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20vcGtpL2NlcnRzL01p
+# Y1Jvb0NlckF1dF8yMDEwLTA2LTIzLmNydDANBgkqhkiG9w0BAQsFAAOCAgEAnVV9
+# /Cqt4SwfZwExJFvhnnJL/Klv6lwUtj5OR2R4sQaTlz0xM7U518JxNj/aZGx80HU5
+# bbsPMeTCj/ts0aGUGCLu6WZnOlNN3Zi6th542DYunKmCVgADsAW+iehp4LoJ7nvf
+# am++Kctu2D9IdQHZGN5tggz1bSNU5HhTdSRXud2f8449xvNo32X2pFaq95W2KFUn
+# 0CS9QKC/GbYSEhFdPSfgQJY4rPf5KYnDvBewVIVCs/wMnosZiefwC2qBwoEZQhlS
+# dYo2wh3DYXMuLGt7bj8sCXgU6ZGyqVvfSaN0DLzskYDSPeZKPmY7T7uG+jIa2Zb0
+# j/aRAfbOxnT99kxybxCrdTDFNLB62FD+CljdQDzHVG2dY3RILLFORy3BFARxv2T5
+# JL5zbcqOCb2zAVdJVGTZc9d/HltEAY5aGZFrDZ+kKNxnGSgkujhLmm77IVRrakUR
+# R6nxt67I6IleT53S0Ex2tVdUCbFpAUR+fKFhbHP+CrvsQWY9af3LwUFJfn6Tvsv4
+# O+S3Fb+0zj6lMVGEvL8CwYKiexcdFYmNcP7ntdAoGokLjzbaukz5m/8K6TT4JDVn
+# K+ANuOaMmdbhIurwJ0I9JZTmdHRbatGePu1+oDEzfbzL6Xu/OHBE0ZDxyKs6ijoI
+# Yn/ZcGNTTY3ugm2lBRDBcQZqELQdVTNYs6FwZvKhggNQMIICOAIBATCB+aGB0aSB
+# zjCByzELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcT
+# B1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jwb3JhdGlvbjElMCMGA1UE
+# CxMcTWljcm9zb2Z0IEFtZXJpY2EgT3BlcmF0aW9uczEnMCUGA1UECxMeblNoaWVs
+# ZCBUU1MgRVNOOjg2MDMtMDVFMC1EOTQ3MSUwIwYDVQQDExxNaWNyb3NvZnQgVGlt
+# ZS1TdGFtcCBTZXJ2aWNloiMKAQEwBwYFKw4DAhoDFQDTvVU/Yj9lUSyeDCaiJ2Da
+# 5hUiS6CBgzCBgKR+MHwxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9u
+# MRAwDgYDVQQHEwdSZWRtb25kMR4wHAYDVQQKExVNaWNyb3NvZnQgQ29ycG9yYXRp
+# b24xJjAkBgNVBAMTHU1pY3Jvc29mdCBUaW1lLVN0YW1wIFBDQSAyMDEwMA0GCSqG
+# SIb3DQEBCwUAAgUA7JeZdDAiGA8yMDI1MTAxMzE1Mjk1NloYDzIwMjUxMDE0MTUy
+# OTU2WjB3MD0GCisGAQQBhFkKBAExLzAtMAoCBQDsl5l0AgEAMAoCAQACAhsdAgH/
+# MAcCAQACAhJoMAoCBQDsmOr0AgEAMDYGCisGAQQBhFkKBAIxKDAmMAwGCisGAQQB
+# hFkKAwKgCjAIAgEAAgMHoSChCjAIAgEAAgMBhqAwDQYJKoZIhvcNAQELBQADggEB
+# AKHU0vOHtJHVVC2w5r9KvroCRKObZTnIAQ+UDSYXNDgAYFqsawgTojjPFSbovtee
+# kaeZeYY+k4rLl9pIWPlNNbQdKeynpFFu5cVa2rKW+h+90WBPpojtaBdng5IwytrN
+# m9UEyELX2Q2ujWYjmHTPWWlxTyi5Ll9iZf5v+r6C4zIgNZXlj+ZDFE9KdfTIco1a
+# Ri6/fHLn7OiBfn7u8AyWoPwjtzsrZqxndF5lR9if1zYxmO3bYtI+f4az4RbCX7jA
+# PfgDUh4nsA0ULxNztjwCKdMSdjsMMnFx14nzv50p+6fDt4b4m79IVQHCq8nxamQp
+# XjYppfKQZXFiegsX5B8ZgJAxggQNMIIECQIBATCBkzB8MQswCQYDVQQGEwJVUzET
+# MBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMV
+# TWljcm9zb2Z0IENvcnBvcmF0aW9uMSYwJAYDVQQDEx1NaWNyb3NvZnQgVGltZS1T
+# dGFtcCBQQ0EgMjAxMAITMwAAAgcsETmJzYX7xQABAAACBzANBglghkgBZQMEAgEF
+# AKCCAUowGgYJKoZIhvcNAQkDMQ0GCyqGSIb3DQEJEAEEMC8GCSqGSIb3DQEJBDEi
+# BCBcvSZPQwwjmzeHF+7+eqX9PqXHWQ1JP3mao0aaajKLnzCB+gYLKoZIhvcNAQkQ
+# Ai8xgeowgecwgeQwgb0EIC/31NHQds1IZ5sPnv59p+v6BjBDgoDPIwiAmn0PHqez
+# MIGYMIGApH4wfDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hpbmd0b24xEDAO
+# BgNVBAcTB1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jwb3JhdGlvbjEm
+# MCQGA1UEAxMdTWljcm9zb2Z0IFRpbWUtU3RhbXAgUENBIDIwMTACEzMAAAIHLBE5
+# ic2F+8UAAQAAAgcwIgQgmIDve75C2ugz2uioT6gL5kVC3RyTN/86JktFFPNgjn8w
+# DQYJKoZIhvcNAQELBQAEggIAF5Sv97VR/LlSH2oyZnOqHlt3ryUghw+T9F5lyl1l
+# QGPTqvklSmJEjt/DylVsgekKSlhY8Q2RSIyQVH0PS+KPNIW8S5qdnxg1qhpmVhUc
+# bcFQnEqgW/P7F3LJl0OcWOuyYLLuMX8T6/WqrDAJ47LaU5laOadUpEGT5LXQHc8z
+# gwfO1UZUmcY8UHfD7fSHLt86Nqi0yp9Prjc8fuKX1auMcf8H/QUwazGzJilYcDsP
+# il3uMxPXNmZXHv9t4E9wpsuSroN68gaduyf+CEpeoWicWgTl5lid9/YvkxEqK1Eg
+# vWkOSXdTpYh5To0nUaGmRnY8TkLiKsnihgAID5/O0lhcC4krRn9xxtcvXbUSPiG1
+# 1zYuaUnf2wN7ED24n62dmbPNgO6ZlhCau6kKTvbFl9AHLYrCLKtqtPl5HBRfktcf
+# cUMCpW6YFctV3TucBBY1hV1GYKzePHsjWTyZbonqtsHBFWRcrdntsdVXX1LX6uPC
+# s8k5swdETgIyz71JihscFnXm9xHv4pq+Oy8GO5DJBzLV7rPEPuEMgbblwAJWbx45
+# 5ONHPBrkKJEgorAxSK5mz+TorI9AgcBDcqIAnXK1XoYnPXW3iIqFBg+9j9/p86FJ
+# RyUQvzO4+kZc8qNxEF2giND1/QJeHcbgF9F/POWn+4GqQiXforPtPo5gROm9lYRZ
+# FS8=
+# SIG # End signature block
