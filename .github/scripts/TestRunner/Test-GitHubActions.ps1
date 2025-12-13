@@ -35,7 +35,7 @@ Write-Host ""
 Write-Host "Checking WebClient availability..." -ForegroundColor Yellow
 $webClientUrl = "$serviceUrl/WebClient"
 try {
-    $response = Invoke-WebRequest -Uri $webClientUrl -Method Head -TimeoutSec 5 -ErrorAction Stop
+    $null = Invoke-WebRequest -Uri $webClientUrl -Method Head -TimeoutSec 5 -ErrorAction Stop
     Write-Host "  ✓ WebClient is accessible" -ForegroundColor Green
 }
 catch {

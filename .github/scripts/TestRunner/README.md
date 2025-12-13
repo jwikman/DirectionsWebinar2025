@@ -41,7 +41,7 @@ For BC environments running in Docker with Wine (like the current setup), you ha
 
 1. **Use OData-based testing** (Recommended for CI/CD):
    ```powershell
-   pwsh .github/scripts/run-tests-odata.ps1 -BaseUrl "http://localhost:7048/BC"
+   pwsh .github/scripts/run-tests-odata.ps1 -BaseUrl "http://localhost/BC"
    ```
 
 2. **Configure nginx to serve the WebClient**:
@@ -110,4 +110,4 @@ The Test-GitHubActions.ps1 script has been successfully debugged and enhanced:
 - Cannot execute tests without WebClient configured
 - This is an architectural limitation, not a bug in the script
 
-**Recommendation:** For CI/CD pipelines using Docker/Wine-based BC environments, use the OData-based test runner (`run-tests-odata.ps1`) instead, which doesn't require WebClient.
+**Recommendation:** For CI/CD pipelines using Docker/Wine-based BC environments, use the OData-based test runner (`.github/scripts/run-tests-odata.ps1`) instead, which doesn't require WebClient.
