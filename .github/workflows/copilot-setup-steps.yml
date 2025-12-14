@@ -30,6 +30,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup AL Test Runner MCP Server
+        shell: pwsh
+        run: |
+          ./.github/scripts/setup-al-test-runner-mcp.ps1
+
       - name: Setup .NET 8.0 and AL Tools
         shell: pwsh
         run: |
