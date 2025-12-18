@@ -7,16 +7,19 @@ on:
   push:
     paths:
       - .github/workflows/copilot-setup-steps.yml
-      - ".github/scripts/**"
+      - .github/initialize-coding-agent.ps1
   pull_request:
     paths:
       - .github/workflows/copilot-setup-steps.yml
+
+defaults:
+  run:
+    shell: pwsh
 
 jobs:
   # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
   copilot-setup-steps:
     runs-on: ubuntu-latest
-    environment: copilot
 
     # Set the permissions to the lowest permissions possible needed for your steps.
     # Copilot will be given its own token for its operations.
@@ -27,117 +30,11 @@ jobs:
     # You can define any steps you want, and they will run before the agent starts.
     # If you do not check out your code, Copilot will do this for you.
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET 8.0 and AL Tools
+      - name: Prepare Copilot Environment
+        continue-on-error: false
         shell: pwsh
         run: |
-          ./.github/scripts/setup-dotnet-and-al.ps1
-
-      - name: Get Weekly BC Artifact URL
-        shell: pwsh
-        id: get-bc-artifact
-        run: |
-          Install-Module -Name BcContainerHelper -Force -AllowClobber -Scope CurrentUser
-          $artifactUrl = Get-BcArtifactUrl -type Sandbox -country w1 -select Weekly
-          Write-Host "Weekly BC Artifact URL: $artifactUrl"
-          "artifact-url=$artifactUrl" >> $env:GITHUB_OUTPUT
-
-      - name: Setup BC Container
-        shell: pwsh
-        env:
-          SA_PASSWORD: ${{ secrets.SA_PASSWORD }}
-          BC_USERNAME: ${{ vars.BC_USERNAME }}
-          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
-          BCDEV_REPO: ${{ vars.BCDEV_REPO }}
-          BCDEV_BRANCH: ${{ vars.BCDEV_BRANCH }}
-        run: |
-          ./.github/scripts/setup-bc-container.ps1 `
-            -BCDevRepo "$env:BCDEV_REPO" `
-            -BCDevBranch "$env:BCDEV_BRANCH" `
-            -BCArtifactUrl "${{ steps.get-bc-artifact.outputs.artifact-url }}"
-
-      - name: Start BC Container
-        shell: pwsh
-        run: |
-          ./.github/scripts/start-bc-container.ps1 `
-            -MaxWaitSeconds 1200
-
-      - name: Create dependencies directory
-        shell: pwsh
-        run: |
-          New-Item `
-            -ItemType Directory `
-            -Force `
-            -Path .alpackages
-
-      - name: Download BC Symbol Packages for Main App
-        shell: pwsh
-        env:
-          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
-          BC_USERNAME: ${{ vars.BC_USERNAME }}
-        run: |
-          ./.github/scripts/download-bc-symbols.ps1 `
-            -AppJsonPath "./App/app.json" `
-            -BaseUrl "http://localhost:7049/BC" `
-            -Tenant "default" `
-            -Username "$env:BC_USERNAME" `
-            -SymbolsFolder ".alpackages"
-
-      - name: Compile Main App
-        shell: pwsh
-        run: |
-          ./.github/scripts/compile-al-apps.ps1 `
-            -ProjectPath "./App"
-
-      - name: Download BC Symbol Packages for Test App
-        shell: pwsh
-        env:
-          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
-          BC_USERNAME: ${{ vars.BC_USERNAME }}
-        run: |
-          ./.github/scripts/download-bc-symbols.ps1 `
-            -AppJsonPath "./TestApp/app.json" `
-            -BaseUrl "http://localhost:7049/BC" `
-            -Tenant "default" `
-            -Username "$env:BC_USERNAME" `
-            -SymbolsFolder ".alpackages"
-
-      - name: Compile Test App
-        shell: pwsh
-        run: |
-          ./.github/scripts/compile-al-apps.ps1 `
-            -ProjectPath "./TestApp"
-
-      - name: Publish Apps to Container
-        shell: pwsh
-        env:
-          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
-          BC_USERNAME: ${{ vars.BC_USERNAME }}
-        run: |
-          ./.github/scripts/publish-apps-to-container.ps1 `
-            -BaseUrl "http://localhost:7049/BC" `
-            -Username "$env:BC_USERNAME"
-      - name: Run AL Tests in Container via OData
-        shell: pwsh
-        env:
-          BC_PASSWORD: ${{ secrets.BC_PASSWORD }}
-          BC_USERNAME: ${{ vars.BC_USERNAME }}
-        run: |
-          Write-Host "Running AL tests in BC container via OData API..."
-          ./.github/scripts/run-tests-odata.ps1 `
-            -BaseUrl "http://localhost:7048/BC" `
-            -Tenant "default" `
-            -Username "$env:BC_USERNAME" `
-            -CodeunitId 70454 `
-            -MaxWaitSeconds 300
-
-      - name: Build Summary
-        shell: pwsh
-        run: |
-          Write-Host "=== BUILD SUMMARY ==="
-          Write-Host "Build completed at: $(Get-Date -Format o)"
-          Write-Host ""
-          Write-Host "=== BUILD ARTIFACTS ==="
-          Get-ChildItem -Path App/*.app, TestApp/*.app -ErrorAction SilentlyContinue | ForEach-Object { Write-Host $_.FullName }
+          . (Join-Path ($pwd.path) '.github\initialize-coding-agent.ps1' -resolve)
