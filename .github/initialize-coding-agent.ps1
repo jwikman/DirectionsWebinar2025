@@ -58,11 +58,16 @@ $bcContainerHelperConfig.TrustedNuGetFeeds = @(
 )
 
 if ($IsLinux) {
-    $analyzerFolderPath = Join-Path $env:HOME "/.dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/" -Resolve
+    $analyzerFolderPath = Get-Item (Join-Path $env:HOME ".dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/") -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
 }
 else {
     # Used for development on Windows
-    $analyzerFolderPath = Join-Path $env:USERPROFILE "/.dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/" -Resolve
+    $analyzerFolderPath = Get-Item (Join-Path $env:USERPROFILE ".dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/") -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+}
+
+if (-not $analyzerFolderPath) {
+    Write-Error "Analyzer folder not found. Expected path pattern: .dotnet/tools/.store/$($toolName.ToLower())/*/$($toolName.ToLower())/*/lib/*/*/"
+    exit 1
 }
 
 # Download BusinessCentral.LinterCop
